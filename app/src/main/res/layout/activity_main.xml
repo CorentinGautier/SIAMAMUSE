@@ -16,16 +16,17 @@
     <Button
         android:id="@+id/ActivityJeu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="51dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="316dp"
         android:layout_marginEnd="8dp"
         android:onClick="ActivityJeu"
         android:text="Jouer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="300dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonQuitter"
@@ -54,18 +55,20 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="91dp"
-        android:layout_height="57dp"
+        android:layout_width="217dp"
+        android:layout_height="73dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="104dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="casual"
-        android:text="TextView"
+        android:text="SIAMAMUSE"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="157dp"
-        tools:text="SIAM"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:text="SIAMAMUSE" />
 
 
 </android.support.constraint.ConstraintLayout>
