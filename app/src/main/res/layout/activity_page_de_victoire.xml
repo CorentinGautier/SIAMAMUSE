@@ -5,15 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".pageDeVictoire">
+
     <Button
         android:id="@+id/buttonOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:onClick="LancerLeJeu"
-        android:text="Option"
+        android:onClick="QuitterPageDeVictoire"
+        android:text="Quitter"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="518dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="295dp"
+        android:layout_height="182dp"
+        android:text="Victoire Du joueur numéro  "
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="65dp" />
 
 </android.support.constraint.ConstraintLayout>
