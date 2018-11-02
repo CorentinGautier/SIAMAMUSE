@@ -5,19 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class option_jeu extends AppCompatActivity {
+public class pageDeVictoire extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_option_jeu);
+        setContentView(R.layout.activity_page_de_victoire);
     }
-
     public void RetourMenu(View view) { //quitter l'activity actuel.
         this.finish();
     }
-    public void LancerLeJeu(View v){
-        Intent intent = new Intent(this, partie.class); // l'activité où on est en ce moment et la prochaine activity
+    public void LancerLeJeux(View v){
+        Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
     }
 }

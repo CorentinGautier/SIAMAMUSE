@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".option" />
         <activity android:name=".jeu" />
-        <activity android:name=".partie"></activity>
+        <activity android:name=".partie" />
+        <activity android:name=".pageDeVictoire"></activity>
     </application>
 
 </manifest>
