@@ -16,6 +16,7 @@ public class option_jeu extends AppCompatActivity {
     public void RetourMenu(View view) { //quitter l'activity actuel.
         this.finish();
     }
+
     public void LancerLeJeu(View v){
         Intent intent = new Intent(this, partie.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
