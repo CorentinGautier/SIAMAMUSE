@@ -5,28 +5,32 @@
     android:id="@+id/fenetrePrincipal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
+    android:background="@drawable/background1"
     android:gravity="center"
     android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/ActivityJeu"
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"
+        android:layout_width="154dp"
+        android:layout_height="71dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="352dp"
         android:layout_marginEnd="8dp"
         android:onClick="ActivityJeu"
-        android:text="Jouer"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="Jouer" />
 
     <Button
         android:id="@+id/buttonQuitter"
@@ -44,31 +48,15 @@
 
     <Button
         android:id="@+id/buttonOption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="28dp"
         android:onClick="ActivityOption"
         android:text="Option"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="217dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="casual"
-        android:text="SIAMAMUSE"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:text="SIAMAMUSE" />
+        tools:layout_editor_absoluteY="33dp" />
 
 
 </android.support.constraint.ConstraintLayout>
