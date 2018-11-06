@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         startActivity(intent);
     }
 
-    public void ActivityOptionJeu(View v){
-        Intent intent = new Intent(this, option_jeu.class); // l'activité où on est en ce moment et la prochaine activity
-        startActivity(intent);
+    public void ActivityOptionJeu(View viewview){
+        Intent intent2 = new Intent(this, optionJeu.class); // l'activité où on est en ce moment et la prochaine activity
+        startActivity(intent2);
     }
 
     public void QuitterLeJeu(View view) { //quitter l'activity actuel.
