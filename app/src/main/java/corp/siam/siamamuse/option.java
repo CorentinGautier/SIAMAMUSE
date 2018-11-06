@@ -29,6 +29,7 @@ public class option extends AppCompatActivity {
         tailleCarac.add("12");
         tailleCarac.add("13");
         tailleCarac.add("14");
+        tailleCarac.add("15");
 		/*Le Spinner a besoin d'un adapter pour sa presentation alors on lui passe le context(this) et
                 un fichier de presentation par défaut( android.R.layout.simple_spinner_item)
 		Avec la liste des elements (exemple) */
