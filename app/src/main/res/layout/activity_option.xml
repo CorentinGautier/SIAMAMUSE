@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgnd"
     tools:context=".option">
 
     <TextView
@@ -15,6 +16,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="casual"
         android:text="Taille police de l'application: "
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerTailleCarac"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +53,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Afficher les déplacements possibles: "
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -84,6 +87,7 @@
         android:layout_marginEnd="5dp"
         android:fontFamily="casual"
         android:text="OPTION"
+        android:textColor="@android:color/white"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

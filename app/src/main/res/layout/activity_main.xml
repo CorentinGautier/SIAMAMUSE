@@ -5,7 +5,6 @@
     android:id="@+id/fenetrePrincipal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="0dp"
@@ -22,15 +21,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="352dp"
         android:layout_marginEnd="8dp"
-        android:onClick="ActivityJeu"
+        android:onClick="ActivityOptionJeu"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:text="Jouer" />
+
 
     <Button
         android:id="@+id/buttonQuitter"
@@ -53,7 +53,7 @@
         android:layout_marginStart="28dp"
         android:onClick="ActivityOption"
         android:text="Option"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="33dp" />
