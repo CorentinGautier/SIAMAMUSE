@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgndconvertcmage"
     android:orientation="vertical"
-    tools:context=".optionJeu">
+    tools:context=".Activity_OptionJeu">
 
     <TextView
         android:id="@+id/textView3"
@@ -106,8 +106,8 @@
         android:layout_marginTop="204dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Ecrivez votre nom"
         android:inputType="textPersonName"
-        android:text="Nom du joueur 1"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.24"
@@ -118,11 +118,14 @@
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nom du joueur 2"
+        android:hint="Ecrivez votre nom"
+        android:inputType="textPersonName|textFilter"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        tools:layout_editor_absoluteX="142dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 </android.support.constraint.ConstraintLayout>

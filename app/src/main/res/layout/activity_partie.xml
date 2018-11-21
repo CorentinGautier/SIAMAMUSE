@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/plateauconvertmage"
     android:orientation="vertical"
-    tools:context=".partie">
+    tools:context=".Activity_Partie">
 
     <ImageView
         android:id="@+id/imageView"

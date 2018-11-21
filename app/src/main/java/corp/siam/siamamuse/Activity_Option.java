@@ -1,6 +1,7 @@
 package corp.siam.siamamuse;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class option extends AppCompatActivity {
+import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
+
+public class Activity_Option extends AppCompatActivity {
 
     Spinner spinnerTailleCarac;
     ListView listView;
@@ -39,8 +41,14 @@ public class option extends AppCompatActivity {
         //Enfin on passe l'adapter au Spinner et c'est tout
         spinnerTailleCarac.setAdapter(adapter);
     }
-
+    public void allerAuTuto(View v){
+        Intent intent = new Intent(this, Activity_Tutoriel.class); // l'activité où on est vers la prochaine
+        startActivity(intent);
+        this.finish();
+         }
     public void RetourMenu(View view) { //quitter l'activity actuel.
+        Intent intent = new Intent(this, MainActivity.class); // l'activité où on est vers la prochaine
+        startActivity(intent);
         this.finish();
     }
 }

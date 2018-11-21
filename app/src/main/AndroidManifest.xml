@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".option" />
-        <activity android:name=".optionJeu" />
-        <activity android:name=".partie" />
-        <activity android:name=".pageDeVictoire"></activity>
+        <activity android:name=".Activity_Option" />
+        <activity android:name=".Activity_OptionJeu" />
+        <activity android:name=".Activity_Partie" />
+        <activity android:name=".Activity_PageDeVictoire"/>
+            <activity android:name=".Tutoriel.Activity_Tutoriel" />
     </application>
 
 </manifest>

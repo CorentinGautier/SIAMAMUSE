@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgndconvertcmage"
     android:orientation="vertical"
-    tools:context=".pageDeVictoire">
+    tools:context=".Activity_PageDeVictoire">
 
     <Button
         android:id="@+id/buttonOption"

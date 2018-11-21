@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgndconverti"
     android:orientation="vertical"
-    tools:context=".option">
+    tools:context=".Activity_Option">
 
     <TextView
         android:id="@+id/textView"
@@ -21,10 +21,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerTailleCarac"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586"
+        app:layout_constraintVertical_bias="0.591"
         tools:ignore="MissingConstraints"
         tools:text="Taille police de l'application: " />
 
@@ -37,14 +37,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:spinnerMode="dialog"
-        android:visibility="visible"
         android:textColor="@android:color/white"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/DeplacementPossible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738" />;
+        app:layout_constraintVertical_bias="0.665" />;
 
     <CheckBox
         android:id="@+id/DeplacementPossible"
@@ -66,8 +66,8 @@
 
     <Button
         android:id="@+id/buttonRetour"
-        android:layout_width="98dp"
-        android:layout_height="75dp"
+        android:layout_width="92dp"
+        android:layout_height="55dp"
         android:layout_marginStart="280dp"
         android:layout_marginTop="516dp"
         android:layout_marginEnd="8dp"
@@ -100,5 +100,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="OPTION" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="116dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="allerAuTuto"
+        android:text="TUTORIEL"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class partie extends AppCompatActivity {
+public class Activity_Partie extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,5 +15,6 @@ public class partie extends AppCompatActivity {
     public void FinDeLaPartie(View view) { //quitter l'activity actuel.
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
+        this.finish();
     }
 }
