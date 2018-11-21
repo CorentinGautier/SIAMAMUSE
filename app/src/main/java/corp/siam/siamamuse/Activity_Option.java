@@ -16,8 +16,7 @@ import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
 public class Activity_Option extends AppCompatActivity {
 
     Spinner spinnerTailleCarac;
-    ListView listView;
-    @SuppressLint("WrongViewCast")
+        @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

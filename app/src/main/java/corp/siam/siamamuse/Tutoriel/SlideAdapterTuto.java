@@ -28,7 +28,7 @@ public class SlideAdapterTuto extends PagerAdapter {
             "Jeu n°1 : Rapidité",
             "Jeu n°2 : Déplacement de la voiture",
             "Version 4.0",
-            "chriis",
+
 
     };
 
@@ -44,7 +44,7 @@ public class SlideAdapterTuto extends PagerAdapter {
             Color.rgb(55, 55, 55),
             Color.rgb(239, 85, 85),
             Color.rgb(110, 49, 89),
-            Color.rgb(1, 188, 212)
+
     };
 
 
