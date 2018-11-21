@@ -20,6 +20,20 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="510dp" />
 
+    <Button
+        android:id="@+id/buttonRevanche"
+        android:layout_width="120dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="Revanche"
+        android:text="Revanche"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="224dp"

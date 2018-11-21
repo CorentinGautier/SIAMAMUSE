@@ -18,4 +18,9 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
+    public void Revanche(View v){
+        Intent intent = new Intent(this, Activity_Partie.class); // l'activité où on est en ce moment et la prochaine activity
+        startActivity(intent);
+        this.finish();
+    }
 }
