@@ -1,5 +1,7 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -8,19 +10,27 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import corp.siam.siamamuse.Activity_Partie;
+
 public class MoteurJeu {
 
 	Plateau lePlateau;
 	Joueur joueur1, joueur2;
 	boolean fin;
 
-	public MoteurJeu(int taillePlateau) throws ParserConfigurationException, SAXException, IOException {
-		//lePlateau = new Plateau(taillePlateau);
-		lePlateau = new Plateau();
+	public MoteurJeu(int taillePlateau, Activity_Partie context) throws ParserConfigurationException, SAXException, IOException {
+		lePlateau = new Plateau(taillePlateau,context);
+		Log.e("TEST","TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST");
+		//lePlateau = new Plateau();
+		Log.e("TEST","TEEEEEEEEEEEEEEEEEEEEEEEEEEEET");
 		joueur1 = new Joueur("Elephant");
 		joueur2 = new Joueur("Rhinoceros");
 		fin = false;
+		Log.e("TEST","AZERTYUIOOOPOOOOOOOOOOOOOOOOOOOOOOOo");
+	}
 
+	public Plateau getLePlateau() {
+		return lePlateau;
 	}
 
 	public void jouer() {

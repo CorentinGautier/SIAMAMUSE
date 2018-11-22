@@ -16,6 +16,8 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
+import corp.siam.siamamuse.Activity_Partie;
+
 
 public class Plateau {
 
@@ -23,13 +25,24 @@ public class Plateau {
 	int taillePlateau;
 	Pion pionARecupere;
 	boolean finJeu;
+	Activity_Partie context;
 
-	public Plateau(int taillePlateau) {
+	public Plateau(int taillePlateau, Activity_Partie context) {
 		super();
 		finJeu = false;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
+		this.context=context;
+		ajouterRocher();
+	}
+
+	public void ajouterRocher(){
+		for (int i = 1; i < taillePlateau + 1; i++) {
+			for (int j = 1; j < taillePlateau + 1; j++) {
+				plateau[i][j] = new Rocher("rocher",context);
+			}
+		}
 	}
 	public Plateau () throws ParserConfigurationException, SAXException, IOException {
 		load("plateauX.xml");
@@ -479,7 +492,7 @@ public class Plateau {
 					plateau [x][y] = null;
 				}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
 					int id = 1 ;
-					Rocher unRocher = new Rocher("cailloux "+id);
+					Rocher unRocher = new Rocher("cailloux "+id,context);
 					ajouterRocher(unRocher, x ,y);
 					id++;
 				
