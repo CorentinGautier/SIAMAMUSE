@@ -324,6 +324,10 @@ public class Plateau {
 
 	}
 
+	public Jeton[][] getPlateau() {
+		return plateau;
+	}
+
 	public void pousserOuest(Jeton unJeton, int xMin, int y) {
 		while (plateau[xMin][y] != unJeton) {
 			plateau[xMin - 1][y] = plateau[xMin][y];
