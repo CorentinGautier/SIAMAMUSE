@@ -27,7 +27,7 @@ public class Joueur {
 		lesPionsEnMain.add(unPion);
 	}
 	
-	public Pion posserPionPlateau() {
+	public Pion poserPionPlateau() {
 		if(lesPionsEnMain.size()==0) {
 			System.err.println("Vous n'avez plus de pion");
 			return null;
