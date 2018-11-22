@@ -70,9 +70,9 @@ public class MoteurJeu {
 		y = sca.nextInt();
 		unJoueur.setRegardProchainPion(choisirRegard());
 		if (lePlateau.verifCoin(x, y)) {
-			lePlateau.ajouterPionCoin(unJoueur.posserPionPlateau(), x, y, choisirPousser());
+			lePlateau.ajouterPionCoin(unJoueur.poserPionPlateau(), x, y, choisirPousser());
 		} else {
-			lePlateau.ajouterPion(unJoueur.posserPionPlateau(), x, y);
+			lePlateau.ajouterPion(unJoueur.poserPionPlateau(), x, y);
 		}
 	}
 
