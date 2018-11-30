@@ -27,7 +27,7 @@ public class SlideAdapterTuto extends PagerAdapter {
             R.drawable.tuto_six,
             R.drawable.tuto_sept,
             R.drawable.tuto_huit,
-            R.drawable.rhinoceros,
+            R.drawable.rhinoceros
     };
 
     // liste de titre
@@ -45,7 +45,7 @@ public class SlideAdapterTuto extends PagerAdapter {
             "Le gagnant",
 
             "info complémentaire",
-            "Crédit"
+
 
     };
 
@@ -74,16 +74,16 @@ public class SlideAdapterTuto extends PagerAdapter {
             Color.rgb(239, 85, 85),
             Color.rgb(110, 49, 89),
 
-            Color.rgb(5, 6, 100),
+            Color.rgb(5, 246, 100),
             Color.rgb(110, 22, 86),
             Color.rgb(123, 49, 70),
 
             Color.rgb(110, 49, 18),
-            Color.rgb(20, 30, 62),
-            Color.rgb(1, 40, 50),
+            Color.rgb(210, 140, 50),
+            Color.rgb(200, 200, 200),
 
             Color.rgb(100, 40, 50),
-            Color.rgb(60, 60, 55),
+            Color.rgb(160, 60, 55),
 
       };
 
