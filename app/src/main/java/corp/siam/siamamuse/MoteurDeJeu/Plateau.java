@@ -1,5 +1,7 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.util.Log;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -16,6 +18,8 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
+import corp.siam.siamamuse.Activity_Partie;
+
 
 public class Plateau {
 
@@ -23,13 +27,24 @@ public class Plateau {
 	int taillePlateau;
 	Pion pionARecupere;
 	boolean finJeu;
+	Activity_Partie context;
 
-	public Plateau(int taillePlateau) {
+	public Plateau(int taillePlateau, Activity_Partie context) {
 		super();
 		finJeu = false;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
+		this.context=context;
+		ajouterRocher();
+	}
+
+	public void ajouterRocher(){
+		for (int i = 1; i < taillePlateau + 1; i++) {
+			for (int j = 1; j < taillePlateau + 1; j++) {
+				plateau[i][j] = new Rocher("rocher",context);
+			}
+		}
 	}
 	public Plateau () throws ParserConfigurationException, SAXException, IOException {
 		load("plateauX.xml");
@@ -157,26 +172,26 @@ public class Plateau {
 	
 
 	public void afficherPlateauVisionDev() {
-		System.out.println("\n\nVoici le plateau :");
+		Log.e("TEST","\n\n le plateau :");
 		for (int i = 0; i < taillePlateau + 2; i++) {
 			for (int j = 0; j < taillePlateau + 2; j++) {
 				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
-					System.out.println(plateau[i][j] + " � la position " + i + " " + j);
+					Log.e("TEST",(plateau[i][j] + " � la position " + i + " " + j));
 				}
 			}
 		}
 	}
 	public void afficherPlateauVisionJoueur() {
-		System.out.println("\n\nVoici le plateau :");
+		Log.e("TEST",("\n\n le plateau :"));
 		for (int i = 1; i < taillePlateau + 1; i++) {
 			for (int j = 1; j < taillePlateau + 1; j++) {
 				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
-					System.out.println(plateau[i][j] + " � la position " + (i-1) + " " + (j-1));
+					Log.e("TEST",(plateau[i][j] + " � la position " + (i-1) + " " + (j-1)));
 				}
 			}
 		}
 	}
-	
+
 	public void afficherPlateauVide() {
 		System.out.println("\n\nVoici le plateau :");
 		for (int i = 0; i < taillePlateau + 2; i++) {
@@ -322,6 +337,10 @@ public class Plateau {
 		plateau[xMax + 1][y] = plateau[xMax][y];
 		plateau[xMax][y] = null;
 
+	}
+
+	public Jeton[][] getPlateau() {
+		return plateau;
 	}
 
 	public void pousserOuest(Jeton unJeton, int xMin, int y) {
@@ -475,7 +494,7 @@ public class Plateau {
 					plateau [x][y] = null;
 				}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
 					int id = 1 ;
-					Rocher unRocher = new Rocher("cailloux "+id);
+					Rocher unRocher = new Rocher("cailloux "+id,context);
 					ajouterRocher(unRocher, x ,y);
 					id++;
 				

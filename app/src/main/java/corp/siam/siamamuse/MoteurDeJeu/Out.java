@@ -1,5 +1,7 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.widget.ImageButton;
+
 public class Out extends Jeton {
 	
 	public Out() {
@@ -10,6 +12,13 @@ public class Out extends Jeton {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Integer getImagePion() {
+		return null;
+	}
+
+
 	@Override
 	public String toString() {
 		return "je suis un OUT";

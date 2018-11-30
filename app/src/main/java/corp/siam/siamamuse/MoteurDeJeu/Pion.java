@@ -1,8 +1,13 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.media.ImageReader;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+
 public class Pion extends Jeton {
 	String nom;
 	Orientation regard;
+	Integer image;
 	//a supprimer
 	int id;
 
@@ -28,7 +33,12 @@ public class Pion extends Jeton {
 			return 0;
 		}
 	}
-	
+
+	@Override
+	public Integer getImagePion() {
+		return image;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -36,6 +46,7 @@ public class Pion extends Jeton {
 	public void setRegard(Orientation regard) {
 		this.regard = regard;
 	}
-	
+
+
 
 }

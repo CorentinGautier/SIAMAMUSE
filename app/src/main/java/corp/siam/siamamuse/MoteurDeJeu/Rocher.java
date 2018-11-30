@@ -1,10 +1,18 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.R;
+
 public class Rocher extends Jeton {
 	String nom;
+	Integer image;
 
-	public Rocher(String nom) {
+	public Rocher(String nom, Activity_Partie context) {
 		this.nom = nom;
+		image = R.drawable.rocher;
 	}
 	
 
@@ -16,6 +24,11 @@ public class Rocher extends Jeton {
 	@Override
 	public int veriforientation(Orientation regard) {
 		return -1;
+	}
+
+	@Override
+	public Integer getImagePion() {
+		return image;
 	}
 
 }
