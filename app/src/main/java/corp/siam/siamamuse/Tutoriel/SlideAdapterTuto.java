@@ -18,14 +18,14 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // liste d'images
     public int[] lst_images = {
-            R.drawable.rhinoceros,
+           R.drawable,
             R.drawable.elephant,
             R.drawable.plateausiam,
                 };
 
     // liste de titre
     public String[] lst_title = {
-            "Jeu n°1 : Rapidité",
+            " Présentation",
             "Jeu n°2 : Déplacement de la voiture",
             "Version 4.0",
 
@@ -34,7 +34,7 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // liste de descriptions
     public String[] lst_description = {
-            "Rinocéros = le plus beau",
+            "Nous sommes au Royaume de SIAM, jadis véritable paradis terrestre, terre d’immensité ou éléphants et rhinocéros vivaient en paix depuis des siècles. Un jour la terre se mit à trembler et SIAM fut alors réduite à trois régions entourées de gigantesques montages montagnes. Depuis éléphants et rhinocéros n’ont plus assez d’espace pour vivre, ces deux espèces d’une force incroyable vont alors se livrer à une lutter sans merci pour régner.",
             "elephant = le plus intelligent",
             "vous jouerez sur ce plateau"
     };
