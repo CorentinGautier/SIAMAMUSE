@@ -1,5 +1,7 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.util.Log;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -170,26 +172,26 @@ public class Plateau {
 	
 
 	public void afficherPlateauVisionDev() {
-		System.out.println("\n\nVoici le plateau :");
+		Log.e("TEST","\n\n le plateau :");
 		for (int i = 0; i < taillePlateau + 2; i++) {
 			for (int j = 0; j < taillePlateau + 2; j++) {
 				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
-					System.out.println(plateau[i][j] + " � la position " + i + " " + j);
+					Log.e("TEST",(plateau[i][j] + " � la position " + i + " " + j));
 				}
 			}
 		}
 	}
 	public void afficherPlateauVisionJoueur() {
-		System.out.println("\n\nVoici le plateau :");
+		Log.e("TEST",("\n\n le plateau :"));
 		for (int i = 1; i < taillePlateau + 1; i++) {
 			for (int j = 1; j < taillePlateau + 1; j++) {
 				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
-					System.out.println(plateau[i][j] + " � la position " + (i-1) + " " + (j-1));
+					Log.e("TEST",(plateau[i][j] + " � la position " + (i-1) + " " + (j-1)));
 				}
 			}
 		}
 	}
-	
+
 	public void afficherPlateauVide() {
 		System.out.println("\n\nVoici le plateau :");
 		for (int i = 0; i < taillePlateau + 2; i++) {

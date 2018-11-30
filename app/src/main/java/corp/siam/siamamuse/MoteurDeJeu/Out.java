@@ -14,9 +14,10 @@ public class Out extends Jeton {
 	}
 
 	@Override
-	public ImageButton getImage() {
+	public Integer getImagePion() {
 		return null;
 	}
+
 
 	@Override
 	public String toString() {

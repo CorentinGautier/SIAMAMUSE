@@ -8,12 +8,11 @@ import corp.siam.siamamuse.R;
 
 public class Rocher extends Jeton {
 	String nom;
-	ImageButton image;
+	Integer image;
 
 	public Rocher(String nom, Activity_Partie context) {
 		this.nom = nom;
-		image = new ImageButton(context);
-		image.setBackgroundResource(R.drawable.rocher);
+		image = R.drawable.rocher;
 	}
 	
 
@@ -28,7 +27,8 @@ public class Rocher extends Jeton {
 	}
 
 	@Override
-	public ImageButton getImage() {
+	public Integer getImagePion() {
 		return image;
 	}
+
 }

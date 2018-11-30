@@ -7,7 +7,7 @@ import android.widget.ImageView;
 public class Pion extends Jeton {
 	String nom;
 	Orientation regard;
-	ImageButton image;
+	Integer image;
 	//a supprimer
 	int id;
 
@@ -35,7 +35,7 @@ public class Pion extends Jeton {
 	}
 
 	@Override
-	public ImageButton getImage() {
+	public Integer getImagePion() {
 		return image;
 	}
 
