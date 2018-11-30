@@ -4,15 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import corp.siam.siamamuse.R;
 
-public class Activity_CreationPlateau extends AppCompatActivity {
+public class Activity_CreationPlateau extends AppCompatActivity implements View.OnClickListener {
 
 
     EditText editTextNbColone;
     EditText editTextNbLigne;
+Button btnEnvoi;
 
     private static int nbColone;
     private static int nbLigne;
@@ -26,6 +28,11 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
+        btnEnvoi = (Button) findViewById(R.id.btnEnvoi);
+
+        btnEnvoi.setOnClickListener(this);
+    Matrice uneMatrice = new Matrice();
+        uneMatrice.afficherMatrice();
 
     }
 
