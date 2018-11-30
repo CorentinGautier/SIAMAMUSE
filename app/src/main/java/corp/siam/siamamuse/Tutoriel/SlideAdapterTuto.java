@@ -18,26 +18,55 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // liste d'images
     public int[] lst_images = {
-           R.drawable,
             R.drawable.elephant,
-            R.drawable.plateausiam,
-                };
+            R.drawable.tuto_un,
+            R.drawable.tuto_deux,
+            R.drawable.tuto_trois,
+            R.drawable.tuto_quatre,
+            R.drawable.tuto_cinq,
+            R.drawable.tuto_six,
+            R.drawable.tuto_sept,
+            R.drawable.tuto_huit,
+            R.drawable.rhinoceros,
+    };
 
     // liste de titre
     public String[] lst_title = {
-            " Présentation",
-            "Jeu n°2 : Déplacement de la voiture",
-            "Version 4.0",
+            "Context",
+            "Se déplacer sur une case libre et changer l’orientation de son animal sur une case.",
+            "Orientation 1",
 
+            "Orientation 2",
+            "Pousser 1",
+            "Pousser 2",
+
+            "Pousser 3",
+            "Pousser 4",
+            "Le gagnant",
+
+            "info complémentaire",
+            "Crédit"
 
     };
 
     // liste de descriptions
     public String[] lst_description = {
             "Nous sommes au Royaume de SIAM, jadis véritable paradis terrestre, terre d’immensité ou éléphants et rhinocéros vivaient en paix depuis des siècles. Un jour la terre se mit à trembler et SIAM fut alors réduite à trois régions entourées de gigantesques montages montagnes. Depuis éléphants et rhinocéros n’ont plus assez d’espace pour vivre, ces deux espèces d’une force incroyable vont alors se livrer à une lutter sans merci pour régner.",
-            "elephant = le plus intelligent",
-            "vous jouerez sur ce plateau"
-    };
+            "Vous pouvez changer l’orientation de votre animal sur sa case de ¼ ou de ½ tour. Ce coup compte comme tu tour de jeux, Vous ne pouvez pas déplacer qu’une seule case et de façon orthogonal. (Pas de déplacement en diagonal) l’orientation de votre animal n’est pas liée à la direction de son déplacement. Tout en déplaçant, vous pouvez à votre guise changer l’orientation de votre animal.",
+            "Vous ne pouvez pousser que dans la direction indiquée par le chevron noir.",
+
+            "Un animal orienté dans la bonne direction peut pousser un rocher. Deux animaux orienté dans la bonne direction peuvent pousser deux rochers. Trois animaux orientés dans la bonne direction peuvent pousser 3 rochers",
+            "Un animal ne peut pousser un autre animal qui lui fait face (peu importe à qui appartient l’animal) : ils se neutralisent. En effet, rhinocéros et éléphants ont la même force de poussée : pour pouvoir pousser, il faut qu’il y ait donc une majorité d’animaux qui poussent dans la même direction. Précision : un de vos animaux peut empêcher votre poussés, un animal adverse peut aider votre poussée.",
+            "Un animal peut pousser à lui un ou plusieurs s’ils ne lui font pas face",
+
+            "Vous pouvez pousser en entrant une pièce sur le plateau.",
+            "Pour résoudre des situations de poussée plus compliquée, il suffit de regarder les animaux qui ont le même sens de poussée et de les déduire de ceux qui font opposition. Ensuite il faut voir si ceux qui restent sont en nombre suffisant pour pousser des rochers.",
+            "Lorsqu’un rocher du plateau, la partie est terminé. Mais attention : le gagnant est le joueur qui est le plus proche du Rocher et dans le même sens de poussée.",
+
+            "Un animal qui sort du plateau suite à une poussé n’est pas éliminé, il est récupéré par son propriétaire et pourra être joué plus tard dans la partie.",
+            "Glenn LOUARN, Corentin MILCENT, Christophe PEROUMAL TEVANIN, Aymeric COUPRIE, Corentin GAUTIER",
+
+        };
 
     // list des couleurs en background
     public int[] lst_backgroundcolor = {
@@ -45,7 +74,18 @@ public class SlideAdapterTuto extends PagerAdapter {
             Color.rgb(239, 85, 85),
             Color.rgb(110, 49, 89),
 
-    };
+            Color.rgb(5, 6, 100),
+            Color.rgb(110, 22, 86),
+            Color.rgb(123, 49, 70),
+
+            Color.rgb(110, 49, 18),
+            Color.rgb(20, 30, 62),
+            Color.rgb(1, 40, 50),
+
+            Color.rgb(100, 40, 50),
+            Color.rgb(60, 60, 55),
+
+      };
 
 
     public SlideAdapterTuto(Context context) {
