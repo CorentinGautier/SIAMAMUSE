@@ -21,12 +21,15 @@ public class SlideAdapterTuto extends PagerAdapter {
             R.drawable.elephant,
             R.drawable.tuto_un,
             R.drawable.tuto_deux,
+
             R.drawable.tuto_trois,
             R.drawable.tuto_quatre,
             R.drawable.tuto_cinq,
+
             R.drawable.tuto_six,
             R.drawable.tuto_sept,
             R.drawable.tuto_huit,
+
             R.drawable.rhinoceros
     };
 
@@ -64,7 +67,6 @@ public class SlideAdapterTuto extends PagerAdapter {
             "Lorsqu’un rocher du plateau, la partie est terminé. Mais attention : le gagnant est le joueur qui est le plus proche du Rocher et dans le même sens de poussée.",
 
             "Un animal qui sort du plateau suite à une poussé n’est pas éliminé, il est récupéré par son propriétaire et pourra être joué plus tard dans la partie.",
-            "Glenn LOUARN, Corentin MILCENT, Christophe PEROUMAL TEVANIN, Aymeric COUPRIE, Corentin GAUTIER",
 
         };
 

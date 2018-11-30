@@ -11,6 +11,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import corp.siam.siamamuse.Plateau.Activity_CreationPlateau;
 import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
 
 public class Activity_Option extends AppCompatActivity {
@@ -49,5 +50,11 @@ public class Activity_Option extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est vers la prochaine
         startActivity(intent);
         this.finish();
+    }
+
+    public void allerEditPlateau(View v){
+        Intent intent = new Intent(this, Activity_CreationPlateau.class); // l'activité où on est vers la prochaine
+        startActivity(intent);
+        this.finish() ;
     }
 }
