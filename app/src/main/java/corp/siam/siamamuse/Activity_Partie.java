@@ -53,9 +53,8 @@ public class Activity_Partie extends AppCompatActivity {
     }
 
     public void creationPlateau() throws IOException, SAXException, ParserConfigurationException {
-        Log.e("TEST","jksdjfjkfsdkjsfd");
         MoteurJeu mj = new MoteurJeu(5,this);
-        PlateauInterface pi= new PlateauInterface(this);
-        pi.convertionMatriceAffichage(mj.getLePlateau());
+        PlateauInterface pi= new PlateauInterface(this,mj);
+        pi.convertionMatriceAffichage();
     }
 }

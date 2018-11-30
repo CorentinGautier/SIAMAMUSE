@@ -140,6 +140,11 @@ public class MoteurJeu {
 		}
 	}
 
+	public void deplacerPionInterf(Pion pion,Orientation orient){
+		lePlateau.deplacement(pion,orient);
+
+	}
+
 	public void gagner() {
 		fin = true;
 		System.out.println("vous avez gagnez");

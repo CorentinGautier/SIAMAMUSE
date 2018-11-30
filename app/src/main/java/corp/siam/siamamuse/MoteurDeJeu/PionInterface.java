@@ -10,20 +10,22 @@ import corp.siam.siamamuse.Activity_Partie;
 
 import static corp.siam.siamamuse.MoteurDeJeu.Orientation.NORD;
 
-public class JetonInterface {
+public class PionInterface {
 
     private int x,y;
-    private Jeton unJeton;
+    private Pion unPion;
     private Activity_Partie context;
     private ArrayList<Fleche> lesFleches = new ArrayList<>();
     private boolean flecheAficher;
+    private MoteurJeu mj;
 
-    public JetonInterface(Jeton unJeton, int x, int y, final Activity_Partie context){
+    public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj){
         this.context=context;
-        this.unJeton=unJeton;
+        this.unPion=unPion;
         flecheAficher=false;
+        this.mj=mj;
         final ImageButton imagePion = new ImageButton(context);
-        imagePion.setBackgroundResource(unJeton.getImagePion());
+        imagePion.setBackgroundResource(unPion.getImagePion());
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase*0.8),(int)(PlateauInterface.tailleCase*0.8));
         imagePion.setLayoutParams(paramsPion);
         imagePion.setX((int)((PlateauInterface.tailleCase*x)+(PlateauInterface.tailleCase*0.1)));
@@ -34,7 +36,7 @@ public class JetonInterface {
                 context.fondPartie.addView(imagePion);
             }
         });
-        creationFleche(imagePion.getX(),imagePion.getY());
+        creationFleche((int)(imagePion.getX()-(PlateauInterface.tailleCase*0.1)),(int)(imagePion.getY()-(PlateauInterface.tailleCase*0.1)));
         imagePion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +44,7 @@ public class JetonInterface {
             }
         });
     }
+
     public void afficherBtn(){
         if(flecheAficher){
             flecheAficher=false;
@@ -59,10 +62,10 @@ public class JetonInterface {
 
 
     public void creationFleche(float x, float y){
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.9)), (int)(y+(PlateauInterface.tailleCase*0.1)),0,  1,Orientation.NORD, context));
-        lesFleches.add(new Fleche((int)(x-(PlateauInterface.tailleCase*0.9)), (int)(y+(PlateauInterface.tailleCase*0.1)),0,  -1,Orientation.SUD, context));
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.1)), (int)(y+(PlateauInterface.tailleCase*0.8)),1,  0,Orientation.EST, context));
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.1)), (int)(y-(PlateauInterface.tailleCase*0.9)),-1,  0,Orientation.OUEST, context));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*1.1)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.NORD, context,mj));
+        lesFleches.add(new Fleche((int)(x-(PlateauInterface.tailleCase*0.9)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.SUD, context,mj));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y+(PlateauInterface.tailleCase*1.1)),unPion,Orientation.EST, context,mj));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y-(PlateauInterface.tailleCase*0.9)),unPion,Orientation.OUEST, context,mj));
     }
 
 

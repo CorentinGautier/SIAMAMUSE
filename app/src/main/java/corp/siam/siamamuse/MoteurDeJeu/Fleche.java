@@ -1,5 +1,6 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
@@ -11,9 +12,12 @@ public class Fleche {
     private int coordX,coordY;
     private ImageButton btnFleche;
     private Activity_Partie context;
+    private MoteurJeu mj;
+    private Orientation orient;
+    private Pion pion;
 
     //les coordonner de l'image sont dans le coin en haut gauche
-    public Fleche(int x, int y,int coordX, int coordY,Orientation orient,Activity_Partie context){
+    public Fleche(int x, int y,Pion pion,Orientation orient,Activity_Partie context,MoteurJeu mj){
         btnFleche = new ImageButton(context);
         this.context=context;
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase*0.5),(int)(PlateauInterface.tailleCase*0.5));
@@ -25,6 +29,20 @@ public class Fleche {
         this.coordY=coordY;
         this.positionx=x;
         this.positiony=y;
+        this.mj=mj;
+        this.orient=orient;
+        this.pion = pion;
+        btnFleche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deplacement();
+            }
+        });
+    }
+
+    public void deplacement(){
+        mj.deplacerPionInterf(pion,orient);
+        PlateauInterface.convertionMatriceAffichage();
     }
 
     private void gestionDirection(Orientation orient){
