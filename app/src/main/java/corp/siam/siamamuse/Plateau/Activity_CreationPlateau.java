@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import corp.siam.siamamuse.R;
 
 public class Activity_CreationPlateau extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +19,7 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
     EditText editTextNbColone;
     EditText editTextNbLigne;
     Button btnEnvoi;
+    Button affichePlateau;
 
     private int nbColone;
     private int nbLigne;
@@ -37,51 +37,58 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
         btnEnvoi = (Button) findViewById(R.id.btnEnvoi);
         btnEnvoi.setOnClickListener(this);
 
-        ///////////
-        // données du tableau
-        final String [] col1 = {"col1:ligne1","col1:ligne2","col1:ligne3","col1:ligne4","col1:ligne5"};
-        final String [] col2 = {"col2:ligne1","col2:ligne2","col2:ligne3","col2:ligne4","col2:ligne5"};
+       final TableLayout table = (TableLayout) findViewById(R.id.idTable); // on prend le tableau défini dans le layout
 
-        TableLayout table = (TableLayout) findViewById(R.id.idTable); // on prend le tableau défini dans le layout
-        TableRow row; // création d'un élément : ligne
-        TextView tv1,tv2; // création des cellules
+       affichePlateau = (Button)findViewById(R.id.affichePlateau);
+       affichePlateau.setOnClickListener(new View.OnClickListener(){ // Notre classe anonyme
+           public void onClick(View view){ // et sa méthode !
+               if (view.getId()==R.id.affichePlateau){
+                   CreaPlateau(nbColone, nbLigne, table);
+               }
+           }
+       });
 
-        // pour chaque ligne
-        for(int i=0;i<col1.length;i++) {
+    }
+    public void CreaPlateau(int nbLigne, int nbColone,TableLayout table){
+
+        TableRow row; // création d'un élément : colone
+        TextView tv1; // création dd'un élément : ligne
+        int[][] plateauView = new int[nbLigne][nbColone];
+        Log.e("CreaPLateau","nb colone = "+nbColone+"nb ligne = "+nbLigne);
+        Log.e("CreaPLateau","initialisation"+plateauView);
+        // on remplis la matrice
+        for(int i=0;i<nbLigne;i++) {
+            for(int j = 0; j<nbColone;j++){
+                plateauView[i][j] = 10;
+                Log.e("CreaPLateau","rempli les case");
+            }
+        }
+        // on affiche cette matrice sur l'activity
+        for(int i=0;i<nbLigne;i++) {
+            Log.e("CreaPLateau","pour toute les lignes debut");
             row = new TableRow(this); // création d'une nouvelle ligne
-            final int id=i;
-            row.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // faites ici ce que vous voulez lors d'un clik
-                    //AjoutImage();
-                    //relier a la class rocher de glenn
-                    Log.e("click sur case ","i="+id);
-                }
-            });
+            for(int j = 0; j<nbColone;j++) {
+                Log.e("CreaPLateau","pour toute les colones debut");
+                tv1 = new TextView(this); // création cellule
+                String text = String.valueOf(plateauView[i][j]) ;
+                tv1.setText(text); // ajout du texte
+                Log.e("CreaPLateau","pour toute les colones millieu");
+                tv1.setGravity(Gravity.CENTER); // centrage dans la cellule
+                // adaptation de la largeur de colonne à l'écran :
+                tv1.setLayoutParams(new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
-            tv1 = new TextView(this); // création cellule
-            tv1.setText(col1[i]); // ajout du texte
-            tv1.setGravity(Gravity.CENTER); // centrage dans la cellule
-            // adaptation de la largeur de colonne à l'écran :
-            tv1.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
-            // idem 2ème cellule
-            tv2 = new TextView(this);
-            tv2.setText(col2[i]);
-            tv2.setGravity(Gravity.CENTER);
-            tv2.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
-
-            // ajout des cellules à la ligne
-            row.addView(tv1);
-            row.addView(tv2);
-
+                // ajout des cellules à la ligne
+                row.addView(tv1);
+                Log.e("CreaPLateau","pour toute les colones fin");
+            }
             // ajout de la ligne au tableau
+            Log.e("CreaPLateau","pour toute les lignes fin");
             table.addView(row);
+            Log.e("CreaPLateau","affichage du plateau");
         }
     }
-
-    public void AjoutImage(){
+    public void AjoutImage(){ // ajoute un rocher lors du click sur une des cases
         ImageButton imageRocher = new ImageButton(this);
         imageRocher.setImageResource(R.drawable.rocher);
         context.addView(imageRocher);
