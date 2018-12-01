@@ -12,8 +12,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import corp.siam.siamamuse.MoteurDeJeu.Jeton;
-import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.R;
 
 public class Activity_CreationPlateau extends AppCompatActivity implements View.OnClickListener {
@@ -39,45 +37,49 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
         btnEnvoi = (Button) findViewById(R.id.btnEnvoi);
         btnEnvoi.setOnClickListener(this);
 
+        ///////////
+        // données du tableau
+        final String [] col1 = {"col1:ligne1","col1:ligne2","col1:ligne3","col1:ligne4","col1:ligne5"};
+        final String [] col2 = {"col2:ligne1","col2:ligne2","col2:ligne3","col2:ligne4","col2:ligne5"};
 
         TableLayout table = (TableLayout) findViewById(R.id.idTable); // on prend le tableau défini dans le layout
-        TableRow row; // création d'un élément : colone
-        TextView tv1; // création dd'un élément : ligne
-        nbColone = 8;
-        nbLigne = 12;
-        int[][] plateauView = new int[nbLigne][nbColone];
+        TableRow row; // création d'un élément : ligne
+        TextView tv1,tv2; // création des cellules
 
-        // on remplis la matrice
-        for(int i=0;i<nbLigne;i++) {
-            for(int j = 0; j<nbColone;j++){
-                plateauView[i][j] = 165;
-            }
-        }
-    // on affiche cette matrice sur l'activity
-        for(int i=0;i<nbLigne;i++) {
+        // pour chaque ligne
+        for(int i=0;i<col1.length;i++) {
             row = new TableRow(this); // création d'une nouvelle ligne
-            for(int j = 0; j<nbColone;j++) {
+            final int id=i;
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // faites ici ce que vous voulez lors d'un clik
+                    //AjoutImage();
+                    //relier a la class rocher de glenn
+                    Log.e("click sur case ","i="+id);
+                }
+            });
 
+            tv1 = new TextView(this); // création cellule
+            tv1.setText(col1[i]); // ajout du texte
+            tv1.setGravity(Gravity.CENTER); // centrage dans la cellule
+            // adaptation de la largeur de colonne à l'écran :
+            tv1.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
+            // idem 2ème cellule
+            tv2 = new TextView(this);
+            tv2.setText(col2[i]);
+            tv2.setGravity(Gravity.CENTER);
+            tv2.setLayoutParams( new TableRow.LayoutParams( 0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1 ) );
 
+            // ajout des cellules à la ligne
+            row.addView(tv1);
+            row.addView(tv2);
 
-                tv1 = new TextView(this); // création cellule
-                String text = String.valueOf(plateauView[i][j]) ;
-                tv1.setText(text); // ajout du texte
-                tv1.setGravity(Gravity.CENTER); // centrage dans la cellule
-                // adaptation de la largeur de colonne à l'écran :
-                tv1.setLayoutParams(new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-
-
-                // ajout des cellules à la ligne
-                row.addView(tv1);
-
-
-            }
             // ajout de la ligne au tableau
             table.addView(row);
-            }
         }
+    }
 
     public void AjoutImage(){
         ImageButton imageRocher = new ImageButton(this);
