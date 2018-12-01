@@ -6,18 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Plateau.Activity_CreationPlateau">
 
+
     <EditText
         android:id="@+id/editTextNbColone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="344dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="nb colone"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.823"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,9 +41,29 @@
 
     <Button
         android:id="@+id/btnEnvoi"
-        android:layout_width="wrap_content"
+        android:layout_width="196dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Envoi des données"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="37dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        />
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:stretchColumns="0"
+            android:layout_height="wrap_content"
+            android:id="@+id/idTable">
+        </TableLayout>
+
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class Matrice {
 
-    int[][] matrice = new int[Activity_CreationPlateau.getNbColone()][Activity_CreationPlateau.getNbLigne()];
+    int[][] matrice = new int[3][5];
     public Matrice() {
 
         // Création de la matrice :
@@ -21,9 +21,7 @@ public class Matrice {
                 //    matrice[i][j] = sc.nextInt();
             }
         }
-        // Affichage
-
-    }
+          }
 
     public void afficherMatrice() {
         for (int i = 0; i < matrice.length; i++) {
