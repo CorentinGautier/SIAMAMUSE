@@ -36,13 +36,13 @@ public class Plateau {
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
 		this.context=context;
-		ajouterRocher();
+		ajouterElephant();
 	}
 
-	public void ajouterRocher(){
+	public void ajouterElephant(){
 		for (int i = 1; i < taillePlateau + 1; i++) {
 			for (int j = 1; j < taillePlateau + 1; j++) {
-				plateau[i][j] = new Rocher("rocher");
+				plateau[i][j] = new Pion("Elephant",Orientation.NORD,i*j);
 			}
 		}
 	}

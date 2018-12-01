@@ -4,6 +4,8 @@ import android.media.ImageReader;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import corp.siam.siamamuse.R;
+
 public class Pion extends Jeton {
 	String nom;
 	Orientation regard;
@@ -15,6 +17,7 @@ public class Pion extends Jeton {
 		this.nom = nom;
 		this.regard = regard;
 		this.id = id;
+		image = R.drawable.elephant;
 	}
 
 	@Override

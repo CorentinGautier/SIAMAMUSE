@@ -34,7 +34,7 @@ public class PlateauInterface {
         tailleCase=(int)(largeurEcrant*0.2);
         posHautGauchY=(int)((hauteurEcrant-(tailleCase*5))/2);
         this.context=context;
-        lePlateau = new Plateau();
+        lePlateau = new Plateau(5);
         mj = moteurJeu;
     }
 
@@ -43,8 +43,11 @@ public class PlateauInterface {
         for(int i=1;i<lePlateau.taillePlateau+1;i++){
             for(int j=1;j<lePlateau.taillePlateau+1;j++){
                 if(plateau[i][j]instanceof Pion){
+                    Log.e("TEST","ajoue pion");
                     Pion pion= (Pion) plateau[i][j];
                     lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this));
+                }else{
+                    Log.e("TEST",i+ "  "+j+ " hjklm");
                 }
             }
         }
