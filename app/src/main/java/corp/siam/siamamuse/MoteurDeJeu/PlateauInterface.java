@@ -24,7 +24,6 @@ public class PlateauInterface {
 
     public static Activity_Partie context;
     public  MoteurJeu mj;
-    public  Plateau lePlateau;
 
     public  ArrayList<PionInterface> lesPions = new ArrayList<>();
 
@@ -34,21 +33,21 @@ public class PlateauInterface {
         tailleCase=(int)(largeurEcrant*0.2);
         posHautGauchY=(int)((hauteurEcrant-(tailleCase*5))/2);
         this.context=context;
-        lePlateau = new Plateau(5);
         mj = moteurJeu;
     }
 
     public void convertionMatriceAffichage(){
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
-        for(int i=1;i<lePlateau.taillePlateau+1;i++){
-            for(int j=1;j<lePlateau.taillePlateau+1;j++){
+        for(int i=1;i<mj.getLePlateau().taillePlateau+1;i++){
+            for(int j=1;j<mj.getLePlateau().taillePlateau+1;j++){
                 if(plateau[i][j]instanceof Pion){
-                    Log.e("TEST","ajoue pion");
                     Pion pion= (Pion) plateau[i][j];
                     lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this));
-                }else{
-                    Log.e("TEST",i+ "  "+j+ " hjklm");
+                }else if(plateau[i][j]instanceof Rocher){
+                    Rocher rocher = (Rocher) plateau[i][j];
+                    RocherInterface rocherInt = new RocherInterface(rocher,i-1,j-1,context);
                 }
+                Log.e("TEST","j'affiche un jeton");
             }
         }
     }

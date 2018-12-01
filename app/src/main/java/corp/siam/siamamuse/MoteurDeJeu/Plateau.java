@@ -27,7 +27,6 @@ public class Plateau {
 	int taillePlateau;
 	Pion pionARecupere;
 	boolean finJeu;
-	Activity_Partie context;
 
 	public Plateau(int taillePlateau) {
 		super();
@@ -35,7 +34,6 @@ public class Plateau {
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
-		this.context=context;
 		ajouterElephant();
 	}
 
