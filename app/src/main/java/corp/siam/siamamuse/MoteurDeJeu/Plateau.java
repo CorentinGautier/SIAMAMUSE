@@ -47,7 +47,8 @@ public class Plateau {
 		}
 	}
 	public Plateau () throws ParserConfigurationException, SAXException, IOException {
-		load("plateauX.xml");
+		load("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml");
+		//save("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml","");
 	}
 
 	public void remplissageOut() {

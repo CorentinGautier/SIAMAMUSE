@@ -18,7 +18,7 @@
         android:hint="nb colone"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,14 +56,19 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableLayout
+            android:id="@+id/idTable"
             android:layout_width="fill_parent"
-            android:stretchColumns="0"
             android:layout_height="wrap_content"
-            android:id="@+id/idTable">
-        </TableLayout>
+            android:stretchColumns="0"></TableLayout>
 
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
