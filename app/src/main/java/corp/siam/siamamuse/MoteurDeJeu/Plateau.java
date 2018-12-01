@@ -29,7 +29,7 @@ public class Plateau {
 	boolean finJeu;
 	Activity_Partie context;
 
-	public Plateau(int taillePlateau, Activity_Partie context) {
+	public Plateau(int taillePlateau) {
 		super();
 		finJeu = false;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
@@ -42,7 +42,7 @@ public class Plateau {
 	public void ajouterRocher(){
 		for (int i = 1; i < taillePlateau + 1; i++) {
 			for (int j = 1; j < taillePlateau + 1; j++) {
-				plateau[i][j] = new Rocher("rocher",context);
+				plateau[i][j] = new Rocher("rocher");
 			}
 		}
 	}
@@ -494,7 +494,7 @@ public class Plateau {
 					plateau [x][y] = null;
 				}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
 					int id = 1 ;
-					Rocher unRocher = new Rocher("cailloux "+id,context);
+					Rocher unRocher = new Rocher("cailloux "+id);
 					ajouterRocher(unRocher, x ,y);
 					id++;
 				

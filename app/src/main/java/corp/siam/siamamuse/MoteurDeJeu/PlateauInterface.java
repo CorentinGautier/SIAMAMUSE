@@ -23,10 +23,10 @@ public class PlateauInterface {
     public static int posHautGauchY;
 
     public static Activity_Partie context;
-    public static MoteurJeu mj;
-    public static Plateau lePlateau;
+    public  MoteurJeu mj;
+    public  Plateau lePlateau;
 
-    public static ArrayList<PionInterface> lesPions = new ArrayList<>();
+    public  ArrayList<PionInterface> lesPions = new ArrayList<>();
 
     public PlateauInterface(Activity_Partie context,MoteurJeu moteurJeu) throws IOException, SAXException, ParserConfigurationException {
         largeurEcrant = context.largeurEcrant;
@@ -38,17 +38,18 @@ public class PlateauInterface {
         mj = moteurJeu;
     }
 
-    public static void convertionMatriceAffichage(){
+    public void convertionMatriceAffichage(){
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         for(int i=1;i<lePlateau.taillePlateau+1;i++){
             for(int j=1;j<lePlateau.taillePlateau+1;j++){
                 if(plateau[i][j]instanceof Pion){
                     Pion pion= (Pion) plateau[i][j];
-                    lesPions.add(new PionInterface(pion,i-1,j-1,context,mj));
+                    lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this));
                 }
             }
         }
     }
+
 
 
 }

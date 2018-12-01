@@ -19,7 +19,7 @@ public class MoteurJeu {
 	boolean fin;
 
 	public MoteurJeu(int taillePlateau, Activity_Partie context) throws ParserConfigurationException, SAXException, IOException {
-		lePlateau = new Plateau(taillePlateau,context);
+		lePlateau = new Plateau(taillePlateau);
 		//lePlateau = new Plateau();
 		joueur1 = new Joueur("Elephant");
 		joueur2 = new Joueur("Rhinoceros");

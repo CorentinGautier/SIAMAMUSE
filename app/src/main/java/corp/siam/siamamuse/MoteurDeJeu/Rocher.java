@@ -10,7 +10,7 @@ public class Rocher extends Jeton {
 	String nom;
 	Integer image;
 
-	public Rocher(String nom, Activity_Partie context) {
+	public Rocher(String nom) {
 		this.nom = nom;
 		image = R.drawable.rocher;
 	}

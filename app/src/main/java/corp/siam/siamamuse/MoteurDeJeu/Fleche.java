@@ -15,9 +15,10 @@ public class Fleche {
     private MoteurJeu mj;
     private Orientation orient;
     private Pion pion;
+    private PlateauInterface plateauInterface;
 
     //les coordonner de l'image sont dans le coin en haut gauche
-    public Fleche(int x, int y,Pion pion,Orientation orient,Activity_Partie context,MoteurJeu mj){
+    public Fleche(int x, int y,Pion pion,Orientation orient,Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
         btnFleche = new ImageButton(context);
         this.context=context;
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase*0.5),(int)(PlateauInterface.tailleCase*0.5));
@@ -30,6 +31,7 @@ public class Fleche {
         this.positionx=x;
         this.positiony=y;
         this.mj=mj;
+        this.plateauInterface=plateauInterface;
         this.orient=orient;
         this.pion = pion;
         btnFleche.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +44,8 @@ public class Fleche {
 
     public void deplacement(){
         mj.deplacerPionInterf(pion,orient);
-        PlateauInterface.convertionMatriceAffichage();
+        plateauInterface.convertionMatriceAffichage();
+
     }
 
     private void gestionDirection(Orientation orient){
