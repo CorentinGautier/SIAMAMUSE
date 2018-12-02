@@ -52,6 +52,12 @@ public class Activity_Partie extends AppCompatActivity {
         this.finish();
     }
 
+    public void pageVictoire(View view){
+        Intent intent = new Intent(this, Activity_PageDeVictoire.class); // l'activité où on est en ce moment et la prochaine activity
+        startActivity(intent);
+        this.finish();
+    }
+
     public void creationPlateau() throws IOException, SAXException, ParserConfigurationException {
         MoteurJeu mj = new MoteurJeu(5,this);
         PlateauInterface pi= new PlateauInterface(this,mj);
