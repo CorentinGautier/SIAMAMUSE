@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -52,14 +53,14 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
     public void CreaPlateau(int nbLigne, int nbColone,TableLayout table){
 
         TableRow row; // création d'un élément : colone
-        TextView tv1; // création dd'un élément : ligne
-        int[][] plateauView = new int[nbLigne][nbColone];
+        TextView tv1; // création d'un élément : ligne
+        final int[][] plateauView = new int[nbLigne][nbColone];
         Log.e("CreaPLateau","nb colone = "+nbColone+"nb ligne = "+nbLigne);
         Log.e("CreaPLateau","initialisation"+plateauView);
         // on remplis la matrice
         for(int i=0;i<nbLigne;i++) {
             for(int j = 0; j<nbColone;j++){
-                plateauView[i][j] = 10;
+               plateauView[i][j] = Integer.parseInt("rien");
                 Log.e("CreaPLateau","rempli les case");
             }
         }
@@ -67,6 +68,15 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
         for(int i=0;i<nbLigne;i++) {
             Log.e("CreaPLateau","pour toute les lignes debut");
             row = new TableRow(this); // création d'une nouvelle ligne
+            final int id=i;
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) { //lorsque click alors
+
+                    //this.plateauView[x][j]="rocher";
+                    Log.d("mydebug","i="+id);
+                }
+            });
             for(int j = 0; j<nbColone;j++) {
                 Log.e("CreaPLateau","pour toute les colones debut");
                 tv1 = new TextView(this); // création cellule
@@ -90,6 +100,8 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
     }
     public void AjoutImage(){ // ajoute un rocher lors du click sur une des cases
         ImageButton imageRocher = new ImageButton(this);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams((int) 20, (int) 20);
+        imageRocher.setLayoutParams(params);
         imageRocher.setImageResource(R.drawable.rocher);
         context.addView(imageRocher);
     }
@@ -104,5 +116,6 @@ public class Activity_CreationPlateau extends AppCompatActivity implements View.
         nbLigne =  Integer.decode(nbLigneS);
     }
 
+  
 
 }
