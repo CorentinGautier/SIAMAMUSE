@@ -19,6 +19,7 @@ public class PionInterface {
     private boolean flecheAficher;
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
+    private ImageButton imagePion;
 
     public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
         this.context=context;
@@ -26,7 +27,7 @@ public class PionInterface {
         flecheAficher=false;
         this.mj=mj;
         this.plateauInterface = plateauInterface;
-        final ImageButton imagePion = new ImageButton(context);
+        imagePion = new ImageButton(context);
         imagePion.setBackgroundResource(unPion.getImagePion());
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase*0.8),(int)(PlateauInterface.tailleCase*0.8));
         imagePion.setLayoutParams(paramsPion);
@@ -50,9 +51,8 @@ public class PionInterface {
     public void afficherBtn(){
         if(flecheAficher){
             flecheAficher=false;
-            for(Fleche unefleche:lesFleches){
-                unefleche.effacerFleche();
-            }
+            disparitionFleche();
+
         }else{
             flecheAficher=true;
             for(Fleche unefleche:lesFleches){
@@ -61,14 +61,23 @@ public class PionInterface {
         }
     }
 
-
-
-    public void creationFleche(float x, float y){
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*1.1)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.NORD, context,mj,plateauInterface));
-        lesFleches.add(new Fleche((int)(x-(PlateauInterface.tailleCase*0.9)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.SUD, context,mj,plateauInterface));
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y+(PlateauInterface.tailleCase*1.1)),unPion,Orientation.EST, context,mj,plateauInterface));
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y-(PlateauInterface.tailleCase*0.9)),unPion,Orientation.OUEST, context,mj,plateauInterface));
+    public void disparitionFleche(){
+        for(Fleche unefleche:lesFleches){
+            unefleche.effacerFleche();
+        }
     }
 
 
+
+    //Il y a un probleme dans la gestion du nord et du sud
+    public void creationFleche(float x, float y){
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*1.1)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.EST, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x-(PlateauInterface.tailleCase*0.9)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.OUEST, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y+(PlateauInterface.tailleCase*1.1)),unPion,Orientation.NORD, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y-(PlateauInterface.tailleCase*0.9)),unPion,Orientation.SUD, context,mj,plateauInterface,this));
+    }
+
+    public ImageButton getImagePion() {
+        return imagePion;
+    }
 }
