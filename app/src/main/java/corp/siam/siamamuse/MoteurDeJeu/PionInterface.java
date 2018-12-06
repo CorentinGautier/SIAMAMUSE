@@ -52,7 +52,6 @@ public class PionInterface {
         if(flecheAficher){
             flecheAficher=false;
             disparitionFleche();
-
         }else{
             flecheAficher=true;
             for(Fleche unefleche:lesFleches){
@@ -66,9 +65,6 @@ public class PionInterface {
             unefleche.effacerFleche();
         }
     }
-
-
-
     //Il y a un probleme dans la gestion du nord et du sud
     public void creationFleche(float x, float y){
         lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*1.1)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.EST, context,mj,plateauInterface,this));

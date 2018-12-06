@@ -22,13 +22,19 @@ public class MoteurJeu {
 		lePlateau = new Plateau(5);
 		Log.e("TEST","Je suis passer par la");
 		//lePlateau = new Plateau();
-		joueur1 = new Joueur("Elephant");
-		joueur2 = new Joueur("Rhinoceros");
+		joueur1 = new Joueur("elephant");
+		joueur2 = new Joueur("rhinoceros");
 		fin = false;
 	}
 
 	public Plateau getLePlateau() {
 		return lePlateau;
+	}
+
+	public Joueur getJoueur1(){return joueur1;};
+
+	public Joueur getJoueur2() {
+		return joueur2;
 	}
 
 	public void jouer() {

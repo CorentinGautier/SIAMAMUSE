@@ -28,6 +28,8 @@ public class PlateauInterface {
     public ArrayList<PionInterface> lesPions = new ArrayList<>();
     public ArrayList<RocherInterface> lesRochers = new ArrayList<>();
 
+    public ArrayList<BtnAjout> lesBtnAjout = new ArrayList<>();
+
     public PlateauInterface(Activity_Partie context,MoteurJeu moteurJeu) throws IOException, SAXException, ParserConfigurationException {
         largeurEcrant = context.largeurEcrant;
         hauteurEcrant = context.hauteurEcrant;
@@ -35,10 +37,11 @@ public class PlateauInterface {
         posHautGauchY=(int)((hauteurEcrant-(tailleCase*5))/2);
         this.context=context;
         mj = moteurJeu;
+        affichagePion(mj.getJoueur1());
+        affichagePion(mj.getJoueur2());
     }
 
     public void convertionMatriceAffichage(){
-
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         for(int i=1;i<mj.getLePlateau().taillePlateau+1;i++){
             for(int j=1;j<mj.getLePlateau().taillePlateau+1;j++){
@@ -49,7 +52,6 @@ public class PlateauInterface {
                     Rocher rocher = (Rocher) plateau[i][j];
                     lesRochers.add(new RocherInterface(rocher,i-1,j-1,context));
                 }
-                Log.e("TEST","j'affiche un jeton");
             }
         }
     }
@@ -57,7 +59,7 @@ public class PlateauInterface {
     public void suppressionJetons(){
         for(PionInterface unPion : lesPions){
             context.fondPartie.removeView(unPion.getImagePion());
-           // unPion.disparitionFleche();
+            unPion.disparitionFleche();
            // lesPions.remove(unPion);
         }
         for(RocherInterface unRocher : lesRochers){
@@ -66,6 +68,34 @@ public class PlateauInterface {
         }
     }
 
+    public void affichagePion(Joueur joueur){
+        ArrayList<Pion> lesPionsJoueur = joueur.getLesPionsEnMain();
+        int i=1;
+        for (Pion unPion: lesPionsJoueur){
+            PionMain pion = new PionMain(unPion,context,i,joueur.getNom());
+            i++;
+        }
+    }
 
+    public void creationbtnAjout(){
+        Integer[][] btnAjout = mj.getLePlateau().getCaseajout();
+        for(int i=0;i<mj.getLePlateau().taillePlateau;i++){
+            for(int j=0;j<mj.getLePlateau().taillePlateau;j++){
+                lesBtnAjout.add(new BtnAjout(i,j));
+            }
+        }
+    }
 
+    public void afficherBtnAjout(){
+        for(BtnAjout unBtnAjout:lesBtnAjout){
+            unBtnAjout.affiche();
+        }
+    }
+
+    public void supprimerBtnAjout(){
+        for(BtnAjout unBtnAjout:lesBtnAjout){
+            unBtnAjout.effacer();
+        }
+    }
 }
+

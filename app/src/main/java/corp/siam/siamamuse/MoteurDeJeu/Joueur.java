@@ -18,11 +18,15 @@ public class Joueur {
 	
 	public void creationPion() {
 		for(int i=0;i<5;i++) {
-			Pion unPion = new Pion(nom, null,i);
+			Pion unPion = new Pion(nom,null,nom);
 			lesPionsEnMain.add(unPion);
 		}
 	}
-	
+
+	public ArrayList<Pion> getLesPionsEnMain() {
+		return (ArrayList) lesPionsEnMain;
+	}
+
 	public void recuperPionMain(Pion unPion) {
 		lesPionsEnMain.add(unPion);
 	}

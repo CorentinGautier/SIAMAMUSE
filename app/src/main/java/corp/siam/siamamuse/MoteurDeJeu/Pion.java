@@ -11,18 +11,31 @@ public class Pion extends Jeton {
 	Orientation regard;
 	Integer image;
 	//a supprimer
-	int id;
+	String typePion;
 
-	public Pion(String nom,Orientation regard,int id) {
+	public Pion(String nom,Orientation regard) {
 		this.nom = nom;
 		this.regard = regard;
-		this.id = id;
-		image = R.drawable.elephant;
+		choixImage();
+	}
+
+	public void choixImage(){
+		switch(nom){
+			case "elephant":
+				image = R.drawable.elephant;
+				break;
+			case "rhinoceros":
+				image = R.drawable.rhinoceros;
+				break;
+			default:
+				image = R.drawable.elephant;
+				break;
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Je suis " + nom+" "+id+" et je regard vers "+regard;
+		return "Je suis " + nom+" et je regard vers "+regard;
 	}
 	
 

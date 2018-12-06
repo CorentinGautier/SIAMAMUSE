@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,8 +19,6 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
-import corp.siam.siamamuse.Activity_Partie;
-
 
 public class Plateau {
 
@@ -27,6 +26,7 @@ public class Plateau {
 	int taillePlateau;
 	Pion pionARecupere;
 	boolean finJeu;
+	Integer[][] caseAjout;
 
 	public Plateau(int taillePlateau) {
 		super();
@@ -38,10 +38,10 @@ public class Plateau {
 	}
 
 	public void simulationPartie(){
-		plateau[2][1] = new Pion("Elephant",Orientation.NORD,1);
-		plateau[3][2] = new Pion("Elephant",Orientation.NORD,1);
+		plateau[2][1] = new Pion("elephant",Orientation.NORD);
+		plateau[3][2] = new Pion("Elephant",Orientation.NORD);
 		plateau[2][2] = new Rocher("roche");
-		plateau[3][1] = new Pion("Rhinoceros",Orientation.NORD,1);
+		plateau[3][1] = new Pion("Rhinoceros",Orientation.NORD);
 
 	}
 	public Plateau () throws ParserConfigurationException, SAXException, IOException {
@@ -62,6 +62,11 @@ public class Plateau {
 
 		}
 	}
+
+	public Integer[][] getCaseajout(){
+		return caseAjout;
+	}
+
 	public void ajouterRocher(Rocher unRocher,int x,int y) {
 		plateau[x][y] = unRocher;
 	}
