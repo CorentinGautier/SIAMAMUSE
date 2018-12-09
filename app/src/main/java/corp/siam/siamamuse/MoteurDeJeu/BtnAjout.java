@@ -1,5 +1,6 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,12 +16,15 @@ public class BtnAjout {
     private MoteurJeu mj;
     private Pion unPion;
     private int xPla,yPla;
+    private PlateauInterface plateauInterface;
+    private Joueur unJoueur;
 
-    public BtnAjout(int xPla, int yPla, final Activity_Partie context,MoteurJeu mj){
+    public BtnAjout(int xPla, int yPla, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
         this.context=context;
         this.mj=mj;
         this.xPla=xPla;
         this.yPla=yPla;
+        this.plateauInterface=plateauInterface;
         btnVerre = new ImageButton(context);
         btnVerre.setBackgroundResource(R.drawable.carrevert);
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase),(int)(PlateauInterface.tailleCase));
@@ -35,19 +39,22 @@ public class BtnAjout {
         });
     }
 
-    public void affiche(Pion unPion){
+    public void affiche(Pion unPion,Joueur unJoueur){
         this.unPion = unPion;
+        this.unJoueur = unJoueur;
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                context.fondPartie.addView(btnVerre,xPla,yPla);
+                context.fondPartie.addView(btnVerre);
             }
         });
 
     }
 
     public void actionbtn(){
-        mj.getLePlateau().ajouterPion(unPion,xPla,yPla);
+        mj.ajouterPionPlateauInter(unJoueur,unPion,xPla,yPla);
+        plateauInterface.convertionMatriceAffichage();
+
     }
 
     public void effacer(){

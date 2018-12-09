@@ -74,6 +74,11 @@ public class MoteurJeu {
 
 	}
 
+    public void ajouterPionPlateauInter(Joueur unJoueur,Pion unPion, int x,int y) {
+        lePlateau.ajouterPion(unJoueur.poserPionPlateau(unPion), x, y);
+
+    }
+
 	public void ajouterPionPlateau(Joueur unJoueur) {
 		Scanner sca = new Scanner(System.in);
 		int x, y;

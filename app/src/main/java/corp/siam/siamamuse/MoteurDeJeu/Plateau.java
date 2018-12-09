@@ -35,6 +35,7 @@ public class Plateau {
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
 		simulationPartie();
+		creationCaseAjout();
 	}
 
 	public void simulationPartie(){
@@ -65,6 +66,22 @@ public class Plateau {
 
 	public Integer[][] getCaseajout(){
 		return caseAjout;
+	}
+
+	public void creationCaseAjout(){
+		caseAjout = new Integer[taillePlateau][taillePlateau];
+
+		for (int a = 0; a < taillePlateau ; a++) {
+			for (int b = 0; b < taillePlateau ; b++) {
+				caseAjout[a][b]=0;
+			}
+		}
+		for(int i=0;i<taillePlateau-1;i++){
+			caseAjout[0][i]=1;
+			caseAjout[i+1][0]=1;
+			caseAjout[taillePlateau-1][i+1]=1;
+			caseAjout[i][taillePlateau-1]=1;
+		}
 	}
 
 	public void ajouterRocher(Rocher unRocher,int x,int y) {

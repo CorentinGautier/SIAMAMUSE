@@ -18,7 +18,7 @@ public class Joueur {
 	
 	public void creationPion() {
 		for(int i=0;i<5;i++) {
-			Pion unPion = new Pion(nom,null,nom);
+			Pion unPion = new Pion(nom,null);
 			lesPionsEnMain.add(unPion);
 		}
 	}
@@ -42,6 +42,18 @@ public class Joueur {
 			return unPion;
 		}
 	}
+
+	public Pion poserPionPlateau(Pion unPion){
+		for(Pion lePion:lesPionsEnMain){
+			if(lePion.equals(unPion)){
+				lesPionsSurPlateau.add(unPion);
+				lesPionsEnMain.remove(unPion);
+				return unPion;
+			}
+		}
+		return null;
+	}
+
 	public void setRegardProchainPion(Orientation orient) {
 		lesPionsEnMain.get(0).setRegard(orient);;
 		
