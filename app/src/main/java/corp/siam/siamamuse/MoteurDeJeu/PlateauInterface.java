@@ -38,8 +38,6 @@ public class PlateauInterface {
         posHautGauchY=(int)((hauteurEcrant-(tailleCase*5))/2);
         this.context=context;
         mj = moteurJeu;
-//        affichagePion(mj.getJoueur1());
-//        affichagePion(mj.getJoueur2());
         creationbtnAjout();
     }
 
@@ -62,22 +60,24 @@ public class PlateauInterface {
         }
     }
 
+    //fonction qui a chaque deplacement ou ajout supprime tout les imageBtn de l'interface et vide les listes
     public void suppressionJetons(){
         for(PionInterface unPion : lesPions){
             context.fondPartie.removeView(unPion.getImagePion());
             unPion.disparitionFleche();
-           // lesPions.remove(unPion);
         }
         for(RocherInterface unRocher : lesRochers){
             context.fondPartie.removeView(unRocher.getImageRocher());
-           // lesPions.remove(unRocher);
         }
         for(PionMain unPionMain:lesPionsMain){
             context.fondPartie.removeView(unPionMain.getImagePion());
         }
         lesPionsMain.removeAll(lesPionsMain);
+        lesRochers.removeAll(lesRochers);
+        lesPions.removeAll(lesPions);
     }
 
+    //Affiche les pions qu'un joueur a en main
     public void affichagePion(Joueur joueur){
         ArrayList<Pion> lesPionsJoueur = joueur.getLesPionsEnMain();
         int i=1;
@@ -87,6 +87,7 @@ public class PlateauInterface {
         }
     }
 
+    //les btnajouts sont les carre vert qui permet de choisir ou ont veut placer notre pion sur le plateau
     public void creationbtnAjout(){
         Integer[][] btnAjout = mj.getLePlateau().getCaseajout();
         for(int i=0;i<mj.getLePlateau().taillePlateau;i++){

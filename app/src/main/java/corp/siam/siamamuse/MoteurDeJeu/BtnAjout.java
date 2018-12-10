@@ -53,7 +53,7 @@ public class BtnAjout {
     public void actionbtn(){
         mj.ajouterPionPlateauInter(unJoueur,unPion,xPla,yPla);
         plateauInterface.convertionMatriceAffichage();
-
+        //ajouter un message quand le deplacement est impossible
     }
 
     public void effacer(){

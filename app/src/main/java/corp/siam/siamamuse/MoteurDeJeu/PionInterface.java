@@ -48,6 +48,7 @@ public class PionInterface {
         });
     }
 
+    //fonction qui est relié au btnImage et qui affiche ou non les fleche
     public void afficherBtn(){
         if(flecheAficher){
             flecheAficher=false;

@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
 
 import corp.siam.siamamuse.Activity_Partie;
 
@@ -44,6 +43,7 @@ public class PionMain {
         });
     }
 
+    //si c'est un elephant il les places d'un cote et si c'est un rhinoceros il les places de l'autre cote
     public void placementInterface(int numero,String nom){
         int x =(int) ((PlateauInterface.tailleCase-(PlateauInterface.tailleCase*0.5))*(numero-1) + PlateauInterface.largeurEcrant*0.1);
         imagePion.setX(x);
