@@ -1,7 +1,6 @@
 package corp.siam.siamamuse.Plateau;
 
 import android.content.Intent;
-import android.support.constraint.Placeholder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -11,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import org.xml.sax.SAXException;
 
