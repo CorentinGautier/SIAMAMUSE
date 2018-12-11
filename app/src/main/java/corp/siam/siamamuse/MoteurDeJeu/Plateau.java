@@ -180,6 +180,7 @@ public class Plateau {
 			}
 		}
 	}
+
 	public void afficherPlateauVisionJoueur() {
 		Log.e("TEST",("\n\n le plateau :"));
 		for (int i = 1; i < taillePlateau + 1; i++) {
