@@ -24,6 +24,8 @@ public class Plateau {
 
 	Jeton[][] plateau;
 	int taillePlateau;
+	int largeurPlateau,hauteurPlateau;
+
 	Pion pionARecupere;
 	boolean finJeu;
 	Integer[][] caseAjout;
@@ -32,10 +34,27 @@ public class Plateau {
 		super();
 		finJeu = false;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
+		this.largeurPlateau = taillePlateau;
+		this.hauteurPlateau =taillePlateau;
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
 		simulationPartie();
 		creationCaseAjout();
+	}
+
+
+	public Plateau () throws ParserConfigurationException, SAXException, IOException {
+		load("data/plateauX.xml");
+		//save("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml","");
+	}
+
+	public Plateau(int largeurPlateau,int hauteurPlateau){
+		super();
+		plateau = new Jeton[largeurPlateau + 2][hauteurPlateau + 2];
+		remplissageOut();
+		caseAjout = new Integer[taillePlateau][taillePlateau];
+		this.largeurPlateau=largeurPlateau;
+		this.hauteurPlateau=hauteurPlateau;
 	}
 
 	public void simulationPartie(){
@@ -45,22 +64,27 @@ public class Plateau {
 		plateau[3][1] = new Pion("Rhinoceros",Orientation.NORD);
 
 	}
-	public Plateau () throws ParserConfigurationException, SAXException, IOException {
-		load("data/plateauX.xml");
-		//save("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml","");
+
+	public void ajoutRocher(int x,int y){
+		plateau[x][y]=new Rocher("rocher");
+	}
+
+	public void ajoutCaseOut(int x, int y){
+		plateau[x][y]=new Out();
+	}
+
+	public void ajoutCaseDepart(int x,int y){
+		caseAjout[x][y]=1;
 	}
 
 	public void remplissageOut() {
-		for (int i = 0; i < taillePlateau + 2; i++) {
-
-			plateau[0][i] = new Out();
-
+		for (int i = 0; i < largeurPlateau + 2; i++) {
 			plateau[i][0] = new Out();
-
-			plateau[taillePlateau + 1][i] = new Out();
-
-			plateau[i][taillePlateau + 1] = new Out();
-
+			plateau[i][hauteurPlateau + 1] = new Out();
+		}
+		for(int j= 0;j<hauteurPlateau + 2;j++){
+			plateau[0][j] = new Out();
+			plateau[largeurPlateau + 1][j] = new Out();
 		}
 	}
 
