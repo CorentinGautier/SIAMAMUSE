@@ -41,7 +41,6 @@ public class Plateau {
 		simulationPartie();
 		creationCaseAjout();
 	}
-
 	public Plateau () throws ParserConfigurationException, SAXException, IOException {
 		load("data/plateauX.xml");
 		//save("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml","");
