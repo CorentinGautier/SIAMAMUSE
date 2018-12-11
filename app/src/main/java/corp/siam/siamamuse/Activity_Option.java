@@ -52,9 +52,4 @@ public class Activity_Option extends AppCompatActivity {
         this.finish();
     }
 
-    public void allerEditPlateau(View v){
-        Intent intent = new Intent(this, Activity_CreationPlateau.class); // l'activité où on est vers la prochaine
-        startActivity(intent);
-        this.finish() ;
-    }
 }

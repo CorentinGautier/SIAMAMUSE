@@ -27,4 +27,8 @@ public class RocherInterface {
             }
         });
     }
+
+    public ImageView getImageRocher() {
+        return imageRocher;
+    }
 }

@@ -16,9 +16,10 @@ public class Fleche {
     private Orientation orient;
     private Pion pion;
     private PlateauInterface plateauInterface;
+    private PionInterface pionInter;
 
     //les coordonner de l'image sont dans le coin en haut gauche
-    public Fleche(int x, int y,Pion pion,Orientation orient,Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
+    public Fleche(int x, int y,Pion pion,Orientation orient,Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface,PionInterface pionInterface){
         btnFleche = new ImageButton(context);
         this.context=context;
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase*0.5),(int)(PlateauInterface.tailleCase*0.5));
@@ -34,6 +35,7 @@ public class Fleche {
         this.plateauInterface=plateauInterface;
         this.orient=orient;
         this.pion = pion;
+        this.pionInter = pionInterface;
         btnFleche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +46,9 @@ public class Fleche {
 
     public void deplacement(){
         mj.deplacerPionInterf(pion,orient);
+        plateauInterface.suppressionJetons();
         plateauInterface.convertionMatriceAffichage();
+        pionInter.disparitionFleche();
 
     }
 
@@ -57,10 +61,10 @@ public class Fleche {
                 btnFleche.setBackgroundResource(R.drawable.fleche_ouest);
                 break;
             case NORD:
-                btnFleche.setBackgroundResource(R.drawable.fleche_nord);
+                btnFleche.setBackgroundResource(R.drawable.fleche_sud);
                 break;
             case SUD:
-                btnFleche.setBackgroundResource(R.drawable.fleche_sud);
+                btnFleche.setBackgroundResource(R.drawable.fleche_nord);
                 break;
         }
     }

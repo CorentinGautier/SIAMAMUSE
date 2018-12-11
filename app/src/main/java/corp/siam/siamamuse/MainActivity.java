@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import corp.siam.siamamuse.Plateau.Activity_CreationPlateau;
 import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
 
 public class MainActivity extends AppCompatActivity { //page d'acceuil
@@ -20,6 +21,13 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+    }
+
+
+    public void allerEditPlateau(View v){
+        Intent intent = new Intent(this, Activity_CreationPlateau.class); // l'activité où on est vers la prochaine
+        startActivity(intent);
+        this.finish() ;
     }
 
     public void ActivityOption(View v){

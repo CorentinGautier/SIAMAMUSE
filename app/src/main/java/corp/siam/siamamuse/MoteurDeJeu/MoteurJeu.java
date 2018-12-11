@@ -19,16 +19,22 @@ public class MoteurJeu {
 	boolean fin;
 
 	public MoteurJeu(int taillePlateau, Activity_Partie context) throws ParserConfigurationException, SAXException, IOException {
-		lePlateau = new Plateau();
+		lePlateau = new Plateau(5);
 		Log.e("TEST","Je suis passer par la");
 		//lePlateau = new Plateau();
-		joueur1 = new Joueur("Elephant");
-		joueur2 = new Joueur("Rhinoceros");
+		joueur1 = new Joueur("elephant");
+		joueur2 = new Joueur("rhinoceros");
 		fin = false;
 	}
 
 	public Plateau getLePlateau() {
 		return lePlateau;
+	}
+
+	public Joueur getJoueur1(){return joueur1;};
+
+	public Joueur getJoueur2() {
+		return joueur2;
 	}
 
 	public void jouer() {
@@ -67,6 +73,11 @@ public class MoteurJeu {
 		}
 
 	}
+
+    public void ajouterPionPlateauInter(Joueur unJoueur,Pion unPion, int x,int y) {
+        lePlateau.ajouterPion(unJoueur.poserPionPlateau(unPion), x, y);
+
+    }
 
 	public void ajouterPionPlateau(Joueur unJoueur) {
 		Scanner sca = new Scanner(System.in);

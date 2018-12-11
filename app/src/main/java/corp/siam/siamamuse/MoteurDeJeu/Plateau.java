@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,50 +19,93 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
-import corp.siam.siamamuse.Activity_Partie;
-
 
 public class Plateau {
 
 	Jeton[][] plateau;
 	int taillePlateau;
+	int largeurPlateau,hauteurPlateau;
+
 	Pion pionARecupere;
 	boolean finJeu;
+	Integer[][] caseAjout;
 
 	public Plateau(int taillePlateau) {
 		super();
 		finJeu = false;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
+		this.largeurPlateau = taillePlateau;
+		this.hauteurPlateau =taillePlateau;
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
-		ajouterElephant();
-	}
-
-	public void ajouterElephant(){
-		for (int i = 1; i < taillePlateau + 1; i++) {
-			for (int j = 1; j < taillePlateau + 1; j++) {
-				plateau[i][j] = new Pion("Elephant",Orientation.NORD,i*j);
-			}
-		}
+		simulationPartie();
+		creationCaseAjout();
 	}
 	public Plateau () throws ParserConfigurationException, SAXException, IOException {
-		load("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml");
+		load("data/plateauX.xml");
 		//save("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml","");
 	}
 
+	public Plateau(int largeurPlateau,int hauteurPlateau){
+		super();
+		plateau = new Jeton[largeurPlateau + 2][hauteurPlateau + 2];
+		remplissageOut();
+		caseAjout = new Integer[taillePlateau][taillePlateau];
+		this.largeurPlateau=largeurPlateau;
+		this.hauteurPlateau=hauteurPlateau;
+	}
+
+	public void simulationPartie(){
+		plateau[2][1] = new Pion("elephant",Orientation.NORD);
+		plateau[3][2] = new Pion("Elephant",Orientation.NORD);
+		plateau[2][2] = new Rocher("roche");
+		plateau[3][1] = new Pion("Rhinoceros",Orientation.NORD);
+
+	}
+
+	public void ajoutRocher(int x,int y){
+		plateau[x][y]=new Rocher("rocher");
+	}
+
+	public void ajoutCaseOut(int x, int y){
+		plateau[x][y]=new Out();
+	}
+
+	public void ajoutCaseDepart(int x,int y){
+		caseAjout[x][y]=1;
+	}
+
 	public void remplissageOut() {
-		for (int i = 0; i < taillePlateau + 2; i++) {
-
-			plateau[0][i] = new Out();
-
+		for (int i = 0; i < largeurPlateau + 2; i++) {
 			plateau[i][0] = new Out();
-
-			plateau[taillePlateau + 1][i] = new Out();
-
-			plateau[i][taillePlateau + 1] = new Out();
-
+			plateau[i][hauteurPlateau + 1] = new Out();
+		}
+		for(int j= 0;j<hauteurPlateau + 2;j++){
+			plateau[0][j] = new Out();
+			plateau[largeurPlateau + 1][j] = new Out();
 		}
 	}
+
+	public Integer[][] getCaseajout(){
+		return caseAjout;
+	}
+
+	public void creationCaseAjout(){
+		caseAjout = new Integer[taillePlateau][taillePlateau];
+
+		for (int a = 0; a < taillePlateau ; a++) {
+			for (int b = 0; b < taillePlateau ; b++) {
+				caseAjout[a][b]=0;
+			}
+		}
+		for(int i=0;i<taillePlateau-1;i++){
+			caseAjout[0][i]=1;
+			caseAjout[i+1][0]=1;
+			caseAjout[taillePlateau-1][i+1]=1;
+			caseAjout[i][taillePlateau-1]=1;
+		}
+	}
+
 	public void ajouterRocher(Rocher unRocher,int x,int y) {
 		plateau[x][y] = unRocher;
 	}
@@ -473,15 +517,21 @@ public class Plateau {
 		// filename : nom du fichier
 		public void load(String filename) throws ParserConfigurationException, SAXException, IOException {
 			// permet la cr�ation d'un fichier pour extraire les donn�es du fichier xml
+            Log.e("TEST","je rentre dans le load");
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+			Log.e("TEST","1");
 			DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
+            Log.e("TEST","2");
 			org.w3c.dom.Document domDocument = documentBuilder.parse(filename);
+            Log.e("TEST","3");
 			DOMBuilder domBuilder = new DOMBuilder();
+            Log.e("TEST","4");
 			Document doc = domBuilder.build(domDocument);
-
+            Log.e("TEST","5");
 			// Element racine = doc.getRootElement();
 			// on recup�re les fils de case a patir de la racine plateau
 			List<Element> attribElments = doc.getRootElement().getChildren("Case");
+			Log.e("TEST",attribElments.size()+"");
 			this.taillePlateau = Integer.parseInt(doc.getRootElement().getAttributeValue("taille")) ;
 			plateau = new Jeton[taillePlateau +2][taillePlateau+2];
 			// pour chaque case du fichier xml on �crit la case avec un x , un y et en focntion de ses attribut in , out , rien 

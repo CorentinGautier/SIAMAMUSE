@@ -36,6 +36,24 @@
         tools:ignore="MissingConstraints"
         tools:text="Jouer" />
 
+    <Button
+        android:id="@+id/buttonEditplateau"
+        android:layout_width="156dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="allerEditPlateau"
+        android:text="Editer un plateau"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/ActivityJeu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/buttonQuitter"
