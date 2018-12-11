@@ -56,13 +56,13 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     String nbLigneS = editTextNbLigne.getText().toString();
                     Log.e("nbLigne", nbLigneS);
                     nbLigne =  Integer.decode(nbLigneS);
-                    CreaPlateau(nbColone, nbLigne, table);
+                    //CreaPlateau(nbColone, nbLigne, table);
                 }
             }
         });
     }
 
-    public void CreaPlateau(int nbLigne, int nbColone,TableLayout table) {
+   /* public void CreaPlateau(int nbLigne, int nbColone,TableLayout table) {
 
         if (nbColone != 0 && nbColone != 0 && nbColone< 6&& nbLigne< 6) {
             int[][] plateauView = new int[nbLigne][nbColone];
@@ -114,7 +114,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         else{
             Log.e("error","impossible de faire un tableau de 0 lignes et/ ou 0 colones");
         }
-    }
+    }*/
     public void AjoutImage(){ // ajoute un rocher lors du click sur une des cases
         row.removeView(context);
 
