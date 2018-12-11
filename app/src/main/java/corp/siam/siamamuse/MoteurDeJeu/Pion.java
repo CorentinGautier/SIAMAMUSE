@@ -37,7 +37,7 @@ public class Pion extends Jeton {
 	public String toString() {
 		return "Je suis " + nom+" et je regard vers "+regard;
 	}
-	
+
 
 	@Override
 	public int veriforientation(Orientation testRegard) {

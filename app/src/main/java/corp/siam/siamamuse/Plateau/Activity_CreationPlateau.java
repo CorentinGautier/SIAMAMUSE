@@ -12,21 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
 import corp.siam.siamamuse.MainActivity;
-import corp.siam.siamamuse.MoteurDeJeu.Fleche;
-import corp.siam.siamamuse.MoteurDeJeu.Jeton;
-import corp.siam.siamamuse.MoteurDeJeu.MoteurJeu;
-import corp.siam.siamamuse.MoteurDeJeu.Pion;
-import corp.siam.siamamuse.MoteurDeJeu.PionInterface;
+import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
-import corp.siam.siamamuse.MoteurDeJeu.Rocher;
-import corp.siam.siamamuse.MoteurDeJeu.RocherInterface;
 import corp.siam.siamamuse.R;
 
 public class Activity_CreationPlateau extends AppCompatActivity {
@@ -36,21 +25,14 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     EditText editTextNbLigne;
     Button btnEnvoi;
     Button affichePlateau;
-    public MoteurJeu mj;
 
     private int nbColone;
     private int nbLigne;
-
-    private ArrayList<Pion> lesPion = new ArrayList<>();
-    private ImageButton imageRocher;
     RelativeLayout context;
-
     ImageView imgVide; // création d'un élément : ligne
     TableRow row; // création d'un élément : colone
-    int id;//id de la case créee
     public static int largeurEcrant, hauteurEcrant;
     public static int tailleCase;
-    public static int posHautGauchY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +44,6 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
         tailleCase = (int) (largeurEcrant * 0.2);
 
-        final TableLayout table = (TableLayout) findViewById(R.id.idTable); // on prend le tableau défini dans le layout
-
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
@@ -74,26 +54,39 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     String nbLigneS = editTextNbLigne.getText().toString();
                     Log.e("nbLigne", nbLigneS);
                     nbLigne = Integer.decode(nbLigneS);
-                    //CreaPlateau(nbColone, nbLigne, table);
+
+                    calculTailleEcrant();
+                    Plateau unPlateau = new Plateau(nbColone, nbLigne);
+                    AffichagePlateau();
+
+                    for (int i = 0; i < nbLigne; i++) {
+                        for (int j = 0; j < nbColone; j++) {
+                            unPlateau.ajoutRocher(nbColone, nbLigne);
+                            Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
+                        }
+                    }
                 }
             }
         });
+    }
 
+    public void AffichagePlateau(){
+        largeurEcrant = this.getLargeurEcrant();
+        hauteurEcrant = this.getHauteurEcrant();
+        convertionMatriceAffichage(nbColone, nbLigne);
     }
 
 
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
-        Jeton[][] plateau = mj.getLePlateau().getPlateau();
         for(int i=1;i<nbColone;i++){
             for(int j=1;j<Nbligne;j++){
                 imagePion = new ImageButton(this);
                 imagePion.setBackgroundResource(R.drawable.rocher);
                 ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
                 imagePion.setLayoutParams(paramsPion);
-                imagePion.setX((int)((PlateauInterface.tailleCase*x)+(PlateauInterface.tailleCase*0.1)));
-                imagePion.setY((int)(PlateauInterface.posHautGauchY+(PlateauInterface.tailleCase*y)+(PlateauInterface.tailleCase*0.1)));
+                imagePion.setX((int)((PlateauInterface.tailleCase*nbColone)+(PlateauInterface.tailleCase*0.1)));
+                imagePion.setY((int)(PlateauInterface.posHautGauchY+(PlateauInterface.tailleCase*nbLigne)+(PlateauInterface.tailleCase*0.1)));
                 context.addView(imagePion);
-
             }
         }
     }
@@ -119,5 +112,54 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
         this.finish();
+    }
+
+
+    public Button getAffichePlateau() {
+        return affichePlateau;
+    }
+
+    public void setAffichePlateau(Button affichePlateau) {
+        this.affichePlateau = affichePlateau;
+    }
+
+    public int getNbColone() {
+        return nbColone;
+    }
+
+    public void setNbColone(int nbColone) {
+        this.nbColone = nbColone;
+    }
+
+    public int getNbLigne() {
+        return nbLigne;
+    }
+
+    public void setNbLigne(int nbLigne) {
+        this.nbLigne = nbLigne;
+    }
+
+    public Button getBtnEnvoi() {
+        return btnEnvoi;
+    }
+
+    public void setBtnEnvoi(Button btnEnvoi) {
+        this.btnEnvoi = btnEnvoi;
+    }
+
+    public static int getLargeurEcrant() {
+        return largeurEcrant;
+    }
+
+    public static void setLargeurEcrant(int largeurEcrant) {
+        Activity_CreationPlateau.largeurEcrant = largeurEcrant;
+    }
+
+    public static int getHauteurEcrant() {
+        return hauteurEcrant;
+    }
+
+    public static void setHauteurEcrant(int hauteurEcrant) {
+        Activity_CreationPlateau.hauteurEcrant = hauteurEcrant;
     }
 }
