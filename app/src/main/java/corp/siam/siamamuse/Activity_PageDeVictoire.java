@@ -27,7 +27,6 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
             affichageVictoire.setText(R.string.annonceVictoireRhinoceros);
     }
 
-
     public void QuitterPageDeVictoire(View v){
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);

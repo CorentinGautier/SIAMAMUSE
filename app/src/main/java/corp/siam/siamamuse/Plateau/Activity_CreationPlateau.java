@@ -3,6 +3,7 @@ package corp.siam.siamamuse.Plateau;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import corp.siam.siamamuse.MainActivity;
 import corp.siam.siamamuse.R;
@@ -34,6 +34,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     ImageView imgVide; // création d'un élément : ligne
     TableRow row; // création d'un élément : colone
     int id;//id de la case créee
+    private int largeurEcrant;
+    private int hauteurEcrant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
 
-
+    calculTailleEcrant();
         final TableLayout table = (TableLayout) findViewById(R.id.idTable); // on prend le tableau défini dans le layout
 
         affichePlateau = (Button)findViewById(R.id.affichePlateau);
@@ -56,15 +58,21 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     String nbLigneS = editTextNbLigne.getText().toString();
                     Log.e("nbLigne", nbLigneS);
                     nbLigne =  Integer.decode(nbLigneS);
-                    CreaPlateau(nbColone, nbLigne, table);
+                    //CreaPlateau(nbColone, nbLigne, table);
                 }
             }
         });
     }
+    public void calculTailleEcrant(){
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        largeurEcrant = metrics.widthPixels;
+        hauteurEcrant = metrics.heightPixels;
+    }
+    
+   /* public void CreaPlateau(int nbLigne, int nbColone,TableLayout table) {
 
-    public void CreaPlateau(int nbLigne, int nbColone,TableLayout table) {
-
-        if (nbColone != 0 && nbColone != 0 && nbColone< 6&& nbLigne< 6) {
+        if (nbColone != 0 && nbLigne != 0 && nbColone< 6&& nbLigne< 6) {
             int[][] plateauView = new int[nbLigne][nbColone];
             Log.e("CreaPLateau", "nb colone = " + nbColone + "nb ligne = " + nbLigne);
             Log.e("CreaPLateau", "initialisation" + plateauView);
@@ -83,7 +91,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) { //lorsque click alors
-                        AjoutImage();
+                        plateauView.ajouterRocher();
                         Log.d("mydebug", "i=" + id);
                     }
                 });
@@ -108,13 +116,14 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 // ajout de la ligne au tableau
                 Log.e("CreaPLateau", "pour toute les lignes fin");
                 table.addView(row);
-                Log.e("CreaPLateau", "affichage du plateau");
+                Log.e("CreaPLateau", "affic " +
+                        "hage du plateau");
             }
         }
         else{
             Log.e("error","impossible de faire un tableau de 0 lignes et/ ou 0 colones");
         }
-    }
+    }*/
     public void AjoutImage(){ // ajoute un rocher lors du click sur une des cases
         row.removeView(context);
 
