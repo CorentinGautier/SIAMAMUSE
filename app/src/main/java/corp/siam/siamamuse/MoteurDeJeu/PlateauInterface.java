@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.Plateau.Activity_CreationPlateau;
 
 public class PlateauInterface {
 
@@ -41,7 +42,7 @@ public class PlateauInterface {
         creationbtnAjout();
     }
 
-    public void convertionMatriceAffichage(){
+     public void convertionMatriceAffichage(){
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         supprimerBtnAjout();
         suppressionJetons();
