@@ -19,9 +19,7 @@ import corp.siam.siamamuse.Plateau.Activity_CreationPlateau;
 
 public class PlateauInterface {
 
-    public static int largeurEcrant, hauteurEcrant;
-    public static int tailleCase;
-    public static int posHautGauchY;
+    public static Calculateur calc;
 
     public static Activity_Partie context;
     public  MoteurJeu mj;
@@ -33,10 +31,7 @@ public class PlateauInterface {
     public ArrayList<PionMain> lesPionsMain = new ArrayList<>();
 
     public PlateauInterface(Activity_Partie context,MoteurJeu moteurJeu) throws IOException, SAXException, ParserConfigurationException {
-        largeurEcrant = context.largeurEcrant;
-        hauteurEcrant = context.hauteurEcrant;
-        tailleCase=(int)(largeurEcrant*0.2);
-        posHautGauchY=(int)((hauteurEcrant-(tailleCase*5))/2);
+        calc = new Calculateur(context.largeurEcrant,context.hauteurEcrant,moteurJeu);
         this.context=context;
         mj = moteurJeu;
         creationbtnAjout();
@@ -65,7 +60,7 @@ public class PlateauInterface {
     public void suppressionJetons(){
         for(PionInterface unPion : lesPions){
             context.fondPartie.removeView(unPion.getImagePion());
-            unPion.disparitionFleche();
+            //unPion.disparitionFleche();
         }
         for(RocherInterface unRocher : lesRochers){
             context.fondPartie.removeView(unRocher.getImageRocher());
