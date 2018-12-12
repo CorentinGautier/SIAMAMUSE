@@ -28,7 +28,10 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
     private int nbColone;
     private int nbLigne;
+
+
     RelativeLayout context;
+
     ImageView imgVide; // création d'un élément : ligne
     TableRow row; // création d'un élément : colone
     public static int largeurEcrant, hauteurEcrant;
@@ -39,10 +42,12 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__creation_plateau);
 
+        context = findViewById(R.id.page);
+
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
 
-        tailleCase = (int) (largeurEcrant * 0.2);
+
 
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
@@ -56,37 +61,30 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     nbLigne = Integer.decode(nbLigneS);
 
                     calculTailleEcrant();
-                    Plateau unPlateau = new Plateau(nbColone, nbLigne);
-                    AffichagePlateau();
+                    tailleCase = (int) (largeurEcrant * 0.2);
 
-                    for (int i = 0; i < nbLigne; i++) {
-                        for (int j = 0; j < nbColone; j++) {
-                            unPlateau.ajoutRocher(nbColone, nbLigne);
-                            Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
-                        }
-                    }
+
+                    convertionMatriceAffichage(nbColone, nbLigne);
                 }
             }
         });
     }
 
-    public void AffichagePlateau(){
-        largeurEcrant = this.getLargeurEcrant();
-        hauteurEcrant = this.getHauteurEcrant();
-        convertionMatriceAffichage(nbColone, nbLigne);
-    }
-
 
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
-        for(int i=1;i<nbColone;i++){
-            for(int j=1;j<Nbligne;j++){
+
+        Plateau unPlateau = new Plateau(nbColone, nbLigne);
+        for (int i = 0; i < nbLigne; i++) {
+            for (int j = 0; j < nbColone; j++) {
                 imagePion = new ImageButton(this);
                 imagePion.setBackgroundResource(R.drawable.rocher);
                 ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
                 imagePion.setLayoutParams(paramsPion);
-                imagePion.setX((int)((PlateauInterface.tailleCase*nbColone)+(PlateauInterface.tailleCase*0.1)));
-                imagePion.setY((int)(PlateauInterface.posHautGauchY+(PlateauInterface.tailleCase*nbLigne)+(PlateauInterface.tailleCase*0.1)));
+                Log.e("taillecase",""+tailleCase);
+                imagePion.setX((int)((tailleCase*i)+(tailleCase*0.1)));
+                imagePion.setY((int)(10+(tailleCase*j)+(tailleCase*0.1)));
                 context.addView(imagePion);
+                Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
             }
         }
     }

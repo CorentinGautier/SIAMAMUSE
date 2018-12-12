@@ -63,7 +63,11 @@ public class Plateau {
 
 	}
 
-	public void ajoutRocher(int x,int y){
+	public int getHauteurPlateau() {
+		return hauteurPlateau;
+	}
+
+	public void ajoutRocher(int x, int y){
 		plateau[x][y]=new Rocher("rocher");
 	}
 
@@ -109,6 +113,7 @@ public class Plateau {
 	public void ajouterRocher(Rocher unRocher,int x,int y) {
 		plateau[x][y] = unRocher;
 	}
+
 
 	
 	//pour ajouter un pion on doit le mettre au coordoner que le joueur voie
@@ -276,7 +281,125 @@ public class Plateau {
 		}
 		remplissageOut();
 	}
-	
+
+	// res[0] int sert fonction pousser, res[1]=deplacemnt est possible, res[2] boolean qui dit si on vas devoir pousser
+
+	public int[] testDeplacement(Pion unPion, Orientation directionDeplacement){
+		pionARecupere = null;
+		// On recupere les coordonne du jeton
+		int[] coordonne = recherchePosition(unPion);
+		int x = coordonne[0], y = coordonne[1];
+		// Variable qui vas servir a v�rifier si le d�placment est possible
+		int contreAttaque = 1;
+		// Si le pion a deplacer des pion la cariable passe a true
+		int aPousser = 0;
+		int[] res = new int[3];
+
+		// deplacemnt vers le nord
+		if (directionDeplacement == Orientation.EST) {
+			int i = x;
+			i++;
+			// tant qu'il y a un jeton et qu'on ne d�pace pas la taille du plateau
+			while (i < taillePlateau + 1) {
+				// additionne la valeur de retour du jeton
+				// 0 si il n'a pas d'impacte 1 si il est dans notre sens et -1 si il est contre
+				// nous
+				if (plateau[i][y] != null) {
+					contreAttaque += plateau[i][y].veriforientation(directionDeplacement);
+					i++;
+				} else {
+					break;
+				}
+				aPousser++;
+			}
+			// v�rification si la contre attaque permet le d�placement
+			// si elle est inf�rieur � 0 c'est impossible
+
+			res[0]=i;
+		}
+		// deplacemnt vers le sud
+		if (directionDeplacement == Orientation.OUEST) {
+			int i = x;
+			i--;
+			while (i >= 1) {
+				if (plateau[i][y] != null) {
+					contreAttaque += plateau[i][y].veriforientation(directionDeplacement);
+					i--;
+				} else {
+					break;
+				}
+				aPousser++;
+			}
+			res[0]=i;
+		}
+		// deplacement vers le ouest
+		if (directionDeplacement == Orientation.SUD) {
+			int i = y;
+			i--;
+			while (i >= 1) {
+				if (plateau[x][i] != null) {
+					contreAttaque += plateau[x][i].veriforientation(directionDeplacement);
+					i--;
+				} else {
+					break;
+				}
+				aPousser++;
+			}
+			res[0]=i;
+		}
+		// deplacement vers le nord
+		if (directionDeplacement == Orientation.NORD) {
+			int i = y;
+			i++;
+			while (i < taillePlateau+1) {
+
+				if (plateau[x][i] != null) {
+					contreAttaque += plateau[x][i].veriforientation(directionDeplacement);
+					i++;
+				} else {
+					break;
+				}
+				aPousser++;
+			}
+			res[0]=i;
+		}
+		res[1]=contreAttaque;
+		res[2]=aPousser;
+		return res;
+	}
+
+	public void deplacementInterf(Jeton unJeton, Orientation directionDeplacement,int i ) {
+		pionARecupere = null;
+		// On recupere les coordonne du jeton
+		int[] coordonne = recherchePosition(unJeton);
+		int x = coordonne[0], y = coordonne[1];
+		// Variable qui vas servir a v�rifier si le d�placment est possible
+
+		// Si le pion a deplacer des pion la cariable passe a true
+
+		// deplacemnt vers le nord
+		if (directionDeplacement == Orientation.EST) {
+				pousserEst(unJeton, i - 1, y);
+		}
+		// deplacemnt vers le sud
+		if (directionDeplacement == Orientation.OUEST) {
+				pousserOuest(unJeton, i + 1, y);
+		}
+		// deplacement vers le ouest
+		if (directionDeplacement == Orientation.SUD) {
+				pousserSud(unJeton, x, i + 1);
+		}
+		// deplacement vers le nord
+		if (directionDeplacement == Orientation.NORD) {
+				pousserNord(unJeton, x, i - 1);
+		}
+		suppresionPionDehors();
+//		if(aPousser==0) {
+//			return false;
+//		}else {
+//			return true;
+//		}
+	}
 	
 	// cette fonction est un boolean qui retourn true si il y a eu un deplacement et false sinon
 	public boolean deplacement(Jeton unJeton, Orientation directionDeplacement) {
