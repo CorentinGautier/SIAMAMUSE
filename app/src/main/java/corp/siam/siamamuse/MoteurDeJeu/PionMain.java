@@ -26,7 +26,7 @@ public class PionMain {
         this.unJoueur=unJoueur;
         imagePion = new ImageButton(context);
         imagePion.setBackgroundResource(unPion.getImagePion());
-        ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.tailleCase*0.8),(int)(PlateauInterface.tailleCase*0.8));
+        ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.calc.getTailleCase()*0.8),(int)(PlateauInterface.calc.getTailleCase()*0.8));
         imagePion.setLayoutParams(paramsPion);
         placementInterface(numero,nom);
         context.runOnUiThread(new Runnable() {
@@ -45,14 +45,14 @@ public class PionMain {
 
     //si c'est un elephant il les places d'un cote et si c'est un rhinoceros il les places de l'autre cote
     public void placementInterface(int numero,String nom){
-        int x =(int) ((PlateauInterface.tailleCase-(PlateauInterface.tailleCase*0.5))*(numero-1) + PlateauInterface.largeurEcrant*0.1);
+        int x =PlateauInterface.calc.calculePionExterieurX(numero);
         imagePion.setX(x);
         //verifier l'orthographe
         int y;
         if(nom=="elephant"){
-            y = (int) (PlateauInterface.hauteurEcrant*0.05);
+            y = (int) (PlateauInterface.calc.getHauteurEcrant()*0.05);
         }else{
-            y = (int) ((PlateauInterface.hauteurEcrant*0.95)-PlateauInterface.tailleCase);
+            y = (int) ((PlateauInterface.calc.getHauteurEcrant()*0.95)-PlateauInterface.calc.getTailleCase());
         }
         imagePion.setY(y);
 
