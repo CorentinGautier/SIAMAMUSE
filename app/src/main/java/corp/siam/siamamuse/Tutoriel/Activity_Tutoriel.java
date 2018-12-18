@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import corp.siam.siamamuse.Activity_Option;
 import corp.siam.siamamuse.MainActivity;
 import corp.siam.siamamuse.R;
 
@@ -23,8 +24,8 @@ public class Activity_Tutoriel extends AppCompatActivity {
         viewPager.setAdapter(myadapter);
 
     }
-    public void Retour(View view) {//retour menu
-        Intent intent = new Intent(this, MainActivity.class); // l'activité où on est vers la prochaine
+    public void Retour(View view) {//retour vers les options
+        Intent intent = new Intent(this, Activity_Option.class); // l'activité où on est vers la prochaine
         startActivity(intent);
         this.finish();
     }

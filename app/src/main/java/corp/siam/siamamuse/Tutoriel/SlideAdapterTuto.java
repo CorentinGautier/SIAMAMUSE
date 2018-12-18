@@ -3,11 +3,14 @@ package corp.siam.siamamuse.Tutoriel;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import corp.siam.siamamuse.R;
@@ -15,6 +18,7 @@ import corp.siam.siamamuse.R;
 public class SlideAdapterTuto extends PagerAdapter {
     Context context;
     LayoutInflater inflater;
+    Scroller scroll;
 
     // liste d'images
     public int[] lst_images = {
@@ -68,7 +72,7 @@ public class SlideAdapterTuto extends PagerAdapter {
 
             "Un animal qui sort du plateau suite à une poussé n’est pas éliminé, il est récupéré par son propriétaire et pourra être joué plus tard dans la partie.",
 
-        };
+    };
 
     // list des couleurs en background
     public int[] lst_backgroundcolor = {
@@ -87,7 +91,7 @@ public class SlideAdapterTuto extends PagerAdapter {
             Color.rgb(100, 40, 50),
             Color.rgb(160, 60, 55),
 
-      };
+    };
 
 
     public SlideAdapterTuto(Context context) {
@@ -109,6 +113,7 @@ public class SlideAdapterTuto extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.slide, container, false);
 
+
         LinearLayout layoutslide = (LinearLayout) view.findViewById(R.id.slidelinearlayout);
         ImageView imgslide = (ImageView) view.findViewById(R.id.slideimg);
         TextView txttitle = (TextView) view.findViewById(R.id.txttitle);
@@ -118,6 +123,7 @@ public class SlideAdapterTuto extends PagerAdapter {
         imgslide.setImageResource(lst_images[position]);
         txttitle.setText(lst_title[position]);
         description.setText(lst_description[position]);
+        description.setMovementMethod(new ScrollingMovementMethod());
         container.addView(view);
         return view;
     }

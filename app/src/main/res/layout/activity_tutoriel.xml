@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="corp.siam.siamamuse.Tutoriel.Activity_Tutoriel">
+    tools:context="corp.siam.siamamuse.Tutoriel.Activity_Tutoriel"
+    android:scrollbars="vertical"
+    >
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
     </android.support.v4.view.ViewPager>
+
+
 
     <Button
         android:id="@+id/buttonRetour"
@@ -23,13 +28,14 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="496dp"
         android:background="@drawable/coutonbouton"
         android:onClick="Retour"
+        android:text="Retour"
         android:textColor="@android:color/white"
-        android:text="Retour menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>
