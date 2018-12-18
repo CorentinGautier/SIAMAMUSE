@@ -3,4 +3,6 @@
     <string name="title_activity__page_victoire">Activity_PageVictoire</string>
     <string name="annonceVictoireElephant">Victoire des Elephants</string>
     <string name="annonceVictoireRhinoceros">Victoire des Rhinocéros</string>
+    <string name="nbVictoireElephant">Victoire des Elephants :</string>
+    <string name="nbVictoireRhinoceros">Victoire des Rhinoceros</string>
 </resources>
