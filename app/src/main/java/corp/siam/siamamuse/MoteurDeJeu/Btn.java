@@ -10,20 +10,20 @@ import corp.siam.siamamuse.R;
 public abstract class Btn  {
 
     protected ImageButton btnVerre;
-    protected final Activity_Partie context;
+    protected Activity_Partie context;
     protected MoteurJeu mj;
     protected Pion unPion;
     protected int xPla,yPla;
     protected PlateauInterface plateauInterface;
 
-    public Btn(int xPla, int yPla, final Activity_Partie context, MoteurJeu mj, PlateauInterface plateauInterface){
+    public Btn(int xPla, int yPla, Activity_Partie context, MoteurJeu mj, PlateauInterface plateauInterface,boolean deplacementPossible){
         this.context=context;
         this.mj=mj;
         this.xPla=xPla;
         this.yPla=yPla;
         this.plateauInterface=plateauInterface;
         btnVerre = new ImageButton(context);
-        setBoutton(true);
+        setBoutton(deplacementPossible);
 
     }
 
