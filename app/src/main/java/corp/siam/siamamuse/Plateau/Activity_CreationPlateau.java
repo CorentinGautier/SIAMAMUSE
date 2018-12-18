@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import corp.siam.siamamuse.MainActivity;
+import corp.siam.siamamuse.MoteurDeJeu.Orientation;
+import corp.siam.siamamuse.MoteurDeJeu.Pion;
 import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
 import corp.siam.siamamuse.R;
@@ -28,24 +30,29 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     EditText editTextNbLigne;
     Button btnEnvoi;
     Button affichePlateau;
+
     private int nbColone;
     private int nbLigne;
-    RelativeLayout context;
+
+
+    RelativeLayout layout;
+
     ImageView imgVide; // création d'un élément : ligne
     TableRow row; // création d'un élément : colone
     public static int largeurEcrant, hauteurEcrant;
     public static int tailleCase;
-    private int idCase = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__creation_plateau);
 
-        context = findViewById(R.id.page);
+        layout = findViewById(R.id.page);
 
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
+
+
 
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
@@ -71,11 +78,9 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
 
-        Plateau unPlateau = new Plateau(nbColone, nbLigne);
+        final Plateau unPlateau = new Plateau(nbColone, nbLigne);
         for (int i = 0; i < nbLigne; i++) {
             for (int j = 0; j < nbColone; j++) {
-                idCase = idCase++;
-                unPlateau.ajoutRocher(i,j);
                 imagePion = new ImageButton(this);
                 imagePion.setBackgroundResource(R.drawable.rocher);
                 ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
@@ -83,17 +88,14 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 Log.e("taillecase",""+tailleCase);
                 imagePion.setX((int)((tailleCase*i)+(tailleCase*0.1)));
                 imagePion.setY((int)(10+(tailleCase*j)+(tailleCase*0.1)));
-                context.addView(imagePion);
+                layout.addView(imagePion);
                 imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                     public void onClick(View view) {
-                        Log.e("coordonnée",""+imagePion.getX() +" : "+ imagePion.getY());
-                        context.removeView(imagePion);
                     }
-
-                                             });
+                });
 
                 Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
-
+                unPlateau.ajouterPion(new Pion("untest",Orientation.NORD),i,j);
 
             }
         }
@@ -113,8 +115,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
     private void setRocher() {
     }
-    private void supprimerLaCase() {
-
+    private void supprimerLaCase(){
     }
 
     public void fenetrePopUp()throws InterruptedException {
@@ -137,7 +138,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     }
 
     public void AjoutImage(){ // ajoute un rocher lors du click sur une des cases
-        row.removeView(context);
+        row.removeView(layout);
 
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams((int) 20, (int) 20);
         imgVide.setLayoutParams(params);

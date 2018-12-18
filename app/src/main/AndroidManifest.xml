@@ -24,4 +24,5 @@
         <activity android:name=".Plateau.Activity_CreationPlateau"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
