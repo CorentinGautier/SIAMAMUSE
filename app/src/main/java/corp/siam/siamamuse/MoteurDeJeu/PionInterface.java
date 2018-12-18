@@ -1,6 +1,5 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -24,6 +23,7 @@ public class PionInterface {
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
     private ImageButton imagePion;
+    ArrayList<BtnDeplacement> lesBtnDeplac = new ArrayList<>();
 
     public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
         this.context=context;
@@ -39,6 +39,13 @@ public class PionInterface {
         imagePion.setLayoutParams(paramsPion);
         imagePion.setX(PlateauInterface.calc.calculePionPlateauX(x));
         imagePion.setY(PlateauInterface.calc.calculePionPlateauY(y));
+        creationBtnAjout();
+        imagePion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afficherBtn();
+            }
+        });
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -48,31 +55,37 @@ public class PionInterface {
     }
 
     //fonction qui est relié au btnImage et qui affiche ou non les fleche
-//    public void afficherBtn(){
-//        if(flecheAficher){
-//            flecheAficher=false;
-//            disparitionFleche();
-//        }else{
-//            flecheAficher=true;
-//            for(Fleche unefleche:lesFleches){
-//                unefleche.afficherFleche();
-//            }
-//        }
-//    }
-    ArrayList<BtnDeplacement> lesBtnAjouts = new ArrayList<>();
+    public void afficherBtn(){
+        if(flecheAficher){
+            flecheAficher=false;
+            supprimerBtn();
+        }else{
+            flecheAficher=true;
+            for(BtnDeplacement unBtn:lesBtnDeplac){
+                unBtn.afficheBtn(unPion);
+            }
+        }
+    }
+
+    public void supprimerBtn(){
+        for(BtnDeplacement unBtn:lesBtnDeplac){
+            unBtn.effacer();
+        }
+    }
+
     public void creationBtnAjout(){
 
-        int[] res  = mj.getLePlateau().testDeplacement(unPion,NORD);
-        lesBtnAjouts.add(new BtnDeplacement(x, y+1, context, mj, plateauInterface, res,NORD));
+        boolean res  = mj.getLePlateau().testDeplacement(unPion,NORD);
+        lesBtnDeplac.add(new BtnDeplacement(x, y+1, context, mj, plateauInterface,res, NORD));
 
         res  = mj.getLePlateau().testDeplacement(unPion,SUD);
-        lesBtnAjouts.add(new BtnDeplacement(x, y-1, context, mj, plateauInterface, res,SUD));
+        lesBtnDeplac.add(new BtnDeplacement(x, y-1, context, mj, plateauInterface,res, SUD));
 
         res  = mj.getLePlateau().testDeplacement(unPion,OUEST);
-        lesBtnAjouts.add(new BtnDeplacement(x-1, y, context, mj, plateauInterface, res,OUEST));
+        lesBtnDeplac.add(new BtnDeplacement(x-1, y, context, mj, plateauInterface,res, OUEST));
 
         res  = mj.getLePlateau().testDeplacement(unPion,EST);
-        lesBtnAjouts.add(new BtnDeplacement(x+1, y, context, mj, plateauInterface, res,EST));
+        lesBtnDeplac.add(new BtnDeplacement(x+1, y, context, mj, plateauInterface,res, EST));
     }
 
 //    public void disparitionFleche(){
