@@ -60,6 +60,7 @@ public class PlateauInterface {
     public void suppressionJetons(){
         for(PionInterface unPion : lesPions){
             unPion.supprimerBtn();
+            unPion.disparitionFleche();
             context.fondPartie.removeView(unPion.getImagePion());
             //unPion.disparitionFleche();
         }

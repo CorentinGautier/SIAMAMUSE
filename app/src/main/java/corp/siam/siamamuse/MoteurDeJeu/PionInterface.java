@@ -18,7 +18,7 @@ public class PionInterface {
     private int x,y;
     private Pion unPion;
     private Activity_Partie context;
-//    private ArrayList<Fleche> lesFleches = new ArrayList<>();
+    private ArrayList<Fleche> lesFleches = new ArrayList<>();
     private boolean flecheAficher;
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
@@ -46,6 +46,8 @@ public class PionInterface {
                 afficherBtn();
             }
         });
+        setRegard();
+        creationFleche(PlateauInterface.calc.calculePionPlateauX(x),PlateauInterface.calc.calculePionPlateauY(y));
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -54,18 +56,46 @@ public class PionInterface {
         });
     }
 
+    public void setRegard(){
+        switch(unPion.getRegard()){
+            case EST:
+                imagePion.setRotation(90);
+                break;
+            case SUD:
+                imagePion.setRotation(180);
+                break;
+            case OUEST:
+                imagePion.setRotation(270);
+                break;
+            case NORD:
+                break;
+        }
+    }
+
     //fonction qui est relié au btnImage et qui affiche ou non les fleche
+//    public void afficherBtn(){
+//        if(flecheAficher){
+//            flecheAficher=false;
+//            supprimerBtn();
+//        }else{
+//            flecheAficher=true;
+//            for(BtnDeplacement unBtn:lesBtnDeplac){
+//                unBtn.afficheBtn(unPion);
+//            }
+//        }
+//    }
     public void afficherBtn(){
         if(flecheAficher){
             flecheAficher=false;
-            supprimerBtn();
+            disparitionFleche();
         }else{
             flecheAficher=true;
-            for(BtnDeplacement unBtn:lesBtnDeplac){
-                unBtn.afficheBtn(unPion);
-            }
+            affichageFleche();
         }
     }
+
+
+
 
     public void supprimerBtn(){
         for(BtnDeplacement unBtn:lesBtnDeplac){
@@ -88,18 +118,24 @@ public class PionInterface {
         lesBtnDeplac.add(new BtnDeplacement(x+1, y, context, mj, plateauInterface,res, EST));
     }
 
-//    public void disparitionFleche(){
-//        for(Fleche unefleche:lesFleches){
-//            unefleche.effacerFleche();
-//        }
-//    }
-//    //Il y a un probleme dans la gestion du nord et du sud
-//    public void creationFleche(float x, float y){
-//        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*1.1)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.EST, context,mj,plateauInterface,this));
-//        lesFleches.add(new Fleche((int)(x-(PlateauInterface.tailleCase*0.9)), (int)(y+(PlateauInterface.tailleCase*0.2)),unPion,Orientation.OUEST, context,mj,plateauInterface,this));
-//        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y+(PlateauInterface.tailleCase*1.1)),unPion,Orientation.NORD, context,mj,plateauInterface,this));
-//        lesFleches.add(new Fleche((int)(x+(PlateauInterface.tailleCase*0.2)), (int)(y-(PlateauInterface.tailleCase*0.9)),unPion,Orientation.SUD, context,mj,plateauInterface,this));
-//    }
+    public void disparitionFleche(){
+        for(Fleche unefleche:lesFleches){
+            unefleche.effacerFleche();
+        }
+    }
+
+    public void affichageFleche(){
+        for(Fleche unefleche:lesFleches){
+            unefleche.afficherFleche();
+        }
+    }
+    //Il y a un probleme dans la gestion du nord et du sud
+    public void creationFleche(float x, float y){
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*1.1)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.2)),unPion,Orientation.EST, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x-(PlateauInterface.calc.getTailleCase()*0.9)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.2)),unPion,Orientation.OUEST, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.2)), (int)(y+(PlateauInterface.calc.getTailleCase()*1.1)),unPion,Orientation.SUD, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.2)), (int)(y-(PlateauInterface.calc.getTailleCase()*0.9)),unPion,Orientation.NORD, context,mj,plateauInterface,this));
+    }
 
     public ImageButton getImagePion() {
         return imagePion;
