@@ -1,4 +1,4 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+/*package corp.siam.siamamuse.MoteurDeJeu;
 
 public class chrono {
 
@@ -101,4 +101,4 @@ public class chrono {
 
         }
     };
-}
+}*/

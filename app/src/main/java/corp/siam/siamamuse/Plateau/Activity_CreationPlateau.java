@@ -1,6 +1,8 @@
 package corp.siam.siamamuse.Plateau;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -52,7 +55,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
-                if (view.getId() == R.id.affichePlateau) {
+               // if (view.getId() == R.id.affichePlateau) {
                     String nbColoneS = editTextNbColone.getText().toString();
                     Log.e("nbColone", nbColoneS);
                     nbColone = Integer.decode(nbColoneS);
@@ -65,7 +68,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
 
                     convertionMatriceAffichage(nbColone, nbLigne);
-                }
+                //}
             }
         });
     }
@@ -84,9 +87,48 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 imagePion.setX((int)((tailleCase*i)+(tailleCase*0.1)));
                 imagePion.setY((int)(10+(tailleCase*j)+(tailleCase*0.1)));
                 context.addView(imagePion);
+                imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
+                    public void onClick(View view) {
+                        Log.e("coordonnée",""+imagePion.getX() +" : "+ imagePion.getY());
+                        context.removeView(imagePion);
+                    }
+
+                                             });
+
                 Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
+
+
             }
         }
+    }
+    CheckBox checkBoxSuppressionCase;
+    CheckBox checkBoxPoserRocher;
+
+    public void choix() throws InterruptedException {
+        if(checkBoxSuppressionCase.isSelected()){
+            setRocher();
+        }else if(checkBoxPoserRocher.isSelected()){
+            supprimerLaCase();
+        }else {
+            fenetrePopUp();
+        }
+    }
+
+    private void setRocher() {
+    }
+    private void supprimerLaCase(){
+    }
+
+    public void fenetrePopUp()throws InterruptedException {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("action");
+        alertDialog.setMessage("Veuillez cocher une une checkBox pour supprimer une case ou ajouter un rocher");
+
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alertDialog.show();
     }
 
     public void calculTailleEcrant(){
