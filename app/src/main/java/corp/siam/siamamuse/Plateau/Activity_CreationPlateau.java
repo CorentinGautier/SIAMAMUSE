@@ -28,17 +28,14 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     EditText editTextNbLigne;
     Button btnEnvoi;
     Button affichePlateau;
-
     private int nbColone;
     private int nbLigne;
-
-
     RelativeLayout context;
-
     ImageView imgVide; // création d'un élément : ligne
     TableRow row; // création d'un élément : colone
     public static int largeurEcrant, hauteurEcrant;
     public static int tailleCase;
+    private int idCase = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +46,6 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
-
-
 
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
@@ -79,6 +74,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         Plateau unPlateau = new Plateau(nbColone, nbLigne);
         for (int i = 0; i < nbLigne; i++) {
             for (int j = 0; j < nbColone; j++) {
+                idCase = idCase++;
+                unPlateau.ajoutRocher(i,j);
                 imagePion = new ImageButton(this);
                 imagePion.setBackgroundResource(R.drawable.rocher);
                 ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
@@ -116,7 +113,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
     private void setRocher() {
     }
-    private void supprimerLaCase(){
+    private void supprimerLaCase() {
+
     }
 
     public void fenetrePopUp()throws InterruptedException {

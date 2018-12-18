@@ -19,7 +19,6 @@ public class Activity_OptionJeu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option_jeu);
 
-        //liste déroulant
         //Liste déroulante de la taille de charactère.
         //Récupération du Spinner déclaré dans le fichier main.xml de res/layout
         spinnerNbManche = (Spinner) findViewById(R.id.spinnerNbManche);
