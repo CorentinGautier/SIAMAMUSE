@@ -18,7 +18,7 @@ public class Joueur {
 	
 	public void creationPion() {
 		for(int i=0;i<5;i++) {
-			Pion unPion = new Pion(nom,null);
+			Pion unPion = new Pion(nom,Orientation.NORD);//___________________________________ il faut modifier l'orientation
 			lesPionsEnMain.add(unPion);
 		}
 	}

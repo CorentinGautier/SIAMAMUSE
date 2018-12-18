@@ -284,7 +284,7 @@ public class Plateau {
 
 	// res[0] int sert fonction pousser, res[1]=deplacemnt est possible, res[2] boolean qui dit si on vas devoir pousser
 
-	public int[] testDeplacement(Pion unPion, Orientation directionDeplacement){
+	public boolean testDeplacement(Pion unPion, Orientation directionDeplacement){
 		pionARecupere = null;
 		// On recupere les coordonne du jeton
 		int[] coordonne = recherchePosition(unPion);
@@ -293,7 +293,6 @@ public class Plateau {
 		int contreAttaque = 1;
 		// Si le pion a deplacer des pion la cariable passe a true
 		int aPousser = 0;
-		int[] res = new int[3];
 
 		// deplacemnt vers le nord
 		if (directionDeplacement == Orientation.EST) {
@@ -315,7 +314,6 @@ public class Plateau {
 			// v�rification si la contre attaque permet le d�placement
 			// si elle est inf�rieur � 0 c'est impossible
 
-			res[0]=i;
 		}
 		// deplacemnt vers le sud
 		if (directionDeplacement == Orientation.OUEST) {
@@ -330,7 +328,6 @@ public class Plateau {
 				}
 				aPousser++;
 			}
-			res[0]=i;
 		}
 		// deplacement vers le ouest
 		if (directionDeplacement == Orientation.SUD) {
@@ -345,7 +342,6 @@ public class Plateau {
 				}
 				aPousser++;
 			}
-			res[0]=i;
 		}
 		// deplacement vers le nord
 		if (directionDeplacement == Orientation.NORD) {
@@ -361,11 +357,8 @@ public class Plateau {
 				}
 				aPousser++;
 			}
-			res[0]=i;
 		}
-		res[1]=contreAttaque;
-		res[2]=aPousser;
-		return res;
+		return deplacementPossible(contreAttaque);
 	}
 
 	public void deplacementInterf(Jeton unJeton, Orientation directionDeplacement,int i ) {

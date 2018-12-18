@@ -22,7 +22,7 @@ public class BtnAjout extends Btn {
 
 
     public BtnAjout(int xPla, int yPla, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
-        super(xPla,yPla,context,mj,plateauInterface);
+        super(xPla,yPla,context,mj,plateauInterface,true);
     }
 //        this.context=context;
 //        this.mj=mj;

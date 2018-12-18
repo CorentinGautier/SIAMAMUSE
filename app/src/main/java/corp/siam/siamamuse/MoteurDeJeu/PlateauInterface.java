@@ -59,6 +59,7 @@ public class PlateauInterface {
     //fonction qui a chaque deplacement ou ajout supprime tout les imageBtn de l'interface et vide les listes
     public void suppressionJetons(){
         for(PionInterface unPion : lesPions){
+            unPion.supprimerBtn();
             context.fondPartie.removeView(unPion.getImagePion());
             //unPion.disparitionFleche();
         }
