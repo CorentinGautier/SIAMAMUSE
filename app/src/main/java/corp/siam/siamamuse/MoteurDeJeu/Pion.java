@@ -63,6 +63,7 @@ public class Pion extends Jeton {
 		this.regard = regard;
 	}
 
-
-
+	public Orientation getRegard() {
+		return regard;
+	}
 }
