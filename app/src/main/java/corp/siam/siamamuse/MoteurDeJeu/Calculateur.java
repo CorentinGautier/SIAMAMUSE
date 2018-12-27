@@ -16,11 +16,11 @@ public class Calculateur {
 
 
     public int calculePionPlateauY(int y){
-        return ((int)(posHautGauchY+(tailleCase*(mj.getLePlateau().getHauteurPlateau() - y-1))));
+        return (int)((posHautGauchY+(tailleCase*(mj.getLePlateau().getHauteurPlateau() - y-1)))+(tailleCase*0.1));
     }
 
     public int calculePionPlateauX(int x){
-        return (int)((tailleCase*x)+(tailleCase*0.1));
+        return (int)((tailleCase*x)+(tailleCase*0.2));
     }
 
     public int calculePionExterieurX(int numero){

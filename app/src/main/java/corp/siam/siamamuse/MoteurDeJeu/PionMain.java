@@ -18,8 +18,9 @@ public class PionMain {
     private ImageButton imagePion;
     private PlateauInterface interPlateau;
     private Joueur unJoueur;
+    private boolean btnAjoutAffiche;
 
-    public PionMain(Pion unPion, final Activity_Partie context, int numero, String nom, PlateauInterface interPlateau,Joueur unJoueur){
+    public PionMain(Pion unPion, final Activity_Partie context, int numero, String nom, PlateauInterface interPlateau,Joueur unJoueur,Joueur tourJoueur){
         this.unPion = unPion;
         this.context = context;
         this.interPlateau=interPlateau;
@@ -35,12 +36,15 @@ public class PionMain {
                 context.fondPartie.addView(imagePion);
             }
         });
-        imagePion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ajouterPlateau();
-            }
-        });
+        if(unJoueur==tourJoueur) {
+            imagePion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ajouterPlateau();
+                }
+            });
+        }
+        btnAjoutAffiche=false;
     }
 
     //si c'est un elephant il les places d'un cote et si c'est un rhinoceros il les places de l'autre cote
@@ -59,8 +63,14 @@ public class PionMain {
     }
 
     public void ajouterPlateau(){
-        interPlateau.supprimerBtnAjout();
-        interPlateau.afficherBtnAjout(unPion,unJoueur);
+        if(btnAjoutAffiche){
+            btnAjoutAffiche=false;
+            interPlateau.supprimerBtnAjout();
+        }else{
+            btnAjoutAffiche=true;
+            interPlateau.supprimerBtnAjout();
+            interPlateau.afficherBtnAjout(unPion,unJoueur);
+        }
     }
 
     public ImageButton getImagePion() {

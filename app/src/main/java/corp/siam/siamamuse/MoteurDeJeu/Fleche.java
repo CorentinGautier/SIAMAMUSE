@@ -46,6 +46,7 @@ public class Fleche {
 
     public void rotation(){
         pion.setRegard(orient);
+        mj.setPionRotation(null);
         plateauInterface.suppressionJetons();
         plateauInterface.convertionMatriceAffichage();
       //  pionInter.disparitionFleche();
