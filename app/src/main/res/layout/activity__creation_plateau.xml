@@ -82,7 +82,7 @@
         tools:ignore="MissingConstraints" />
 
     <CheckBox
-        android:id="@+id/checkBoxSuppressionCase"
+        android:id="@+id/checkBoxIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/buttonRetour"
@@ -91,18 +91,32 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="113dp"
-        android:text="Suppression case" />
+        android:text="IN" />
 
     <CheckBox
         android:id="@+id/checkBoxPoserUnRocher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:layout_alignTop="@+id/checkBoxSuppressionCase"
+        android:layout_alignTop="@+id/checkBoxIN"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="97dp"
-        android:layout_marginEnd="67dp"
-        android:layout_toEndOf="@+id/checkBoxSuppressionCase"
-        android:text="Poser un rocher" />
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginEnd="161dp"
+        android:layout_toEndOf="@+id/checkBoxIN"
+        android:text="Poser un rocher"
+        android:textColor="@android:color/white" />
+
+    <CheckBox
+        android:id="@+id/checkBoxOUT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/checkBoxIN"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="31dp"
+        android:layout_toEndOf="@+id/checkBoxIN"
+        android:text="OUT"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>
