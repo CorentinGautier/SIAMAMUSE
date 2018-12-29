@@ -1,6 +1,8 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,17 +16,24 @@ import corp.siam.siamamuse.Activity_Partie;
 
 public class MoteurJeu {
 
-	Plateau lePlateau;
-	Joueur joueur1, joueur2;
-	boolean fin;
+	private Plateau lePlateau;
+	private Joueur joueur1, joueur2;
+	private boolean fin;
+	private Activity_Partie context;
+	private PlateauInterface plateauInterface;
+	private boolean tour;
+	private Pion pionRotation;
 
 	public MoteurJeu(int taillePlateau, Activity_Partie context) throws ParserConfigurationException, SAXException, IOException {
 		lePlateau = new Plateau(5);
-		Log.e("TEST","Je suis passer par la");
 		//lePlateau = new Plateau();
+		this.context=context;
 		joueur1 = new Joueur("elephant");
 		joueur2 = new Joueur("rhinoceros");
 		fin = false;
+		// ajouter al�atoire
+		tour = false;
+		pionRotation=null;
 	}
 
 	public Plateau getLePlateau() {
@@ -37,23 +46,64 @@ public class MoteurJeu {
 		return joueur2;
 	}
 
+	public void setPlateauInterface(PlateauInterface plateauInterface) {
+		this.plateauInterface = plateauInterface;
+
+	}
+
 	public void jouer() {
-		// ajouter al�atoire
-		boolean tour = false;
+
 		while (!lePlateau.isFinJeu()) {
 			if (!tour) {
-				tour = true;
 				unTour(joueur1);
 			} else {
-				tour = false;
 				unTour(joueur2);
 			}
-			lePlateau.afficherPlateauVisionJoueur();
+		//	lePlateau.afficherPlateauVisionJoueur();
+		}
+	}
+	//la fonction return true si il faut faire une rotation
+	public boolean tourSuivant(){
+		if(pionRotation==null) {
+			if (!lePlateau.isFinJeu()) {
+				if (!tour) {
+					unTourInter(joueur2);
+					tour = true;
+				} else {
+					unTourInter(joueur1);
+					tour = false;
+				}
+			} else {
+				gagner();
+				Log.e("TEST", "FIN DE PARTIE ");
+			}
+			return false;
+		}else{
+			return true;
+		}
+	}
+	public Joueur getTour() {
+		if (!tour) {
+			return joueur1;
+		} else {
+			return joueur2;
 		}
 	}
 
+	public void unTourInter(Joueur joueur){
+		Toast.makeText(context.getApplicationContext(),"tour de "+joueur.getNom(),Toast.LENGTH_LONG).show();
+	}
+
+	public Pion getPionRotation() {
+		return pionRotation;
+	}
+
+	public void setPionRotation(Pion pionRotation) {
+		this.pionRotation = pionRotation;
+	}
+
 	public void unTour(Joueur joueur) {
-		System.out.println("\n" + "" + joueur.getNom() + ": 1 pour ajouter un Pion 2 pour d�placer un Pion");
+		//System.out.println("\n" + "" + joueur.getNom() + ": 1 pour ajouter un Pion 2 pour d�placer un Pion");
 		Scanner sc = new Scanner(System.in);
 		int reponse = sc.nextInt();
 		if (reponse == 1) {
@@ -73,10 +123,21 @@ public class MoteurJeu {
 		}
 
 	}
-
+//factoriser la fonction avec celle des deplacement
     public void ajouterPionPlateauInter(Joueur unJoueur,Pion unPion, int x,int y) {
-        lePlateau.ajouterPion(unJoueur.poserPionPlateau(unPion), x, y);
-
+        boolean res = lePlateau.ajouterPion(unJoueur.poserPionPlateau(unPion), x, y);
+		if(!res){
+			pionRotation=unPion;
+		}else{
+			pionRotation=null;
+		}
+		if (lePlateau.recuperePionDehorsPlateau() != null) {
+			if (joueur1.getNom() == lePlateau.recuperePionDehorsPlateau().getNom()) {
+				joueur1.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
+			} else if (joueur2.getNom() == lePlateau.recuperePionDehorsPlateau().getNom()) {
+				joueur2.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
+			}
+		}
     }
 
 	public void ajouterPionPlateau(Joueur unJoueur) {
@@ -153,13 +214,24 @@ public class MoteurJeu {
 	}
 
 	public void deplacerPionInterf(Pion pion,Orientation orient){
-		lePlateau.deplacement(pion,orient);
-
+		boolean res = lePlateau.deplacement(pion,orient);
+		if(!res){
+			pionRotation=pion;
+		}else{
+			pionRotation=null;
+		}
+		if (lePlateau.recuperePionDehorsPlateau() != null) {
+			if (joueur1.getNom() == lePlateau.recuperePionDehorsPlateau().getNom()) {
+				joueur1.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
+			} else if (joueur2.getNom() == lePlateau.recuperePionDehorsPlateau().getNom()) {
+				joueur2.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
+			}
+		}
 	}
 
 	public void gagner() {
 		fin = true;
-		System.out.println("vous avez gagnez");
+		Toast.makeText(context.getApplicationContext(),"FIN DE PARTIE",Toast.LENGTH_LONG).show();
 	}
 
 }

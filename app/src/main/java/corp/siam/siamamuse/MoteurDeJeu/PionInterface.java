@@ -24,8 +24,9 @@ public class PionInterface {
     private PlateauInterface plateauInterface;
     private ImageButton imagePion;
     ArrayList<BtnDeplacement> lesBtnDeplac = new ArrayList<>();
-
-    public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface){
+//tourJoueur permet de verifier le joueur a qui c'est le tour
+    //etat :0 désactivé, 1 activé deplacement , 2 activé rotation
+    public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface,Joueur tourJoueur,int etat){
         this.context=context;
         this.unPion=unPion;
         flecheAficher=false;
@@ -39,15 +40,20 @@ public class PionInterface {
         imagePion.setLayoutParams(paramsPion);
         imagePion.setX(PlateauInterface.calc.calculePionPlateauX(x));
         imagePion.setY(PlateauInterface.calc.calculePionPlateauY(y));
-        creationBtnAjout();
-        imagePion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                afficherBtn();
-            }
-        });
+        if(etat==1 && (unPion.getNom() == tourJoueur.getNom())) {
+            creationBtnAjout();
+            imagePion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    afficherBtnAjout();
+                }
+            });
+
+        }else if(etat==2){
+            creationFleche(PlateauInterface.calc.calculeBtnAjoutX(x),PlateauInterface.calc.calculeBtnAjoutY(y));
+           
+        }
         setRegard();
-        creationFleche(PlateauInterface.calc.calculePionPlateauX(x),PlateauInterface.calc.calculePionPlateauY(y));
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -73,22 +79,19 @@ public class PionInterface {
     }
 
     //fonction qui est relié au btnImage et qui affiche ou non les fleche
-//    public void afficherBtn(){
-//        if(flecheAficher){
-//            flecheAficher=false;
-//            supprimerBtn();
-//        }else{
-//            flecheAficher=true;
-//            for(BtnDeplacement unBtn:lesBtnDeplac){
-//                unBtn.afficheBtn(unPion);
-//            }
-//        }
-//    }
-    public void afficherBtn(){
+    public void afficherBtnAjout(){
         if(flecheAficher){
             flecheAficher=false;
-            disparitionFleche();
+            supprimerBtn();
         }else{
+            flecheAficher=true;
+            for(BtnDeplacement unBtn:lesBtnDeplac){
+                unBtn.afficheBtn(unPion);
+            }
+        }
+    }
+    public void afficherFleche(){
+        if(!flecheAficher){
             flecheAficher=true;
             affichageFleche();
         }
@@ -131,13 +134,17 @@ public class PionInterface {
     }
     //Il y a un probleme dans la gestion du nord et du sud
     public void creationFleche(float x, float y){
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*1.1)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.2)),unPion,Orientation.EST, context,mj,plateauInterface,this));
-        lesFleches.add(new Fleche((int)(x-(PlateauInterface.calc.getTailleCase()*0.9)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.2)),unPion,Orientation.OUEST, context,mj,plateauInterface,this));
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.2)), (int)(y+(PlateauInterface.calc.getTailleCase()*1.1)),unPion,Orientation.SUD, context,mj,plateauInterface,this));
-        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.2)), (int)(y-(PlateauInterface.calc.getTailleCase()*0.9)),unPion,Orientation.NORD, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*1.1)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.25)),unPion,Orientation.EST, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x-(PlateauInterface.calc.getTailleCase()*0.6)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.25)),unPion,Orientation.OUEST, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.25)), (int)(y+(PlateauInterface.calc.getTailleCase()*1.1)),unPion,Orientation.SUD, context,mj,plateauInterface,this));
+        lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.25)), (int)(y-(PlateauInterface.calc.getTailleCase()*0.6)),unPion,Orientation.NORD, context,mj,plateauInterface,this));
     }
 
     public ImageButton getImagePion() {
         return imagePion;
+    }
+
+    public Pion getUnPion() {
+        return unPion;
     }
 }

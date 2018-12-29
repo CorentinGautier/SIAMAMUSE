@@ -30,14 +30,26 @@ public class PlateauInterface {
     public ArrayList<BtnAjout> lesBtnAjout = new ArrayList<>();
     public ArrayList<PionMain> lesPionsMain = new ArrayList<>();
 
+    //boolean est egale true si la partie commence
+    private boolean first;
+
+
     public PlateauInterface(Activity_Partie context,MoteurJeu moteurJeu) throws IOException, SAXException, ParserConfigurationException {
         calc = new Calculateur(context.largeurEcrant,context.hauteurEcrant,moteurJeu);
         this.context=context;
         mj = moteurJeu;
         creationbtnAjout();
+        first=true;
     }
 
      public void convertionMatriceAffichage(){
+         boolean res = false;
+        if(first){
+            first=false;
+        }else{
+            res = mj.tourSuivant();
+        }
+
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         supprimerBtnAjout();
         suppressionJetons();
@@ -47,13 +59,27 @@ public class PlateauInterface {
             for(int j=1;j<mj.getLePlateau().taillePlateau+1;j++){
                 if(plateau[i][j]instanceof Pion){
                     Pion pion= (Pion) plateau[i][j];
-                    lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this));
+                    if(res){
+                        if(plateau[i][j].equals(mj.getPionRotation())){
+                            lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),2));
+                        }else{
+                            lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),0));
+                        }
+                    }else {
+                        lesPions.add(new PionInterface(pion, i - 1, j - 1, context, mj, this, mj.getTour(),1));
+                    }
                 }else if(plateau[i][j]instanceof Rocher){
                     Rocher rocher = (Rocher) plateau[i][j];
                     lesRochers.add(new RocherInterface(rocher,i-1,j-1,context));
                 }
             }
         }
+        for(PionInterface unPion:lesPions){
+            if(unPion.getUnPion()==mj.getPionRotation()){
+                unPion.affichageFleche();
+            }
+        }
+
     }
 
     //fonction qui a chaque deplacement ou ajout supprime tout les imageBtn de l'interface et vide les listes
@@ -76,11 +102,11 @@ public class PlateauInterface {
     }
 
     //Affiche les pions qu'un joueur a en main
-    public void affichagePion(Joueur joueur){
-        ArrayList<Pion> lesPionsJoueur = joueur.getLesPionsEnMain();
+    public void affichagePion(Joueur pJoueur){
+        ArrayList<Pion> lesPionsJoueur = pJoueur.getLesPionsEnMain();
         int i=1;
         for (Pion unPion: lesPionsJoueur){
-            lesPionsMain.add( new PionMain(unPion,context,i,joueur.getNom(),this,joueur));
+            lesPionsMain.add( new PionMain(unPion,context,i,pJoueur.getNom(),this,pJoueur,mj.getTour()));
             i++;
         }
     }
@@ -108,5 +134,6 @@ public class PlateauInterface {
             unBtnAjout.effacer();
         }
     }
+
 }
 
