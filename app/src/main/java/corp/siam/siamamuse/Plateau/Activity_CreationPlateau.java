@@ -48,12 +48,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         setContentView(R.layout.activity__creation_plateau);
 
         layout = findViewById(R.id.page);
-
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
-
-
-
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
@@ -64,11 +60,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     String nbLigneS = editTextNbLigne.getText().toString();
                     Log.e("nbLigne", nbLigneS);
                     nbLigne = Integer.decode(nbLigneS);
-
                     calculTailleEcrant();
                     tailleCase = (int) (largeurEcrant * 0.2);
-
-
                     convertionMatriceAffichage(nbColone, nbLigne);
                 //}
             }

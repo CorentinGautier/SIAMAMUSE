@@ -13,19 +13,19 @@ public class PionImage {
 
     ImageButton imagePion;
 
-    public static final int ETATCAILLOUX = 1 ; //etat de base ou on affiche tous les pions
+    public static final int ETATIN = 1 ; //Etat ou on peut entré ses pion au depart
     public static final int ETATROCHERS = 2; //ajoute ou tu veux les rochers
     public static final int ETATOUT = 3 ; //les cases que l'on enlve
-    public static final int ETATDEPART =4; //ou on peut entré le pion au depart
-    private int etat;
+
+    private int etatActuel;
     //mode = mode choisi par l'utilsateur
     int mode = 0 ;//1 pour le mode out
     //mode 1 pour posser un rocher
     //mode 2 pour supprmer les cases
     //mode 3 pour possition les cases de départs
 
-    public PionImage (Activity_CreationPlateau context, final int i, final int j, final Plateau unPlateau, int etat){
-        PionImage unPionImage = new PionImage(context,i ,j, unPlateau, ETATOUT);
+    public PionImage (Activity_CreationPlateau context, final int nbLigne, final int nbColone, final Plateau unPlateau, int etatActuel){
+        PionImage unPionImage = new PionImage(context,nbLigne ,nbColone, unPlateau, ETATOUT);
         DisplayMetrics metrics = new DisplayMetrics();
         context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         float largeurEcrant = metrics.widthPixels;
@@ -38,15 +38,15 @@ public class PionImage {
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
         imagePion.setLayoutParams(paramsPion);
         Log.e("taillecase",""+tailleCase);
-        imagePion.setX((int)((tailleCase*i)+(tailleCase*0.1)));
-        imagePion.setY((int)(10+(tailleCase*j)+(tailleCase*0.1)));
+        imagePion.setX((int)((tailleCase*nbLigne)+(tailleCase*0.1)));
+        imagePion.setY((int)(10+(tailleCase*nbColone)+(tailleCase*0.1)));
         context.layout.addView(imagePion);
         imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
-                setEtat(unPlateau,i, j);
+                setEtat(unPlateau,nbLigne, nbColone);
             }
         });
-        setEtat(unPlateau,i,j);
+        setEtat(unPlateau,nbLigne,nbColone);
     }
 
     public void setEtat(final Plateau unplateau, final int i2, final int j2){
@@ -54,58 +54,51 @@ public class PionImage {
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                 public void onClick(View view) {
                     modeOut(unplateau,i2,j2);
-                   // this.setEtatOut();
+                  setEtat("Out");
                 }
             });
         }else if (mode == 1){ // met les case en rochers
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                 public void onClick(View view) {
                     modeCaseRocher(unplateau,i2,j2);
-                    //this.setEtatRochers();
+                   setEtat("Rocher");
                 }
             });
-        }else if (mode == 2){ //surprimer la case
+       /* }else if (mode == 2){ //surprimer la case
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                 public void onClick(View view) {
-                    //modeOut(unplateau,i2,j2);
-                    this.setEtatOut();
-                    this.setEtatSuppr();
+                    modeSupprCase(unplateau,i2,j2);
+                    this.setEtat("Out");
                 }
-            });
+            });*/
         }else if (mode == 3){ // met les case en mode départ
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                 public void onClick(View view) {
                     modeCaseDepart(unplateau,i2,j2);
-                    this.setEtatOut();
-                    this.setEtatDepart();
-
+                    setEtat("In");
                 }
             });
         }
     }
 
-
-    public void setEtatCailloux(){
-        this.imagePion.etat = ETATCAILLOUX;
-    }
-    public void setEtatRochers(){
-        imagePion.etat = ETATROCHERS;
-    }
-    public void setEtatOut(){
-        imagePion.etat = ETATOUT;
-    }
-    public void setEtatDepart(){
-        imagePion.etat = ETATDEPART;
+    public void setEtat(String etat){
+        if (etat == "Out") {
+            etatActuel = ETATOUT;
+        }else if (etat == "Rocher") {
+            etatActuel = ETATROCHERS;
+        }else if (etat== "In"){
+            etatActuel = ETATIN;
+        }
     }
 
-    private void modeOut(Plateau unplateau,int i,int j) {
-        unplateau.ajoutCaseOut(i,j);
+    private void modeOut(Plateau unplateau,int nbLignes,int nbColones) {
+        unplateau.ajoutCaseOut(nbLignes,nbColones);
     }
-    private void modeCaseDepart(Plateau unplateau,int i,int j) {
-        unplateau.ajoutCaseDepart(i,j);
+    private void modeCaseDepart(Plateau unplateau,int nbLignes,int nbColones) {
+        unplateau.ajoutCaseDepart(nbLignes,nbColones);
     }
-    private void modeCaseRocher(Plateau unplateau,int i,int j) {
-        unplateau.ajoutRocher(i,j);
+    private void modeCaseRocher(Plateau unplateau,int nbLignes,int nbColones) {
+        unplateau.ajoutRocher(nbLignes,nbColones);
     }
 
 }
