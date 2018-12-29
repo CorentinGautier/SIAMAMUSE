@@ -20,7 +20,6 @@ import corp.siam.siamamuse.MainActivity;
 import corp.siam.siamamuse.MoteurDeJeu.Orientation;
 import corp.siam.siamamuse.MoteurDeJeu.Pion;
 import corp.siam.siamamuse.MoteurDeJeu.Plateau;
-import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
 import corp.siam.siamamuse.R;
 
 public class Activity_CreationPlateau extends AppCompatActivity {
@@ -30,51 +29,58 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     EditText editTextNbLigne;
     Button btnEnvoi;
     Button affichePlateau;
-
     private int nbColone;
     private int nbLigne;
-
-
     RelativeLayout layout;
-
     ImageView imgVide; // création d'un élément : ligne
     TableRow row; // création d'un élément : colone
     public static int largeurEcrant, hauteurEcrant;
     public static int tailleCase;
+    private int etatActuel;
+    CheckBox checkBoxOUT;
+    CheckBox checkBoxPoserRocher;
+    CheckBox checkBoxIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__creation_plateau);
-
         layout = findViewById(R.id.page);
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
+         checkBoxOUT = findViewById(R.id.checkBoxOUT) ;
+        checkBoxPoserRocher= findViewById(R.id.checkBoxPoserUnRocher);
+       checkBoxIN= findViewById(R.id.checkBoxIN);
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
-               // if (view.getId() == R.id.affichePlateau) {
-                    String nbColoneS = editTextNbColone.getText().toString();
-                    Log.e("nbColone", nbColoneS);
-                    nbColone = Integer.decode(nbColoneS);
-                    String nbLigneS = editTextNbLigne.getText().toString();
-                    Log.e("nbLigne", nbLigneS);
-                    nbLigne = Integer.decode(nbLigneS);
-                    calculTailleEcrant();
-                    tailleCase = (int) (largeurEcrant * 0.2);
-                    convertionMatriceAffichage(nbColone, nbLigne);
+                // if (view.getId() == R.id.affichePlateau) {
+                String nbColoneS = editTextNbColone.getText().toString();
+                Log.e("nbColone", nbColoneS);
+                nbColone = Integer.decode(nbColoneS);
+                String nbLigneS = editTextNbLigne.getText().toString();
+                Log.e("nbLigne", nbLigneS);
+                nbLigne = Integer.decode(nbLigneS);
+                calculTailleEcrant();
+                tailleCase = (int) (largeurEcrant * 0.2);
+                convertionMatriceAffichage(nbColone, nbLigne);
                 //}
             }
         });
     }
 
-
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
-
         final Plateau unPlateau = new Plateau(nbColone, nbLigne);
         for (int i = 0; i < nbLigne; i++) {
             for (int j = 0; j < nbColone; j++) {
-                imagePion = new ImageButton(this);
+                try {
+                    choix(this.etatActuel);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PionImage   unPionImage = new PionImage( this ,  nbColone,nbLigne, unPlateau, etatActuel);
+
+                /*imagePion = new ImageButton(this);
                 imagePion.setBackgroundResource(R.drawable.rocher);
                 ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
                 imagePion.setLayoutParams(paramsPion);
@@ -86,28 +92,26 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     public void onClick(View view) {
                     }
                 });
-
                 Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
                 unPlateau.ajouterPion(new Pion("untest",Orientation.NORD),i,j);
-
+                */
             }
         }
     }
-    CheckBox checkBoxSuppressionCase;
-    CheckBox checkBoxPoserRocher;
 
-    public void choix() throws InterruptedException {
-        if(checkBoxSuppressionCase.isSelected()){
-            setRocher();
-        }else if(checkBoxPoserRocher.isSelected()){
-            supprimerLaCase();
-        }else {
+
+    public void choix(int etatActuel) throws InterruptedException {
+        if(checkBoxOUT. isChecked ()){
+            etatActuel = 0; // Out
+        }else if(checkBoxPoserRocher. isChecked ()){
+            etatActuel = 1; // rocher
+        }else if(checkBoxIN. isChecked ()){
+            etatActuel=3; //IN
+        }else{
             fenetrePopUp();
         }
     }
 
-    private void setRocher() {
-    }
     private void supprimerLaCase(){
     }
 
@@ -130,16 +134,6 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         hauteurEcrant = metrics.heightPixels;
     }
 
-    public void AjoutImage(){ // ajoute un rocher lors du click sur une des cases
-        row.removeView(layout);
-
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams((int) 20, (int) 20);
-        imgVide.setLayoutParams(params);
-
-        imgVide.setBackgroundResource(R.drawable.rocher);
-        row.addView(imgVide);
-    }
-
     public void RetourMenu(View v){
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
@@ -150,48 +144,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     public Button getAffichePlateau() {
         return affichePlateau;
     }
-
     public void setAffichePlateau(Button affichePlateau) {
         this.affichePlateau = affichePlateau;
     }
 
-    public int getNbColone() {
-        return nbColone;
-    }
-
-    public void setNbColone(int nbColone) {
-        this.nbColone = nbColone;
-    }
-
-    public int getNbLigne() {
-        return nbLigne;
-    }
-
-    public void setNbLigne(int nbLigne) {
-        this.nbLigne = nbLigne;
-    }
-
-    public Button getBtnEnvoi() {
-        return btnEnvoi;
-    }
-
-    public void setBtnEnvoi(Button btnEnvoi) {
-        this.btnEnvoi = btnEnvoi;
-    }
-
-    public static int getLargeurEcrant() {
-        return largeurEcrant;
-    }
-
-    public static void setLargeurEcrant(int largeurEcrant) {
-        Activity_CreationPlateau.largeurEcrant = largeurEcrant;
-    }
-
-    public static int getHauteurEcrant() {
-        return hauteurEcrant;
-    }
-
-    public static void setHauteurEcrant(int hauteurEcrant) {
-        Activity_CreationPlateau.hauteurEcrant = hauteurEcrant;
-    }
 }

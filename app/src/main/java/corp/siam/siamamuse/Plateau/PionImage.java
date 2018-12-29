@@ -19,20 +19,20 @@ public class PionImage {
 
     private int etatActuel;
     //mode = mode choisi par l'utilsateur
-    int mode = 0 ;//1 pour le mode out
+    int mode = 0 ;// pour le mode out
     //mode 1 pour posser un rocher
-    //mode 2 pour supprmer les cases
-    //mode 3 pour possition les cases de départs
+    //mode 3 pour position les cases de départs
 
     public PionImage (Activity_CreationPlateau context, final int nbLigne, final int nbColone, final Plateau unPlateau, int etatActuel){
-        PionImage unPionImage = new PionImage(context,nbLigne ,nbColone, unPlateau, ETATOUT);
+
+        //taille de l'écran pour bien dimentionner le tout
         DisplayMetrics metrics = new DisplayMetrics();
         context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         float largeurEcrant = metrics.widthPixels;
         float hauteurEcrant = metrics.heightPixels;
-
         float tailleCase = (int) (largeurEcrant * 0.2);
 
+        //donne une image au pion et permet de cliker desssus
         imagePion = new ImageButton(context);
         imagePion.setBackgroundResource(R.drawable.rocher);
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
@@ -46,7 +46,6 @@ public class PionImage {
                 setEtat(unPlateau,nbLigne, nbColone);
             }
         });
-        setEtat(unPlateau,nbLigne,nbColone);
     }
 
     public void setEtat(final Plateau unplateau, final int i2, final int j2){
