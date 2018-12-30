@@ -33,7 +33,7 @@ public class Activity_Partie extends AppCompatActivity {
     AtomicBoolean isRunning = new AtomicBoolean(false);
     //     L'AtomicBoolean qui gère la mise en pause de la Thread de background
     AtomicBoolean isPausing = new AtomicBoolean(false);
-    private int tempsParJoueur =20000;
+    private int tempsParJoueur =20; // temps pour chaque tour des joueurs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class Activity_Partie extends AppCompatActivity {
 
     public void timerFin(){
         Log.e("TEST","joueur suivant");
+        //appel onResume pour relancer le thread avec le timer
     }
 
 
