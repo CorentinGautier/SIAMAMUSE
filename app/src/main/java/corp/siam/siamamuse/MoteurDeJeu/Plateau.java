@@ -59,7 +59,6 @@ public class Plateau {
 		plateau[2][3] = new Rocher("roche");
 		plateau[3][3] = new Rocher("roche");
 		plateau[4][3] = new Rocher("roche");
-
 	}
 
 	public int getHauteurPlateau() {

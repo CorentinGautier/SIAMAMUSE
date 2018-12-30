@@ -35,6 +35,9 @@ public class Activity_Partie extends AppCompatActivity {
     AtomicBoolean isPausing = new AtomicBoolean(false);
     private int tempsParJoueur =20; // temps pour chaque tour des joueurs
 
+    private MoteurJeu mj;
+    private PlateauInterface plateauInterface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,26 +68,30 @@ public class Activity_Partie extends AppCompatActivity {
         this.finish();
     }
 
-    public void pageVictoire(View view){
+    public void pageVictoire(){
         Intent intent = new Intent(this, Activity_PageDeVictoire.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
         this.finish();
     }
 
     public void creationPlateau() throws IOException, SAXException, ParserConfigurationException {
-        MoteurJeu mj = new MoteurJeu(5,this);
-        PlateauInterface pi= new PlateauInterface(this,mj);
-        pi.convertionMatriceAffichage();
+        mj = new MoteurJeu(5,this);
+        plateauInterface= new PlateauInterface(this,mj);
+        plateauInterface.convertionMatriceAffichage();
     }
 
     public void timerFin(){
         Log.e("TEST","joueur suivant");
+        mj.setPionRotation(null);
+        mj.tourSuivant();
+        plateauInterface.convertionMatriceAffichage();
         //appel onResume pour relancer le thread avec le timer
     }
 
 
     //Méthode appelée quand l'activité s'arrête
     public void onStop() {
+        Log.e("TEST","je relance le chrono");
         super.onStop();
         //Mise-à-jour du booléen pour détruire la Thread de background
         isRunning.set(false);
@@ -98,7 +105,7 @@ public class Activity_Partie extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    public void onResume(){
         super.onResume();
         // Mise-à-jour du booléen pour relancer la Thread de background
         isPausing.set(false);
