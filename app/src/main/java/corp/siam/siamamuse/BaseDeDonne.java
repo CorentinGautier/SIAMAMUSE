@@ -53,95 +53,9 @@ public class BaseDeDonne extends SQLiteOpenHelper {
     public void creationNiveauToyStorie(){
         String nivstr="insert into NIVEAU (ID_NIV,NOM_NIV,IMA_NIV,BLO_NIV) values (1,'Toy Storie','imageToyStorie',0)";
         this.getWritableDatabase().execSQL(nivstr);
-        Log.i("DATABASE","creation niveau toy storie");
-        creationetape(0,"petitTS",1,100,0);
-        creationetape(500,"petitTS",1,600,0);
-        creationetape(700,"petitTS",1,400,0);
-        creationetape(700,"petitTS",1,700,0);
-
-        creationetape(4000,"petitTS",1,200,1);
-        creationetape(1000,"moyenTS",1,500,0);
-        creationetape(190,"petitTS",1,300,0);
-        creationetape(350,"petitTS",1,100,0);
-        creationetape(2000,"petitTS",1,700,0);
-
-        creationetape(4000,"moyenTS",1,600,1);
-        creationetape(700,"petitTS",1,200,0);
-        creationetape(700,"petitTS",1,300,0);
-        creationetape(1200,"petitTS",1,500,0);
-        creationetape(1600,"moyenTS",1,400,0);
-        creationetape(700,"petitTS",1,200,0);
-        creationetape(900,"petitTS",1,700,0);
-
-        creationetape(4000,"petitTS",1,400,1);
-        creationetape(700,"moyenTS",1,300,0);
-        creationetape(1200,"petitTS",1,200,0);
-        creationetape(1000,"petitTS",1,100,0);
-        creationetape(10,"petitTS",1,600,0);
-
-        creationetape(4000,"petitTS",1,700,1);
-        creationetape(500,"petitTS",1,300,0);
-        creationetape(5000,"bossTS",1,200,0);
-    }
-    //Niveau monstre
-    public void creationNiveaumostre(){
-        int niveau = 2;
-        String nivstr="insert into NIVEAU (ID_NIV,NOM_NIV,IMA_NIV,BLO_NIV) values ("+niveau+",'monstre','imageMonstre',1)";
-        this.getWritableDatabase().execSQL(nivstr);
-        Log.i("DATABASE","creation niveau toy storie");
-        //Vague 1
-        creationetape(0,"monstrePetit",niveau,100,0);
-        creationetape(10,"monstreMoyen",niveau,400,0);
-        creationetape(10,"monstrePetit",niveau,650,0);
-        creationetape(2500,"monstreMoyen",niveau,500,0);
-        creationetape(1500,"monstrePetit",niveau,100,0);
-        creationetape(10,"monstreMoyen",niveau,500,0);
-        //vague 2
-        creationetape(3000,"monstreMoyen",niveau,100,1);
-        creationetape(10,"monstreMoyen",niveau,600,0);
-        creationetape(10,"monstrePetit",niveau,300,0);
-        creationetape(2500,"monstreMoyen",niveau,200,0);
-        creationetape(800,"monstreMoyen",niveau,400,0);
-        creationetape(800,"monstrePetit",niveau,200,0);
-        creationetape(10,"monstrePetit",niveau,550,0);
-        //vague 3
-        creationetape(3000,"monstreMoyen",niveau,100,1);
-        creationetape(10,"monstrePetit",niveau,300,0);
-        creationetape(10,"monstreMoyen",niveau,600,0);
-        creationetape(2500,"monstreMoyen",niveau,150,0);
-        creationetape(100,"monstreMoyen",niveau,450,0);
-        creationetape(2500,"monstreMoyen",niveau,150,0);
-        creationetape(100,"monstreMoyen",niveau,550,0);
-        creationetape(2500,"monstrePetit",niveau,100,0);
-        creationetape(500,"monstrePetit",niveau,500,0);
-        creationetape(500,"monstrePetit",niveau,200,0);
-        creationetape(500,"monstrePetit",niveau,600,0);
-        creationetape(500,"monstrePetit",niveau,400,0);
-        creationetape(500,"monstrePetit",niveau,700,0);
-        // vague 4
-        creationetape(4500,"monstreMoyen",niveau,700,1);
-        creationetape(10,"monstrePetit",niveau,150,0);
-        creationetape(10,"monstreMoyen",niveau,500,0);
-        creationetape(800,"monstrePetit",niveau,700,0);
-        creationetape(2500,"monstreMoyen",niveau,200,0);
-        creationetape(100,"monstrePetit",niveau,500,0);
-        creationetape(100,"monstrePetit",niveau,650,0);
-        creationetape(1500,"monstreMoyen",niveau,200,0);
-        creationetape(400,"monstrePetit",niveau,600,0);
-        creationetape(600,"monstreMoyen",niveau,100,0);
-        creationetape(1500,"monstrePetit",niveau,700,0);
-        creationetape(800,"monstreMoyen",niveau,400,0);
-        creationetape(800,"monstreMoyen",niveau,50,0);
-        creationetape(10,"monstreMoyen",niveau,650,0);
-        creationetape(1000,"monstreMoyen",niveau,350,0);
-        creationetape(800,"monstrePetit",niveau,700,0);
-        creationetape(10,"monstrePetit",niveau,100,0);
-        creationetape(800,"monstrePetit",niveau,300,0);
-
-        //vague 5 boss
-        creationetape(5000,"monstreBoss",niveau,250,1);
 
     }
+
     //Creation des etapes de chaque niveau
     public void creationetape(int temps,String typesoucoupe,int idNiveau,int cordX,int vague){
         String etastr="insert into ETAPE (ID_NIV_ETA,TYPE_SOUC_ETA,TEM_ETA,CORDX_ETA,VAG_ETA) values ("+idNiveau+",'"+typesoucoupe+"',"+temps+","+cordX+","+vague+")";
@@ -172,20 +86,7 @@ public class BaseDeDonne extends SQLiteOpenHelper {
 //        niv.setNom(cursor.getString(0));
 //    }
 
-    //fonction qui retourne le nombre d'étape d'un niveaux
-    public int tailleNiveau(int id){
-        String reqSQL="SELECT COUNT(ID_ETA) FROM ETAPE WHERE ID_NIV_ETA ="+id;
-        Cursor cursor = this.getReadableDatabase().rawQuery(reqSQL,null);
-        cursor.moveToFirst();
-        return cursor.getInt(0);
-    }
-
-    //fonction qui permet de debloquer un niveau quand on à réussit a faire celui d'avant
-    public void debloquerNiveau(int id){
-        String etastr="UPDATE NIVEAU SET BLO_NIV=0 WHERE ID_NIV="+id;
-        this.getWritableDatabase().execSQL(etastr);
-    }
-
+   
     //fonction qui vérifie si un niveau bloqué
     public boolean estBloquer(int id){
         String reqSQL="SELECT BLO_NIV FROM NIVEAU WHERE ID_NIV="+id;

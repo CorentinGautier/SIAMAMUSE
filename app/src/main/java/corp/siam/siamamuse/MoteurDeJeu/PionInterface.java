@@ -102,18 +102,24 @@ public class PionInterface {
             });
         }
     }
-    //fonction qui est relié au btnImage et qui affiche ou non les fleche
-    public void afficherFleche(){
-        if(!flecheAficher){
-            flecheAficher=true;
-            affichageFleche();
-        }
-    }
 
 
     public void supprimerBtn(){
         for(BtnDeplacement unBtn:lesBtnDeplac){
             unBtn.effacer();
+        }
+    }
+
+
+    public void disparitionFleche(){
+        for(Fleche unefleche:lesFleches){
+            unefleche.effacerFleche();
+        }
+    }
+
+    public void affichageFleche(){
+        for(Fleche unefleche:lesFleches){
+            unefleche.afficherFleche();
         }
     }
 
@@ -130,18 +136,6 @@ public class PionInterface {
 
         res  = mj.getLePlateau().testDeplacement(unPion,EST);
         lesBtnDeplac.add(new BtnDeplacement(x+1, y, context, mj, plateauInterface,res, EST));
-    }
-
-    public void disparitionFleche(){
-        for(Fleche unefleche:lesFleches){
-            unefleche.effacerFleche();
-        }
-    }
-
-    public void affichageFleche(){
-        for(Fleche unefleche:lesFleches){
-            unefleche.afficherFleche();
-        }
     }
     //creationd des 4 fleches de changement d'orientation
     public void creationFleche(float x, float y){
