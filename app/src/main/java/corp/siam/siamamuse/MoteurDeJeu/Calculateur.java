@@ -20,7 +20,7 @@ public class Calculateur {
     }
 
     public int calculePionPlateauX(int x){
-        return (int)((tailleCase*x)+(tailleCase*0.2));
+        return (int)((tailleCase*x)+(tailleCase*0.1));
     }
 
     public int calculePionExterieurX(int numero){

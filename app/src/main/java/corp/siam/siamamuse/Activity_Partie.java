@@ -63,4 +63,8 @@ public class Activity_Partie extends AppCompatActivity {
         PlateauInterface pi= new PlateauInterface(this,mj);
         pi.convertionMatriceAffichage();
     }
+
+    public void timerFin(){
+        Log.e("TEST","joueur suivant");
+    }
 }
