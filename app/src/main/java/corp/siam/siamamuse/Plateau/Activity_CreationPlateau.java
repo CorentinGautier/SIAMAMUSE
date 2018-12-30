@@ -78,7 +78,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                PionImage   unPionImage = new PionImage( this ,  nbColone,nbLigne, unPlateau, etatActuel);
+                PionImage   unPionImage = new PionImage( this ,nbColone,nbLigne, unPlateau, etatActuel);
 
                 /*imagePion = new ImageButton(this);
                 imagePion.setBackgroundResource(R.drawable.rocher);
@@ -118,7 +118,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     public void fenetrePopUp()throws InterruptedException {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("action");
-        alertDialog.setMessage("Veuillez cocher une une checkBox pour supprimer une case ou ajouter un rocher");
+        alertDialog.setMessage("Veuillez cocher une une checkBox lorsque vous poser un pion !");
 
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

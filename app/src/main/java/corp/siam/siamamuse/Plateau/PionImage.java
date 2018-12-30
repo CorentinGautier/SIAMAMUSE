@@ -20,8 +20,8 @@ public class PionImage {
     private int etatActuel;
     //mode = mode choisi par l'utilsateur
     int mode = 0 ;// pour le mode out
-    //mode 1 pour posser un rocher
-    //mode 3 pour position les cases de départs
+    //mode 1 pour poser un rocher
+    //mode 3 pour In
 
     public PionImage (Activity_CreationPlateau context, final int nbLigne, final int nbColone, final Plateau unPlateau, int etatActuel){
 
@@ -34,18 +34,38 @@ public class PionImage {
 
         //donne une image au pion et permet de cliker desssus
         imagePion = new ImageButton(context);
-        imagePion.setBackgroundResource(R.drawable.rocher);
+        if(context.checkBoxOUT. isChecked ()){
+            etatActuel = 0; // Out
+        }else if(context.checkBoxPoserRocher. isChecked ()){
+            etatActuel = 1; // rocher
+        }else if(context.checkBoxIN. isChecked ()){
+            etatActuel=3; //IN
+        }else{
+            try {
+                context.fenetrePopUp();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(etatActuel == 1){
+            imagePion.setBackgroundResource(R.drawable.rocher);
+        }else if (etatActuel == 3){
+            imagePion.setBackgroundResource(R.drawable.in);
+        }else {
+            imagePion.setBackgroundResource(R.drawable.out);
+        }
+
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
         imagePion.setLayoutParams(paramsPion);
         Log.e("taillecase",""+tailleCase);
         imagePion.setX((int)((tailleCase*nbLigne)+(tailleCase*0.1)));
         imagePion.setY((int)(10+(tailleCase*nbColone)+(tailleCase*0.1)));
         context.layout.addView(imagePion);
-        imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
+       /* imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
                 setEtat(unPlateau,nbLigne, nbColone);
             }
-        });
+        });*/
     }
 
     public void setEtat(final Plateau unplateau, final int i2, final int j2){
