@@ -14,12 +14,14 @@ public class PionImage {
     ImageButton imagePion;
 
     public static final int ETATIN = 1 ; //Etat ou on peut entré ses pion au depart
-    public static final int ETATROCHERS = 2; //ajoute ou tu veux les rochers
+    public static final int ETATVIDE = 2; //ajoute ou tu veux les rochers
     public static final int ETATOUT = 3 ; //les cases que l'on enlve
+
 
     private int etatActuel;
     //mode = mode choisi par l'utilsateur
     int mode = 0 ;// pour le mode out
+    //mode 2 pour vide
     //mode 1 pour poser un rocher
     //mode 3 pour In
 
@@ -40,6 +42,8 @@ public class PionImage {
             etatActuel = 1; // rocher
         }else if(context.checkBoxIN. isChecked ()){
             etatActuel=3; //IN
+        }else if(context.checkBoxVIDE. isChecked ()){
+            etatActuel=2; //vide
         }else{
             try {
                 context.fenetrePopUp();
@@ -51,6 +55,8 @@ public class PionImage {
             imagePion.setBackgroundResource(R.drawable.rocher);
         }else if (etatActuel == 3){
             imagePion.setBackgroundResource(R.drawable.in);
+        }else if (etatActuel == 2){
+            imagePion.setBackgroundResource(R.drawable.vide);
         }else {
             imagePion.setBackgroundResource(R.drawable.out);
         }
@@ -64,11 +70,10 @@ public class PionImage {
         imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
 
-
                             }
         });
     }
-
+/*
     public void setEtat(final Plateau unplateau, final int i2, final int j2){
         if(mode == 0){
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
@@ -84,13 +89,13 @@ public class PionImage {
                    setEtat("Rocher");
                 }
             });
-       /* }else if (mode == 2){ //surprimer la case
+        }else if (mode == 2){ //surprimer la case
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                 public void onClick(View view) {
-                    modeSupprCase(unplateau,i2,j2);
-                    this.setEtat("Out");
+                    modeVide(unplateau,i2,j2);
+                    this.setEtat("Vide");
                 }
-            });*/
+            });
         }else if (mode == 3){ // met les case en mode départ
             imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
                 public void onClick(View view) {
@@ -108,9 +113,11 @@ public class PionImage {
             etatActuel = ETATROCHERS;
         }else if (etat== "In"){
             etatActuel = ETATIN;
+        }else if (etat== "Vide"){
+            etatActuel = ETATVIDE;
         }
     }
-
+*/
     private void modeOut(Plateau unplateau,int nbLignes,int nbColones) {
         unplateau.ajoutCaseOut(nbLignes,nbColones);
     }

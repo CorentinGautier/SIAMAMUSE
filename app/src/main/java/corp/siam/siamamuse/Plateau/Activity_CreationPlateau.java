@@ -40,6 +40,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     CheckBox checkBoxOUT;
     CheckBox checkBoxPoserRocher;
     CheckBox checkBoxIN;
+    CheckBox checkBoxVIDE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
          checkBoxOUT = findViewById(R.id.checkBoxOUT) ;
         checkBoxPoserRocher= findViewById(R.id.checkBoxPoserUnRocher);
        checkBoxIN= findViewById(R.id.checkBoxIN);
+        checkBoxVIDE= findViewById(R.id.checkBoxVIDE);
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
@@ -107,6 +109,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
             etatActuel = 1; // rocher
         }else if(checkBoxIN. isChecked ()){
             etatActuel=3; //IN
+        }else if(checkBoxVIDE. isChecked ()){
+            etatActuel=2; //VIDE
         }else{
             fenetrePopUp();
         }
