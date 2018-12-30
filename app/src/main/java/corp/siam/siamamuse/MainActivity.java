@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        verificationBDDRemplie();
 
     }
 
@@ -49,24 +50,23 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         startActivity(intent2);
         this.finish();
     }
-//    public void remplissageBDD(BaseDeDonne bdd){
-//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-//        SharedPreferences.Editor edit = pref.edit();
-//        bdd.creationNiveauToyStorie();
-//        bdd.creationNiveaumostre();
-//        edit.putString("VersionBdd",bdd.getDatabaseVersion()+"");
-//        edit.apply();
-//
-//    }
-//
-//    public void verificationBDDRemplie(){
-//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-//        String versionBDD = pref.getString("VersionBdd","");
-//        BaseDeDonne bdd = new BaseDeDonne(this);
-//        if(!versionBDD.equals(bdd.getDatabaseVersion()+"")){
-//            remplissageBDD(bdd);
-//        }
-//    }
+    public void remplissageBDD(BaseDeDonne bdd){
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = pref.edit();
+      // on met es tables qu'on veut pret enregistrer
+        edit.putString("VersionBdd",bdd.getDatabaseVersion()+"");
+        edit.apply();
+
+    }
+
+    public void verificationBDDRemplie(){
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String versionBDD = pref.getString("VersionBdd","");
+        BaseDeDonne bdd = new BaseDeDonne(this);
+        if(!versionBDD.equals(bdd.getDatabaseVersion()+"")){
+            remplissageBDD(bdd);
+        }
+    }
 
     public void QuitterLeJeu(View view) { //quitter l'activity actuel.
         this.finish();
