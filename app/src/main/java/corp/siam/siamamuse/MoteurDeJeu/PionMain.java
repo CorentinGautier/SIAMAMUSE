@@ -55,6 +55,7 @@ public class PionMain {
         int y;
         if(nom=="elephant"){
             y = (int) (PlateauInterface.calc.getHauteurEcrant()*0.05);
+            imagePion.setRotation(180);
         }else{
             y = (int) ((PlateauInterface.calc.getHauteurEcrant()*0.95)-PlateauInterface.calc.getTailleCase());
         }

@@ -1,5 +1,6 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -7,6 +8,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.R;
 
 import static corp.siam.siamamuse.MoteurDeJeu.Orientation.EST;
 import static corp.siam.siamamuse.MoteurDeJeu.Orientation.NORD;
@@ -23,6 +25,7 @@ public class PionInterface {
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
     private ImageButton imagePion;
+    private ImageButton btnRotation;
     ArrayList<BtnDeplacement> lesBtnDeplac = new ArrayList<>();
 //tourJoueur permet de verifier le joueur a qui c'est le tour
     //etat :0 désactivé, 1 activé deplacement , 2 activé rotation
@@ -51,7 +54,7 @@ public class PionInterface {
 
         }else if(etat==2){
             creationFleche(PlateauInterface.calc.calculeBtnAjoutX(x),PlateauInterface.calc.calculeBtnAjoutY(y));
-           
+
         }
         setRegard();
         context.runOnUiThread(new Runnable() {
@@ -60,6 +63,7 @@ public class PionInterface {
                 context.fondPartie.addView(imagePion);
             }
         });
+        creationBtnRotation(tourJoueur);
     }
 
     public void setRegard(){
@@ -77,27 +81,34 @@ public class PionInterface {
                 break;
         }
     }
-
-    //fonction qui est relié au btnImage et qui affiche ou non les fleche
+    //Quand on appuie sur le btn du pion on affiche les btnAjout et un btn pour passer directement au deplacement
     public void afficherBtnAjout(){
         if(flecheAficher){
             flecheAficher=false;
             supprimerBtn();
+            //suppresion btn Rotation
+            context.fondPartie.removeView(btnRotation);
         }else{
             flecheAficher=true;
             for(BtnDeplacement unBtn:lesBtnDeplac){
                 unBtn.afficheBtn(unPion);
             }
+            //affichage du btn Rotation
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    context.fondPartie.addView(btnRotation);
+                }
+            });
         }
     }
+    //fonction qui est relié au btnImage et qui affiche ou non les fleche
     public void afficherFleche(){
         if(!flecheAficher){
             flecheAficher=true;
             affichageFleche();
         }
     }
-
-
 
 
     public void supprimerBtn(){
@@ -132,12 +143,35 @@ public class PionInterface {
             unefleche.afficherFleche();
         }
     }
-    //Il y a un probleme dans la gestion du nord et du sud
+    //creationd des 4 fleches de changement d'orientation
     public void creationFleche(float x, float y){
         lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*1.1)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.25)),unPion,Orientation.EST, context,mj,plateauInterface,this));
         lesFleches.add(new Fleche((int)(x-(PlateauInterface.calc.getTailleCase()*0.6)), (int)(y+(PlateauInterface.calc.getTailleCase()*0.25)),unPion,Orientation.OUEST, context,mj,plateauInterface,this));
         lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.25)), (int)(y+(PlateauInterface.calc.getTailleCase()*1.1)),unPion,Orientation.SUD, context,mj,plateauInterface,this));
         lesFleches.add(new Fleche((int)(x+(PlateauInterface.calc.getTailleCase()*0.25)), (int)(y-(PlateauInterface.calc.getTailleCase()*0.6)),unPion,Orientation.NORD, context,mj,plateauInterface,this));
+    }
+
+
+    //creation d'un btn qui permet de dire qu'on ne veut pas faire de déplacement mais qu'on veut passer direct a la rotation
+    public void creationBtnRotation(Joueur tourJoueur){
+        btnRotation = new ImageButton(context);
+        btnRotation.setBackgroundResource(R.drawable.coutonbouton);
+        ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(PlateauInterface.calc.getLargeurEcrant()*0.2),(int)(PlateauInterface.calc.getLargeurEcrant()*0.12));
+        btnRotation.setLayoutParams(paramsBtn);
+        btnRotation.setX((int)(PlateauInterface.calc.getLargeurEcrant()*0.75));
+        if(tourJoueur.getNom()=="elephant"){
+            btnRotation.setY((int)(PlateauInterface.calc.getHauteurEcrant()*0.1));
+        }else{
+            btnRotation.setY((int)(PlateauInterface.calc.getHauteurEcrant()*0.78));
+        }
+        btnRotation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mj.setPionRotation(unPion);
+                plateauInterface.convertionMatriceAffichage();
+                context.fondPartie.removeView(btnRotation);
+            }
+        });
     }
 
     public ImageButton getImagePion() {
