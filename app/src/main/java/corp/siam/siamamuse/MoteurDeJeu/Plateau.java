@@ -1,23 +1,21 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.content.Context;
 import android.util.Log;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.DOMBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 
 public class Plateau {
@@ -41,9 +39,9 @@ public class Plateau {
 		simulationPartie();
 		creationCaseAjout();
 	}
-	public Plateau () throws ParserConfigurationException, SAXException, IOException {
-		load("data/plateauX.xml");
-		//save("corp/siam/siamamuse/MoteurDeJeu/data/plateauX.xml","");
+	public Plateau (Context context) throws ParserConfigurationException, SAXException, IOException {
+		//load(context);
+		save(context);
 	}
 
 	public Plateau(int largeurPlateau,int hauteurPlateau){
@@ -563,7 +561,8 @@ public class Plateau {
 	// Sauvegarde des plateaux dans un fichier XML
 		// filename : nom du fichier
 		// comment : commentaire
-	public void save(String filename, String comment) throws ParserConfigurationException {
+        // context : context de l'appli pour retrouver le fichier xml
+	public void save (Context context) throws ParserConfigurationException {
 		// On cr�e un nouveau Document JDOM
 		Document document = new Document();
 
@@ -605,18 +604,18 @@ public class Plateau {
 			}
 		}
 
-		try
-
-		{
-			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-			sortie.output(document, new FileWriter(filename));
-		} catch (IOException e) {
-		}
+      /*  try {
+            XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+            sortie.output(document, new FileWriter(filename));
+            Log.i("5665656",""+sortie.toString());
+        } catch (IOException e) {
+        }*/
 	}
 	// Chargement des plateaux depuis un fichier XML
 		// filename : nom du fichier
-		public void load(String filename) throws ParserConfigurationException, SAXException, IOException {
-			// permet la cr�ation d'un fichier pour extraire les donn�es du fichier xml
+        // context : le context de l'activity
+		public void load(Context context) throws ParserConfigurationException, SAXException, IOException {
+			/*// permet la cr�ation d'un fichier pour extraire les donn�es du fichier xml
             Log.e("TEST","je rentre dans le load");
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 			Log.e("TEST","1");
@@ -649,9 +648,43 @@ public class Plateau {
 					id++;
 				
 				}
-			}
+			}*/
 
+			try {
+                DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
+
+                InputStream in = context.getAssets().open("plateau.xml");
+                org.w3c.dom.Document doc2 = docBuilder.parse(in);
+                DOMBuilder domBuilder = new DOMBuilder();
+                Document doc = domBuilder.build(doc2);
+				List<Element> attribElments = doc.getRootElement().getChildren("Case");
+
+				this.taillePlateau = Integer.parseInt(doc.getRootElement().getAttributeValue("taille")) ;
+				plateau = new Jeton[taillePlateau +2][taillePlateau+2];
+
+				for (Element uneCase : attribElments) {
+					int x = Integer.parseInt(uneCase.getChildText("X"));
+					int y = Integer.parseInt(uneCase.getChildText("Y"));
+					if (uneCase.getAttributeValue("type").equals("Out")) {
+						plateau [x][y] = new Out();
+					}else if (uneCase.getAttributeValue("type").equals("In")){
+						plateau [x][y] = null;
+					}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
+						int id = 1 ;
+						Rocher unRocher = new Rocher("cailloux "+id);
+						ajouterRocher(unRocher, x ,y);
+						id++;
+
+					}
+				}
+
+			} catch (ParserConfigurationException | IOException | SAXException e) {
+				e.printStackTrace();
+			}
 		}
+
+
 	
 	
 }
