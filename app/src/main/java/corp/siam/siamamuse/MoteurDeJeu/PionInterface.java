@@ -115,6 +115,7 @@ public class PionInterface {
         for(Fleche unefleche:lesFleches){
             unefleche.effacerFleche();
         }
+        context.fondPartie.removeView(btnRotation);
     }
 
     public void affichageFleche(){
