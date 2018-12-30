@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor edit = pref.edit();
       // on met es tables qu'on veut pret enregistrer
+
         edit.putString("VersionBdd",bdd.getDatabaseVersion()+"");
         edit.apply();
 

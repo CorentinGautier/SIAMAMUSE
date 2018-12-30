@@ -86,7 +86,7 @@ public class BaseDeDonne extends SQLiteOpenHelper {
 //        niv.setNom(cursor.getString(0));
 //    }
 
-   
+
     //fonction qui vérifie si un niveau bloqué
     public boolean estBloquer(int id){
         String reqSQL="SELECT BLO_NIV FROM NIVEAU WHERE ID_NIV="+id;
