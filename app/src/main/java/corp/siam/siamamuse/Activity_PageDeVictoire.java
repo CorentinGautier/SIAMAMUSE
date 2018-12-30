@@ -80,4 +80,5 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
         sauvegarderNbWin();
         super.onStop();
     }
+
 }

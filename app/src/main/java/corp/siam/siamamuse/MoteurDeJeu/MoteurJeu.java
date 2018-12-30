@@ -64,8 +64,11 @@ public class MoteurJeu {
 	}
 	//la fonction return true si il faut faire une rotation
 	public boolean tourSuivant(){
+		//verifie si le joeur peut faire une rotation
 		if(pionRotation==null) {
+			//verifie si un rocher est sortie de la map
 			if (!lePlateau.isFinJeu()) {
+
 				if (!tour) {
 					unTourInter(joueur2);
 					tour = true;
@@ -73,6 +76,8 @@ public class MoteurJeu {
 					unTourInter(joueur1);
 					tour = false;
 				}
+				context.onStop();
+				context.onStart();
 			} else {
 				gagner();
 				Log.e("TEST", "FIN DE PARTIE ");
@@ -232,6 +237,7 @@ public class MoteurJeu {
 	public void gagner() {
 		fin = true;
 		Toast.makeText(context.getApplicationContext(),"FIN DE PARTIE",Toast.LENGTH_LONG).show();
+		context.pageVictoire();
 	}
 
 }

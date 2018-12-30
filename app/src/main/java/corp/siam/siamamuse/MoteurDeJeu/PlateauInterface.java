@@ -49,7 +49,6 @@ public class PlateauInterface {
         }else{
             res = mj.tourSuivant();
         }
-
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         supprimerBtnAjout();
         suppressionJetons();
@@ -60,6 +59,7 @@ public class PlateauInterface {
                 if(plateau[i][j]instanceof Pion){
                     Pion pion= (Pion) plateau[i][j];
                     if(res){
+                        Log.e("TEST","tour de "+mj.getTour().getNom());
                         if(plateau[i][j].equals(mj.getPionRotation())){
                             lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),2));
                         }else{
