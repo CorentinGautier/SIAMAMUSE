@@ -76,8 +76,6 @@ public class MoteurJeu {
 					unTourInter(joueur1);
 					tour = false;
 				}
-				context.onStop();
-				context.onStart();
 			} else {
 				gagner();
 				Log.e("TEST", "FIN DE PARTIE ");
@@ -86,6 +84,11 @@ public class MoteurJeu {
 		}else{
 			return true;
 		}
+	}
+
+	public void relancementChrono(){
+		context.onStop();
+		context.onStart();
 	}
 	public Joueur getTour() {
 		if (!tour) {

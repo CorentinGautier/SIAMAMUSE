@@ -48,6 +48,13 @@ public class PlateauInterface {
             first=false;
         }else{
             res = mj.tourSuivant();
+            //relancer le chrono
+            if(!res) {
+                Log.e("TEST","je modifie le chrono");
+                mj.relancementChrono();
+            }else{
+                Log.e("TEST","Je relance pas le chrono");
+            }
         }
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         supprimerBtnAjout();
