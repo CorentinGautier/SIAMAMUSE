@@ -24,16 +24,12 @@ import corp.siam.siamamuse.R;
 
 public class Activity_CreationPlateau extends AppCompatActivity {
 
-    ImageButton imagePion;
     EditText editTextNbColone;
     EditText editTextNbLigne;
-    Button btnEnvoi;
     Button affichePlateau;
     private int nbColone;
     private int nbLigne;
     RelativeLayout layout;
-    ImageView imgVide; // création d'un élément : ligne
-    TableRow row; // création d'un élément : colone
     public static int largeurEcrant, hauteurEcrant;
     public static int tailleCase;
     private int etatActuel;
@@ -56,7 +52,6 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
-                // if (view.getId() == R.id.affichePlateau) {
                 String nbColoneS = editTextNbColone.getText().toString();
                 Log.e("nbColone", nbColoneS);
                 nbColone = Integer.decode(nbColoneS);
@@ -66,7 +61,6 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 calculTailleEcrant();
                 tailleCase = (int) (largeurEcrant * 0.2);
                 convertionMatriceAffichage(nbColone, nbLigne);
-                //}
             }
         });
     }
@@ -81,27 +75,10 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 PionImage   unPionImage = new PionImage( this ,nbColone,nbLigne, unPlateau, etatActuel);
-
-                /*imagePion = new ImageButton(this);
-                imagePion.setBackgroundResource(R.drawable.rocher);
-                ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(tailleCase*0.8),(int)(tailleCase*0.8));
-                imagePion.setLayoutParams(paramsPion);
-                Log.e("taillecase",""+tailleCase);
-                imagePion.setX((int)((tailleCase*i)+(tailleCase*0.1)));
-                imagePion.setY((int)(10+(tailleCase*j)+(tailleCase*0.1)));
-                layout.addView(imagePion);
-                imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
-                    public void onClick(View view) {
-                    }
-                });
-                Log.e("position", "vous etes au coordonnées de i = " + i + "et de j = " + j);
-                unPlateau.ajouterPion(new Pion("untest",Orientation.NORD),i,j);
-                */
             }
         }
     }
-
-
+    
     public void choix(int etatActuel) throws InterruptedException {
         if(checkBoxOUT. isChecked ()){
             etatActuel = 0; // Out
@@ -114,9 +91,6 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         }else{
             fenetrePopUp();
         }
-    }
-
-    private void supprimerLaCase(){
     }
 
     public void fenetrePopUp()throws InterruptedException {

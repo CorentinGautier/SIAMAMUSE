@@ -12,12 +12,6 @@ import corp.siam.siamamuse.R;
 public class PionImage {
 
     ImageButton imagePion;
-
-    public static final int ETATIN = 1 ; //Etat ou on peut entré ses pion au depart
-    public static final int ETATVIDE = 2; //ajoute ou tu veux les rochers
-    public static final int ETATOUT = 3 ; //les cases que l'on enlve
-
-
     private int etatActuel;
     //mode = mode choisi par l'utilsateur
     int mode = 0 ;// pour le mode out
@@ -73,59 +67,4 @@ public class PionImage {
                             }
         });
     }
-/*
-    public void setEtat(final Plateau unplateau, final int i2, final int j2){
-        if(mode == 0){
-            imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
-                public void onClick(View view) {
-                    modeOut(unplateau,i2,j2);
-                  setEtat("Out");
-                }
-            });
-        }else if (mode == 1){ // met les case en rochers
-            imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
-                public void onClick(View view) {
-                    modeCaseRocher(unplateau,i2,j2);
-                   setEtat("Rocher");
-                }
-            });
-        }else if (mode == 2){ //surprimer la case
-            imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
-                public void onClick(View view) {
-                    modeVide(unplateau,i2,j2);
-                    this.setEtat("Vide");
-                }
-            });
-        }else if (mode == 3){ // met les case en mode départ
-            imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
-                public void onClick(View view) {
-                    modeCaseDepart(unplateau,i2,j2);
-                    setEtat("In");
-                }
-            });
-        }
-    }
-
-    public void setEtat(String etat){
-        if (etat == "Out") {
-            etatActuel = ETATOUT;
-        }else if (etat == "Rocher") {
-            etatActuel = ETATROCHERS;
-        }else if (etat== "In"){
-            etatActuel = ETATIN;
-        }else if (etat== "Vide"){
-            etatActuel = ETATVIDE;
-        }
-    }
-*/
-    private void modeOut(Plateau unplateau,int nbLignes,int nbColones) {
-        unplateau.ajoutCaseOut(nbLignes,nbColones);
-    }
-    private void modeCaseDepart(Plateau unplateau,int nbLignes,int nbColones) {
-        unplateau.ajoutCaseDepart(nbLignes,nbColones);
-    }
-    private void modeCaseRocher(Plateau unplateau,int nbLignes,int nbColones) {
-        unplateau.ajoutRocher(nbLignes,nbColones);
-    }
-
 }
