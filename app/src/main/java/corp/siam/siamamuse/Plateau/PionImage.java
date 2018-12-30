@@ -61,11 +61,12 @@ public class PionImage {
         imagePion.setX((int)((tailleCase*nbLigne)+(tailleCase*0.1)));
         imagePion.setY((int)(10+(tailleCase*nbColone)+(tailleCase*0.1)));
         context.layout.addView(imagePion);
-       /* imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
+        imagePion.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
             public void onClick(View view) {
-                setEtat(unPlateau,nbLigne, nbColone);
-            }
-        });*/
+
+
+                            }
+        });
     }
 
     public void setEtat(final Plateau unplateau, final int i2, final int j2){
