@@ -28,7 +28,7 @@ public class Calculateur {
     }
 
     public int calculeBtnAjoutX(int x){
-        return (int)((tailleCase*x)+(tailleCase*0.1));
+        return (int)((tailleCase*x));
     }
 
     public int calculeBtnAjoutY(int y){
