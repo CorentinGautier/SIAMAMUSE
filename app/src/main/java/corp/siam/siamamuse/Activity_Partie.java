@@ -3,10 +3,13 @@ package corp.siam.siamamuse;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -19,10 +22,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javax.xml.parsers.ParserConfigurationException;
 
 import corp.siam.siamamuse.MoteurDeJeu.MoteurJeu;
+import corp.siam.siamamuse.MoteurDeJeu.PionInterface;
 import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
 
-public class Activity_Partie extends AppCompatActivity {
+public class Activity_Partie extends AppCompatActivity  implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener{
 
     public int largeurEcrant,hauteurEcrant;
     public RelativeLayout fondPartie;
@@ -37,6 +41,8 @@ public class Activity_Partie extends AppCompatActivity {
 
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
+    private GestureDetectorCompat gestureDetector;
+    private PionInterface pionSelectionner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,9 @@ public class Activity_Partie extends AppCompatActivity {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+        gestureDetector = new GestureDetectorCompat(this,this);
+        gestureDetector.setOnDoubleTapListener(this);
+        pionSelectionner=null;
     }
 
     public void calculTailleEcrant(){
@@ -80,82 +89,177 @@ public class Activity_Partie extends AppCompatActivity {
         plateauInterface.convertionMatriceAffichage();
     }
 
-    public void timerFin(){
-        Log.e("TEST","joueur suivant");
-        mj.setPionRotation(null);
-        mj.tourSuivant();
-        plateauInterface.convertionMatriceAffichage();
-        //appel onResume pour relancer le thread avec le timer
+    public PionInterface getPionSelectionner() {
+        return pionSelectionner;
     }
 
-
-    //Méthode appelée quand l'activité s'arrête
-    public void onStop() {
-        Log.e("TEST","je relance le chrono");
-        super.onStop();
-        //Mise-à-jour du booléen pour détruire la Thread de background
-        isRunning.set(false);
+    public void setPionSelectionner(PionInterface pionSelectionner){
+        this.pionSelectionner=pionSelectionner;
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        // Mise-à-jour du booléen pour mettre en pause la Thread de background
-        isPausing.set(true);
+    public boolean onTouchEvent(MotionEvent event){
+        gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
-        // Mise-à-jour du booléen pour relancer la Thread de background
-        isPausing.set(false);
-    }
-    public void onStart() {//démarage du thread
-        super.onStart();
-       Compteur = new Thread( new Runnable() {
-            Message myMessage;
-            Bundle messageBundle = new Bundle();
-            public void run() {
-                try {
-                    int s = tempsParJoueur;
-                    while (s > 0 && isRunning.get()) {
-                        while (isPausing.get() && (isRunning.get())) {
-                            // Faire une pause pour soulagé le CPU (dépend du traitement)
-                            Thread.sleep(2000);
-                        }
-                        s--;
-                        Thread.sleep(1000);
-                        myMessage = handler.obtainMessage(); // otenir un message vierge
-                        //Ajouter des données à transmettre au Handler via le Bundle
-                        messageBundle.putInt(PROGRESS, s);
-                        //Ajouter le Bundle au message
-                        myMessage.setData(messageBundle);
-                        //Envoyer le message
-                        handler.sendMessage(myMessage);
-                    }
-                }
-                catch(Throwable t) {
-                }
-            }
-        });
-        isRunning.set(true);
-        isPausing.set(false);
-        Compteur.start();
-    }
-    //Permet de faire foctionner le timer en meme temps que le reste de l'application
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            // Incrémenter la ProgressBar, on est bien dans la Thread de l'IHM
-            int nbS=msg.getData().getInt(PROGRESS);
-            Log.e("TEST","temps restant = "+nbS+"s");
-            CountDownTexte.setText(nbS+"s");
-            // On peut faire toute action qui met à jour l'IHM
-            if ( nbS == 0)
-            {
-                timerFin();
-            }
+    public boolean onFling(MotionEvent downEvent, MotionEvent moveEvent, float velocityX,float velocityY) {
+        boolean result = false;
+        float diffY = moveEvent.getY() - downEvent.getY();
+        float diffX = moveEvent.getX() - downEvent.getX();
 
+        if (Math.abs(diffX) > Math.abs(diffY)) { //droite ou gauche
+            if (Math.abs(diffX) > 100 && Math.abs(velocityX) > 100) {
+                if (diffX > 0) {
+                    onSwipeRight();
+                } else {
+                    onSwipeLeft();
+                }
+                result = true;
+            }
+            //haut ou bas
+        } else if (Math.abs(diffY) > 100 && Math.abs(velocityY) > 100) {
+            if (diffY > 0) {
+                onSwipeBottom();
+            } else {
+                onSwipeTop();
+            }
+            result = true;
         }
-    };
+        return result;
+    }
+
+    public void onSwipeTop() {
+        //NORD
+        if(pionSelectionner!=null){
+            pionSelectionner.haut();
+        }
+    }
+
+    public void onSwipeBottom() {
+        //SUD
+        if(pionSelectionner!=null){
+            pionSelectionner.bas();
+        }
+    }
+
+    public void onSwipeLeft() {
+        //OUEST
+        if(pionSelectionner!=null){
+            pionSelectionner.gauche();
+        }
+    }
+
+    public void onSwipeRight() {
+        //EST
+        if(pionSelectionner!=null){
+            pionSelectionner.droit();
+        }
+    }
+
+    //passer à la rotation
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        if(pionSelectionner!=null){
+            pionSelectionner.passerALaRotation();
+        }
+        return false;
+    }
+
+    //fonction non utilisé
+    @Override
+    public boolean onDown(MotionEvent e) {return false;}
+    @Override
+    public void onShowPress(MotionEvent e) {}
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) { return false;}
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {return false;}
+    @Override
+    public void onLongPress(MotionEvent e) {}
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {return false;}
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {return false;}
+
+//    public void timerFin(){
+//        Log.e("TEST","Fin du timer");
+//        mj.setPionRotation(null);
+//       // mj.tourSuivant();
+//        plateauInterface.convertionMatriceAffichage();
+//        //appel onResume pour relancer le thread avec le timer
+//    }
+//
+//
+//    //Méthode appelée quand l'activité s'arrête
+//    public void onStop() {
+//        Log.e("TEST","Je detruit le chrono");
+//        super.onStop();
+//        //Mise-à-jour du booléen pour détruire la Thread de background
+//        isRunning.set(false);
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        // Mise-à-jour du booléen pour mettre en pause la Thread de background
+//        isPausing.set(true);
+//    }
+//
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//        // Mise-à-jour du booléen pour relancer la Thread de background
+//        isPausing.set(false);
+//    }
+//    public void onStart() {//démarage du thread
+//        Log.e("TEST","Le chrono demarre");
+//        super.onStart();
+//       Compteur = new Thread( new Runnable() {
+//            Message myMessage;
+//            Bundle messageBundle = new Bundle();
+//            public void run() {
+//                try {
+//                    int s = tempsParJoueur;
+//                    while (s > 0 && isRunning.get()) {
+//                        while (isPausing.get() && (isRunning.get())) {
+//                            // Faire une pause pour soulagé le CPU (dépend du traitement)
+//                            Thread.sleep(2000);
+//                        }
+//                        s--;
+//                        Thread.sleep(1000);
+//                        myMessage = handler.obtainMessage(); // otenir un message vierge
+//                        //Ajouter des données à transmettre au Handler via le Bundle
+//                        messageBundle.putInt(PROGRESS, s);
+//                        //Ajouter le Bundle au message
+//                        myMessage.setData(messageBundle);
+//                        //Envoyer le message
+//                        handler.sendMessage(myMessage);
+//                    }
+//                }
+//                catch(Throwable t) {
+//                }
+//            }
+//        });
+//        isRunning.set(true);
+//        isPausing.set(false);
+//        Compteur.start();
+//    }
+//    //Permet de faire foctionner le timer en meme temps que le reste de l'application
+//    Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            // Incrémenter la ProgressBar, on est bien dans la Thread de l'IHM
+//            int nbS=msg.getData().getInt(PROGRESS);
+//            Log.e("TEST","temps restant = "+nbS+"s");
+//            CountDownTexte.setText(nbS+"s");
+//            // On peut faire toute action qui met à jour l'IHM
+//            if ( nbS == 0)
+//            {
+//                timerFin();
+//            }
+//
+//        }
+//    };
 }

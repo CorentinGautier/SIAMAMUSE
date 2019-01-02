@@ -43,17 +43,17 @@ public class PlateauInterface {
     }
 
      public void convertionMatriceAffichage(){
-         boolean res = false;
+        boolean res = false;
         if(first){
             first=false;
         }else{
             res = mj.tourSuivant();
             //relancer le chrono
             if(!res) {
-                Log.e("TEST","je modifie le chrono");
+               // Log.e("TEST","PI : Relancement du le chrono");
                 mj.relancementChrono();
             }else{
-                Log.e("TEST","Je relance pas le chrono");
+               // Log.e("TEST","Je relance pas le chrono");
             }
         }
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
@@ -66,7 +66,6 @@ public class PlateauInterface {
                 if(plateau[i][j]instanceof Pion){
                     Pion pion= (Pion) plateau[i][j];
                     if(res){
-                        Log.e("TEST","tour de "+mj.getTour().getNom());
                         if(plateau[i][j].equals(mj.getPionRotation())){
                             lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),2));
                         }else{

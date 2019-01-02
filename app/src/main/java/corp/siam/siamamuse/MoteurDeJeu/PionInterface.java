@@ -1,8 +1,12 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
+import android.graphics.Color;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
@@ -25,8 +29,9 @@ public class PionInterface {
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
     private ImageButton imagePion;
-    private ImageButton btnRotation;
+    private Button btnRotation;
     ArrayList<BtnDeplacement> lesBtnDeplac = new ArrayList<>();
+    private int etat;
 //tourJoueur permet de verifier le joueur a qui c'est le tour
     //etat :0 désactivé, 1 activé deplacement , 2 activé rotation
     public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface,Joueur tourJoueur,int etat){
@@ -37,6 +42,7 @@ public class PionInterface {
         this.x=x;
         this.y=y;
         this.plateauInterface = plateauInterface;
+        this.etat=etat;
         imagePion = new ImageButton(context);
         imagePion.setBackgroundResource(unPion.getImagePion());
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.calc.getTailleCase()*0.8),(int)(PlateauInterface.calc.getTailleCase()*0.8));
@@ -54,7 +60,7 @@ public class PionInterface {
 
         }else if(etat==2){
             creationFleche(PlateauInterface.calc.calculeBtnAjoutX(x),PlateauInterface.calc.calculeBtnAjoutY(y));
-
+            context.setPionSelectionner(this);
         }
         setRegard();
         context.runOnUiThread(new Runnable() {
@@ -83,6 +89,8 @@ public class PionInterface {
     }
     //Quand on appuie sur le btn du pion on affiche les btnAjout et un btn pour passer directement au deplacement
     public void afficherBtnAjout(){
+        //change le pionSelectionner dans le main pour gerer les swips
+        context.setPionSelectionner(this);
         if(flecheAficher){
             flecheAficher=false;
             supprimerBtn();
@@ -126,6 +134,7 @@ public class PionInterface {
 
     public void creationBtnAjout(){
 
+
         boolean res  = mj.getLePlateau().testDeplacement(unPion,NORD);
         lesBtnDeplac.add(new BtnDeplacement(x, y+1, context, mj, plateauInterface,res, NORD));
 
@@ -149,24 +158,34 @@ public class PionInterface {
 
     //creation d'un btn qui permet de dire qu'on ne veut pas faire de déplacement mais qu'on veut passer direct a la rotation
     public void creationBtnRotation(Joueur tourJoueur){
-        btnRotation = new ImageButton(context);
+        btnRotation = new Button(context);
         btnRotation.setBackgroundResource(R.drawable.coutonbouton);
-        ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(PlateauInterface.calc.getLargeurEcrant()*0.2),(int)(PlateauInterface.calc.getLargeurEcrant()*0.12));
+        btnRotation.setText("Rotation");
+        btnRotation.setTextColor(Color.WHITE);
+        final ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(PlateauInterface.calc.getLargeurEcrant()*0.2),(int)(PlateauInterface.calc.getLargeurEcrant()*0.12));
         btnRotation.setLayoutParams(paramsBtn);
         btnRotation.setX((int)(PlateauInterface.calc.getLargeurEcrant()*0.75));
         if(tourJoueur.getNom()=="elephant"){
             btnRotation.setY((int)(PlateauInterface.calc.getHauteurEcrant()*0.1));
+            btnRotation.setRotation(180);
         }else{
             btnRotation.setY((int)(PlateauInterface.calc.getHauteurEcrant()*0.78));
         }
         btnRotation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mj.setPionRotation(unPion);
-                plateauInterface.convertionMatriceAffichage();
-                context.fondPartie.removeView(btnRotation);
+                passerALaRotation();
             }
         });
+    }
+
+    public void passerALaRotation(){
+        //verifie qu'on est dans le cas ou on doit se déplacer
+        if(etat==1){
+            mj.setPionRotation(unPion);
+            plateauInterface.convertionMatriceAffichage();
+            context.fondPartie.removeView(btnRotation);
+        }
     }
 
     public ImageButton getImagePion() {
@@ -176,4 +195,53 @@ public class PionInterface {
     public Pion getUnPion() {
         return unPion;
     }
+
+
+
+    //swipe pour sortir du plateau
+
+    //OUEST
+    public void gauche(){
+        if(etat==1) {
+            //deplacement
+            lesBtnDeplac.get(2).actionbtn();
+        }else if(etat==2){
+            //rotation
+            lesFleches.get(1).rotation();
+        }
+    }
+    //EST
+    public void droit(){
+        if(etat==1) {
+            //deplacement
+            lesBtnDeplac.get(3).actionbtn();
+        }else if(etat==2){
+            //rotation
+            lesFleches.get(0).rotation();
+        }
+    }
+    //NORD
+    public void haut(){
+        if(etat==1) {
+            //deplacement
+            lesBtnDeplac.get(0).actionbtn();
+        }else if(etat==2){
+            //rotation
+            lesFleches.get(3).rotation();
+        }
+    }
+    //SUD
+    public void bas(){
+        if(etat==1) {
+            //deplacement
+            lesBtnDeplac.get(1).actionbtn();
+        }else if(etat==2){
+            //rotation
+            lesFleches.get(2).rotation();
+        }
+    }
+
+
+
+
 }
