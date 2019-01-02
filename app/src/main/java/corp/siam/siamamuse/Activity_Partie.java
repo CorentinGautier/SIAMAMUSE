@@ -10,16 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-
 import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 import javax.xml.parsers.ParserConfigurationException;
-
 import corp.siam.siamamuse.MoteurDeJeu.MoteurJeu;
-import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
 
 public class Activity_Partie extends AppCompatActivity {
@@ -31,7 +26,7 @@ public class Activity_Partie extends AppCompatActivity {
     private final String PROGRESS="textViewTestId";
     //L'AtomicBoolean qui gère la destruction de la Thread de background
     AtomicBoolean isRunning = new AtomicBoolean(false);
-    //     L'AtomicBoolean qui gère la mise en pause de la Thread de background
+    //L'AtomicBoolean qui gère la mise en pause de la Thread de background
     AtomicBoolean isPausing = new AtomicBoolean(false);
     private int tempsParJoueur =20; // temps pour chaque tour des joueurs
 
@@ -110,6 +105,7 @@ public class Activity_Partie extends AppCompatActivity {
         // Mise-à-jour du booléen pour relancer la Thread de background
         isPausing.set(false);
     }
+
     public void onStart() {//démarage du thread
         super.onStart();
        Compteur = new Thread( new Runnable() {
@@ -155,7 +151,6 @@ public class Activity_Partie extends AppCompatActivity {
             {
                 timerFin();
             }
-
         }
     };
 }

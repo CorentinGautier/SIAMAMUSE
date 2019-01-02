@@ -35,7 +35,7 @@ public abstract class Btn  {
         btnVerre.setY(PlateauInterface.calc.calculeBtnAjoutY(yPla));
 
         if(deplacementPossible){
-            btnVerre.setBackgroundResource(R.drawable.carrevert);
+       //     btnVerre.setBackgroundResource(R.drawable.carrevert);
             btnVerre.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -43,7 +43,7 @@ public abstract class Btn  {
                 }
             });
         }else{
-            btnVerre.setBackgroundResource(R.drawable.carrerouge);
+          //  btnVerre.setBackgroundResource(R.drawable.carrerouge);
         }
     }
 
