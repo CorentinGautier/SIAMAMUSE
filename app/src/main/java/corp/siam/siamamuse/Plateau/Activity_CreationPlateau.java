@@ -66,7 +66,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
 
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
         final Plateau unPlateau = new Plateau(nbColone, nbLigne);
-        bdd.creationPlateau(1,nbLigne,nbColone);
+
+        //bdd.creationPlateau(1,nbLigne,nbColone);
         for (int i = 0; i < nbLigne; i++) {
             for (int j = 0; j < nbColone; j++) {
                 try {
@@ -75,8 +76,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 PionImage   unPionImage = new PionImage( this ,nbColone,nbLigne, unPlateau, etatActuel);
-                bdd.creationCase(1,i,j,this.etatActuelString);
-                Log.e("LA_BDDD",""+bdd.toString());
+               // bdd.creationCase(1,i,j,this.etatActuelString);
+               // Log.e("LA_BDDD",""+bdd.toString());
             }
         }
     }

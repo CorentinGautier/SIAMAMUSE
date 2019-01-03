@@ -65,7 +65,7 @@ public class BaseDeDonne extends SQLiteOpenHelper {
 
     //Creation d'une case
     public void creationCase(int idPlateau, int cordX, int cordY,String type){
-        String creacase="insert into CASEE (ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS) values ("+idMax+1+",'"+idPlateau+"',"+cordX+","+cordY+","+type+")";
+        String creacase="insert into CASEE (ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS) values ("+idMax+1+","+idPlateau+","+cordX+","+cordY+","+type+")";
         this.getWritableDatabase().execSQL(creacase);
     }
     //création d'un plateau
