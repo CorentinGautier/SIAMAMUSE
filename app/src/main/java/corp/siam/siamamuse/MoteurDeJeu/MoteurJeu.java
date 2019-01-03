@@ -32,7 +32,7 @@ public class MoteurJeu {
 		joueur2 = new Joueur("rhinoceros");
 		fin = false;
 		// ajouter al�atoire
-		tour = false;
+		tour = true;
 		pionRotation=null;
 	}
 
@@ -65,6 +65,7 @@ public class MoteurJeu {
 	//la fonction return true si il faut faire une rotation
 	public boolean tourSuivant(){
 		//verifie si le joeur peut faire une rotation
+		context.setPionSelectionner(null);
 		if(pionRotation==null) {
 			//verifie si un rocher est sortie de la map
 			if (!lePlateau.isFinJeu()) {
@@ -76,16 +77,20 @@ public class MoteurJeu {
 					unTourInter(joueur1);
 					tour = false;
 				}
-				context.onStop();
-				context.onStart();
 			} else {
+				//La partie est finie
 				gagner();
-				Log.e("TEST", "FIN DE PARTIE ");
 			}
 			return false;
 		}else{
 			return true;
 		}
+	}
+
+	public void relancementChrono(){
+	//	Log.e("TEST","Le chrono est relancé");
+//		context.onStop();
+//		context.onStart();
 	}
 	public Joueur getTour() {
 		if (!tour) {

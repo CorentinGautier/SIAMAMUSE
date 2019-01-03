@@ -45,11 +45,12 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         this.finish();
     }
 
-    public void ActivityChrono(View viewview){
+  /*  public void ActivityChrono(View viewview){
         Intent intent2 = new Intent(this, chrono.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent2);
         this.finish();
     }
+    */
     public void remplissageBDD(BaseDeDonne bdd){
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor edit = pref.edit();

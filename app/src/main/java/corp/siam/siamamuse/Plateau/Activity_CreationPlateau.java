@@ -78,7 +78,7 @@ public class Activity_CreationPlateau extends AppCompatActivity {
             }
         }
     }
-    
+
     public void choix(int etatActuel) throws InterruptedException {
         if(checkBoxOUT. isChecked ()){
             etatActuel = 0; // Out
