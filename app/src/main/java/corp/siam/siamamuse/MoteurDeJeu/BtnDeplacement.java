@@ -21,15 +21,6 @@ public class BtnDeplacement extends Btn {
         super(xPla, yPla, context, mj, plateauInterface,deplacementPossible);
         this.orient=orient;
         this.deplacementPossible=deplacementPossible;
-        //convertirResVariable(res);
-    }
-
-    private void convertirResVariable(int[] res){
-        if(res[1]==0){
-            deplacementPossible=false;
-        }else{
-            deplacementPossible=true;
-        }
 
     }
 
@@ -46,8 +37,10 @@ public class BtnDeplacement extends Btn {
 
     @Override
     public void actionbtn() {
-        this.mj.deplacerPionInterf(this.unPion,orient);
-        plateauInterface.suppressionJetons();
-        plateauInterface.convertionMatriceAffichage();
+        if(deplacementPossible) {
+            this.mj.deplacerPionInterf(this.unPion, orient);
+            plateauInterface.suppressionJetons();
+            plateauInterface.convertionMatriceAffichage();
+        }
     }
 }
