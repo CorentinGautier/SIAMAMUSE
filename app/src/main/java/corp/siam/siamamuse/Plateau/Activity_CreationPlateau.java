@@ -2,23 +2,19 @@ package corp.siam.siamamuse.Plateau;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TableRow;
+
+import corp.siam.siamamuse.BaseDeDonne;
 import corp.siam.siamamuse.MainActivity;
-import corp.siam.siamamuse.MoteurDeJeu.Orientation;
-import corp.siam.siamamuse.MoteurDeJeu.Pion;
 import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.R;
 
@@ -37,6 +33,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     CheckBox checkBoxPoserRocher;
     CheckBox checkBoxIN;
     CheckBox checkBoxVIDE;
+    BaseDeDonne bdd ;
+    private String etatActuelString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +43,9 @@ public class Activity_CreationPlateau extends AppCompatActivity {
         layout = findViewById(R.id.page);
         editTextNbColone = findViewById(R.id.editTextNbColone);
         editTextNbLigne = findViewById(R.id.editTextNbLigne);
-         checkBoxOUT = findViewById(R.id.checkBoxOUT) ;
+        checkBoxOUT = findViewById(R.id.checkBoxOUT) ;
         checkBoxPoserRocher= findViewById(R.id.checkBoxPoserUnRocher);
-       checkBoxIN= findViewById(R.id.checkBoxIN);
+        checkBoxIN= findViewById(R.id.checkBoxIN);
         checkBoxVIDE= findViewById(R.id.checkBoxVIDE);
         affichePlateau = (Button) findViewById(R.id.affichePlateau);
         affichePlateau.setOnClickListener(new View.OnClickListener() { // Notre classe anonyme
@@ -63,10 +61,12 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 convertionMatriceAffichage(nbColone, nbLigne);
             }
         });
+        bdd = new BaseDeDonne(this);
     }
 
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
         final Plateau unPlateau = new Plateau(nbColone, nbLigne);
+        bdd.creationPlateau(1,nbLigne,nbColone);
         for (int i = 0; i < nbLigne; i++) {
             for (int j = 0; j < nbColone; j++) {
                 try {
@@ -75,6 +75,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 PionImage   unPionImage = new PionImage( this ,nbColone,nbLigne, unPlateau, etatActuel);
+                bdd.creationCase(1,i,j,this.etatActuelString);
+                Log.e("LA_BDDD",""+bdd.toString());
             }
         }
     }
@@ -82,12 +84,16 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     public void choix(int etatActuel) throws InterruptedException {
         if(checkBoxOUT. isChecked ()){
             etatActuel = 0; // Out
+            etatActuelString = "Out";
         }else if(checkBoxPoserRocher. isChecked ()){
             etatActuel = 1; // rocher
+            etatActuelString = "Rocher";
         }else if(checkBoxIN. isChecked ()){
             etatActuel=3; //IN
+            etatActuelString = "In";
         }else if(checkBoxVIDE. isChecked ()){
             etatActuel=2; //VIDE
+            etatActuelString = "Vide";
         }else{
             fenetrePopUp();
         }

@@ -3,7 +3,6 @@ package corp.siam.siamamuse.MoteurDeJeu;
 import android.content.Context;
 import android.util.Log;
 
-import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.DOMBuilder;
@@ -41,7 +40,6 @@ public class Plateau {
 	}
 	public Plateau (Context context) throws ParserConfigurationException, SAXException, IOException {
 		//load(context);
-		save(context);
 	}
 
 	public Plateau(int largeurPlateau,int hauteurPlateau){
@@ -556,98 +554,11 @@ public class Plateau {
 		}
 		return coordonne;
 	}
-	
-	// Sauvegarde des plateaux dans un fichier XML
-		// filename : nom du fichier
-		// comment : commentaire
-        // context : context de l'appli pour retrouver le fichier xml
-	public void save (Context context) throws ParserConfigurationException {
-		// On cr�e un nouveau Document JDOM
-		Document document = new Document();
 
-		// on set la racine du document avec l'�l�ment meilleurScore
-		Element racine = new Element("Plateau");
-		document.setRootElement(racine);
-		
-		Attribute taille = new Attribute ("taille",""+taillePlateau);
-		racine.setAttribute(taille);
-
-		for (int x = 0; x < taillePlateau+2; x++) {
-			for (int y = 0; y < taillePlateau+2; y++) {
-
-			Element uneCase = new Element("Case");
-			racine.addContent(uneCase);
-			
-			if (plateau[x][y] instanceof Out) {
-				Attribute type1 = new Attribute("type","Out");
-			    uneCase.setAttribute(type1);
-			}else if(plateau[x][y] instanceof Rocher) {
-				Attribute type2 = new Attribute("type","Rocher");
-			    uneCase.setAttribute(type2);
-			}else{
-				Attribute type3 = new Attribute("type","In");
-			    uneCase.setAttribute(type3);
-			}
-			
-		      
-			Element horizontale = new Element("X");// balise valeur du score (nb de tentative)
-			uneCase.addContent(horizontale);
-			horizontale.setText(""+x);// on remplis les elements(balises) avec le contenu de la
-															// liste
-
-			Element verticale = new Element("Y");// balise pour savoir qui la r�alis�
-			uneCase.addContent(verticale);
-			verticale.setText(""+y);
-			
-
-			}
-		}
-
-      /*  try {
-            XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-            sortie.output(document, new FileWriter(filename));
-            Log.i("5665656",""+sortie.toString());
-        } catch (IOException e) {
-        }*/
-	}
 	// Chargement des plateaux depuis un fichier XML
 		// filename : nom du fichier
         // context : le context de l'activity
 		public void load(Context context) throws ParserConfigurationException, SAXException, IOException {
-			/*// permet la cr�ation d'un fichier pour extraire les donn�es du fichier xml
-            Log.e("TEST","je rentre dans le load");
-			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-			Log.e("TEST","1");
-			DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
-            Log.e("TEST","2");
-			org.w3c.dom.Document domDocument = documentBuilder.parse(filename);
-            Log.e("TEST","3");
-			DOMBuilder domBuilder = new DOMBuilder();
-            Log.e("TEST","4");
-			Document doc = domBuilder.build(domDocument);
-            Log.e("TEST","5");
-			// Element racine = doc.getRootElement();
-			// on recup�re les fils de case a patir de la racine plateau
-			List<Element> attribElments = doc.getRootElement().getChildren("Case");
-			Log.e("TEST",attribElments.size()+"");
-			this.taillePlateau = Integer.parseInt(doc.getRootElement().getAttributeValue("taille")) ;
-			plateau = new Jeton[taillePlateau +2][taillePlateau+2];
-			// pour chaque case du fichier xml on �crit la case avec un x , un y et en focntion de ses attribut in , out , rien 
-			for (Element uneCase : attribElments) {
-				int x = Integer.parseInt(uneCase.getChildText("X")); 
-					int y = Integer.parseInt(uneCase.getChildText("Y")); 
-				if (uneCase.getAttributeValue("type").equals("Out")) {
-					plateau [x][y] = new Out();
-				}else if (uneCase.getAttributeValue("type").equals("In")){
-					plateau [x][y] = null;
-				}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
-					int id = 1 ;
-					Rocher unRocher = new Rocher("cailloux "+id);
-					ajouterRocher(unRocher, x ,y);
-					id++;
-				
-				}
-			}*/
 
 			try {
                 DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
