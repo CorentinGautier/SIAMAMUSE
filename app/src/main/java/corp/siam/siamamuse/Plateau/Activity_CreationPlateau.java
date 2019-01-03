@@ -52,10 +52,10 @@ public class Activity_CreationPlateau extends AppCompatActivity {
             public void onClick(View view) {
                 String nbColoneS = editTextNbColone.getText().toString();
                 Log.e("nbColone", nbColoneS);
-                nbColone = Integer.decode(nbColoneS);
+                nbColone = Integer.decode(nbColoneS.trim());
                 String nbLigneS = editTextNbLigne.getText().toString();
                 Log.e("nbLigne", nbLigneS);
-                nbLigne = Integer.decode(nbLigneS);
+                nbLigne = Integer.decode(nbLigneS.trim());
                 calculTailleEcrant();
                 tailleCase = (int) (largeurEcrant * 0.2);
                 convertionMatriceAffichage(nbColone, nbLigne);
