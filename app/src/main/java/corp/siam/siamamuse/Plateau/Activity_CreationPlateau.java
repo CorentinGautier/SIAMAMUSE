@@ -65,9 +65,8 @@ public class Activity_CreationPlateau extends AppCompatActivity {
     }
 
     public void convertionMatriceAffichage(int Nbcolonne, int Nbligne){
-        final Plateau unPlateau = new Plateau(nbColone, nbLigne);
+        final Plateau unPlateau = new Plateau(Nbcolonne, Nbligne);
 
-        //bdd.creationPlateau(1,nbLigne,nbColone);
         for (int i = 0; i < nbLigne; i++) {
             for (int j = 0; j < nbColone; j++) {
                 try {
@@ -75,11 +74,12 @@ public class Activity_CreationPlateau extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                PionImage   unPionImage = new PionImage( this ,nbColone,nbLigne, unPlateau, etatActuel);
-               // bdd.creationCase(1,i,j,this.etatActuelString);
-               // Log.e("LA_BDDD",""+bdd.toString());
+                PionImage   unPionImage = new PionImage( this ,Nbcolonne,Nbligne, unPlateau, etatActuel);
             }
         }
+        bdd.creationCase(1,Nbligne,Nbcolonne,this.etatActuelString);
+        Log.i("LA_BDDD",""+bdd.getDatabaseName());
+        bdd.AfficheBdd();
     }
 
     public void choix(int etatActuel) throws InterruptedException {

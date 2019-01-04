@@ -1,5 +1,6 @@
 package corp.siam.siamamuse;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,15 +15,17 @@ import corp.siam.siamamuse.MoteurDeJeu.Rocher;
 public class BaseDeDonne extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Siam.db";
-    private int idMax ;
-    public static final String IDMAX_CASE ="SELECT MAX(ID_CAS) FROM CASEE";
-    private static final int DATABASE_VERSION=1;
+    //private int idMax;
+    public static final String IDMAX_CASE = "SELECT MAX(ID_CAS) FROM CASEE";
+    private static final int DATABASE_VERSION = 1;
     public static final String TABLE_PLATEAU =
             "CREATE TABLE  PLATEAU ("
                     + " ID_PLA  INTEGER PRIMARY KEY , "
                     + " NB_LIGNE  INTEGER, "
                     + " NB_COLONNE INTEGER);";
-    public static final String DROP_PLATEAU ="DROP TABLE PLATEAU";
+    public static final String DROP_PLATEAU = "DROP TABLE PLATEAU";
+    public static final String DEL_PLATEAU = "DELETE FROM PLATEAU";
+
     public static final String TABLE_CASE =
             "CREATE TABLE  CASEE  ("
                     + "ID_CAS  INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -30,42 +33,78 @@ public class BaseDeDonne extends SQLiteOpenHelper {
                     + " COOR_X_CAS  INTEGER, "
                     + " COOR_Y_CAS  INTEGER,"
                     + " TYPE_CAS TEXT);";//"out" "rocher" "spawn""vide"
-    public static final String DROP_CASE ="DROP TABLE CASEE";
+    public static final String DROP_CASE = "DROP TABLE CASEE";
+    public static final String DEL_CASE = "DELETE FROM CASEE";
+
 
     Context context;
 
     public BaseDeDonne(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context=context;
-        Cursor cursor = this.getReadableDatabase().rawQuery(IDMAX_CASE,null);
-        cursor.moveToFirst();
-        if(cursor.getInt(0)!=0){
-            this.idMax = cursor.getInt(0);
-        }else{
-            this.idMax =1;
-        }
+        this.context = context;
+        this.getReadableDatabase().delete("CASEE",null,null);
+        this.getReadableDatabase().delete("PLATEAU",null,null);
+        returnIdMax();
 
     }
+    //méthode récup idMax
+
+
+    @SuppressLint("LongLogTag")
+    public int returnIdMax() {
+        int idMax;
+        Cursor cursor = this.getReadableDatabase().rawQuery(IDMAX_CASE, null);
+        cursor.moveToFirst();
+        if (cursor.getInt(0) != 0) {
+            idMax = cursor.getInt(0);
+            Log.i("Idmaxxxxxxxxxxxxxxxxxxxxx",""+idMax);
+
+        } else {
+            idMax = 0;
+            Log.i("Idmaxxxxxxxxxxxxxxxxxxxxx",""+idMax);
+        }
+        cursor.close();
+        return idMax;
+    }
+
     //Creation de la base de donner quand on change de version
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CASE);
         db.execSQL(TABLE_PLATEAU);
-        Log.i("DATABASE","onCreate invoked");
+        Log.i("DATABASE", "onCreate invoked");
 
     }
+
     //Supprime la base de données et la recrée quand on change de version
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_CASE);
         db.execSQL(DROP_PLATEAU);
         onCreate(db);
-        Log.i("DATABASE","onUpgrade invoked");
+        Log.i("DATABASE", "onUpgrade invoked");
     }
+
+    public void AfficheBdd() {
+        String reqSQLCase = "SELECT ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS FROM CASEE ";
+        Cursor cursorCase = this.getReadableDatabase().rawQuery(reqSQLCase, null);
+        cursorCase.moveToFirst();
+        while (!cursorCase.isAfterLast()) {
+            Log.i("les casesssssss",""+cursorCase.getInt(0)+","+cursorCase.getInt(1)+","+cursorCase.getInt(2)+","+cursorCase.getInt(3)+","+cursorCase.getString(4));
+            cursorCase.moveToNext();
+            }
+        cursorCase.close();
+        }
+
+
+
 
     //Creation d'une case
     public void creationCase(int idPlateau, int cordX, int cordY,String type){
-        String creacase="insert into CASEE (ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS) values ("+idMax+1+","+idPlateau+","+cordX+","+cordY+","+type+")";
+       int idd = returnIdMax();
+       idd++;
+       Log.i("idddddd",""+idd);
+        String creacase="insert into CASEE (ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS) values ("+idd+","+idPlateau+","+cordX+","+cordY+",'/"+type+"/')";
         this.getWritableDatabase().execSQL(creacase);
     }
     //création d'un plateau
@@ -137,17 +176,17 @@ public class BaseDeDonne extends SQLiteOpenHelper {
     }
 
 
-//
-//    //fonction qui lit le niveau
-//    public void readNiveau(Niveau niv,int id){
-//        String reqSQl="SELECT NOM_NIV, IMA_NIV FROM NIVEAU WHERE ID_NIV="+id;
-//        Cursor cursor = this.getReadableDatabase().rawQuery(reqSQl,null);
-//        cursor.moveToFirst();
-//        niv.setImageFond(cursor.getString(1));
-//        niv.setNom(cursor.getString(0));
-//    }
 
-    //fonction qui vérifie si un niveau bloqué
+    /*//fonction qui lit le niveau
+    public void readNiveau(Niveau niv,int id){
+        String reqSQl="SELECT NOM_NIV, IMA_NIV FROM NIVEAU WHERE ID_NIV="+id;
+        Cursor cursor = this.getReadableDatabase().rawQuery(reqSQl,null);
+       cursor.moveToFirst();
+        niv.setImageFond(cursor.getString(1));
+        niv.setNom(cursor.getString(0));
+        }*/
+
+ /*   //fonction qui vérifie si un niveau bloqué
     public boolean estBloquer(int id){
         String reqSQL="SELECT BLO_NIV FROM NIVEAU WHERE ID_NIV="+id;
         Cursor cursor = this.getReadableDatabase().rawQuery(reqSQL,null);
@@ -157,7 +196,7 @@ public class BaseDeDonne extends SQLiteOpenHelper {
         }else{
             return false;
         }
-    }
+    }*/
 
     public static int getDatabaseVersion() {
         return DATABASE_VERSION;
