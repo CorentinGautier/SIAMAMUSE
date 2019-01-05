@@ -1,8 +1,10 @@
 package corp.siam.siamamuse;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,6 +80,10 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     }
 
     public void pageVictoire(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Winner", "rhinoceros");
+        editor.apply();
         Intent intent = new Intent(this, Activity_PageDeVictoire.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
         this.finish();
@@ -110,7 +116,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         float diffX = moveEvent.getX() - downEvent.getX();
 
         if (Math.abs(diffX) > Math.abs(diffY)) { //droite ou gauche
-            if (Math.abs(diffX) > 100 && Math.abs(velocityX) > 100) {
+            if (Math.abs(diffX) > 50 && Math.abs(velocityX) > 100) {
                 if (diffX > 0) {
                     onSwipeRight();
                 } else {
@@ -119,7 +125,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
                 result = true;
             }
             //haut ou bas
-        } else if (Math.abs(diffY) > 100 && Math.abs(velocityY) > 100) {
+        } else if (Math.abs(diffY) > 50 && Math.abs(velocityY) > 100) {
             if (diffY > 0) {
                 onSwipeBottom();
             } else {

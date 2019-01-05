@@ -25,12 +25,19 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
         affichageVictoire = findViewById(R.id.affichageVictoire);
         nbVictoireElephant = findViewById(R.id.nbVictoireElep);
         nbVictoireRhinoceros = findViewById(R.id.nbVictoireRhino);
-
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String winner = preferences.getString("Winner", "");
+        if(winner.equals("elephant")){
+            victoireElephant=true;
+        }else{
+            victoireElephant=false;
+        }
         recupererNbWin();
-
         afficherTexteVictoire();
         actualiserNbVictoire();
     }
+
+
 
     public void afficherTexteVictoire() {
         if (victoireElephant)
@@ -41,12 +48,12 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
 
     public void actualiserNbVictoire(){
         if(victoireElephant) {
-            nbVictoireE++;
-            nbVictoireElephant.setText("Nombre de Victoire des Elephants : " + nbVictoireE);
+            this.nbVictoireE++;
         }else{
-            nbVictoireR++;
-            nbVictoireRhinoceros.setText("Nombre de Victoire des Rhinoceros : " + nbVictoireR);
+            this.nbVictoireR++;
         }
+        nbVictoireElephant.setText("Nombre de Victoire des Elephants : " + nbVictoireE);
+        nbVictoireRhinoceros.setText("Nombre de Victoire des Rhinoceros : " + nbVictoireR);
         sauvegarderNbWin();
     }
     public void sauvegarderNbWin(){

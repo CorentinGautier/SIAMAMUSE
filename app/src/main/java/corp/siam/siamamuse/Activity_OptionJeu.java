@@ -2,8 +2,11 @@ package corp.siam.siamamuse;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -38,6 +41,17 @@ public class Activity_OptionJeu extends AppCompatActivity {
         spinnerNbManche.setAdapter(adapter);
     }
 
+    public void resetNbVictoire(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("nbWinE", 0);
+        editor.putInt("nbWinR", 0);
+        Log.e("TEST","Spinner="+spinnerNbManche.getSelectedItem());
+//        Object nbManche=spinnerNbManche.getSelectedItem();
+//        editor.putInt("nbWinTotal",(Integer) nbManche);
+        editor.apply();
+    }
+
     public void RetourMenu(View view) { //quitter l'activity actuel.
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
@@ -45,6 +59,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
     }
 
     public void LancerLeJeu(View v){
+        resetNbVictoire();
         Intent intent = new Intent(this, Activity_Partie.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
         this.finish();
