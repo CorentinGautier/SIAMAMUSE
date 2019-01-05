@@ -3,6 +3,7 @@ package corp.siam.siamamuse;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
     public void remplissageBDD(BaseDeDonne bdd){
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor edit = pref.edit();
-      // on met es tables qu'on veut pret enregistrer
+      // on met les tables qu'on veut pre enregistrer
 
         edit.putString("VersionBdd",bdd.getDatabaseVersion()+"");
         edit.apply();
