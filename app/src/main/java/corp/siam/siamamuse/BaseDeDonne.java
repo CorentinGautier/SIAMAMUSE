@@ -101,24 +101,40 @@ public class BaseDeDonne extends SQLiteOpenHelper {
 
     //Creation d'une case
     public void creationCase(int idPlateau, int cordX, int cordY,String type){
-       int idd = returnIdMax();
-       idd++;
-       Log.i("idddddd",""+idd);
-        String creacase="insert into CASEE (ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS) values ("+idd+","+idPlateau+","+cordX+","+cordY+",'/"+type+"/')";
-        this.getWritableDatabase().execSQL(creacase);
+        String reqSQLCase = "SELECT ID_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS FROM CASEE WHERE ID_PLA_CAS=" +idPlateau+ " AND COOR_X_CAS ="+cordX+" AND COOR_Y_CAS="+cordY+"";
+        Cursor cursorCase = this.getReadableDatabase().rawQuery(reqSQLCase, null);
+        cursorCase.moveToFirst();
+        if (cursorCase.getCount() != 0) {
+          updateCaseEtat(cursorCase.getInt(0),type,idPlateau);
+        } else {
+            int idd = returnIdMax();
+            idd++;
+            Log.i("idddddd", "" + idd);
+            String creacase = "insert into CASEE (ID_CAS,ID_PLA_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS) values (" + idd + "," + idPlateau + "," + cordX + "," + cordY + ",'/" + type + "/')";
+            this.getWritableDatabase().execSQL(creacase);
+        }
+        cursorCase.close();
     }
     //création d'un plateau
     public void creationPlateau(int idPlateau, int Nbligne, int Nbcolonne){
-        String creaPlateau="insert into PLATEAU (ID_PLA,NB_LIGNE,NB_COLONNE) values ("+idPlateau+",'"+Nbligne+"',"+Nbcolonne+")";
-        this.getWritableDatabase().execSQL(creaPlateau);
+        String reqSQLPlateau = "SELECT NB_LIGNE,NB_COLONNE FROM CASEE WHERE ID_PLA=" + idPlateau + "";
+        Cursor cursorPlateau = this.getReadableDatabase().rawQuery(reqSQLPlateau, null);
+        cursorPlateau.moveToFirst();
+        if (cursorPlateau.getCount() != 0) {
+            updateTaillePlateau(idPlateau,Nbligne,Nbcolonne);
+        } else {
+            String creaPlateau = "insert into PLATEAU (ID_PLA,NB_LIGNE,NB_COLONNE) values (" + idPlateau + ",'" + Nbligne + "'," + Nbcolonne + ")";
+            this.getWritableDatabase().execSQL(creaPlateau);
+        }
+        cursorPlateau.close();
     }
     //changement d'un état de la case
-    public void UpdateCaseEtat(int idCase, String typeCase,int idPlateau){
-        String updateCaseEtat="UPDATE CASEE SET TYPE_CAS="+typeCase+" WHERE ID_CAS ="+idCase+" AND ID_PLA_CAS="+idPlateau+" " ;
+    public void updateCaseEtat(int idCase, String typeCase,int idPlateau){
+        String updateCaseEtat="UPDATE CASEE SET TYPE_CAS='/" +typeCase+ "/' WHERE ID_CAS ="+idCase+" AND ID_PLA_CAS="+idPlateau+" " ;
         this.getWritableDatabase().execSQL(updateCaseEtat);
     }
     //changement de la taille du plateau
-    public void UpdateTaillePlateau(int idPlateau,int newNbLigne,int newNbColonne){
+    public void updateTaillePlateau(int idPlateau,int newNbLigne,int newNbColonne){
         String updateTaillePlateau="UPDATE PlATEAU SET NB_LIGNE="+newNbLigne+",NB_COLONNE="+newNbColonne+" WHERE ID_PLA="+idPlateau+" " ;
         this.getWritableDatabase().execSQL(updateTaillePlateau);
     }
