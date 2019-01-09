@@ -141,5 +141,9 @@ public class PlateauInterface {
         }
     }
 
+    public void suppresionBtnAjout(PionInterface pionNoSuppBtn){
+        supprimerBtnAjout();
+    }
+
 }
 
