@@ -36,6 +36,18 @@ public class MoteurJeu {
 		pionRotation=null;
 	}
 
+	public MoteurJeu(Plateau plateau, Activity_Partie context) throws ParserConfigurationException, SAXException, IOException {
+		lePlateau = plateau;
+		//lePlateau = new Plateau();
+		this.context=context;
+		joueur1 = new Joueur("elephant");
+		joueur2 = new Joueur("rhinoceros");
+		fin = false;
+		// ajouter al�atoire
+		tour = true;
+		pionRotation=null;
+	}
+
 	public Plateau getLePlateau() {
 		return lePlateau;
 	}
