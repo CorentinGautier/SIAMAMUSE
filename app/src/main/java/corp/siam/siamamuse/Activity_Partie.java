@@ -37,7 +37,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     private final String PROGRESS="textViewTestId";
     //L'AtomicBoolean qui gère la destruction de la Thread de background
     AtomicBoolean isRunning = new AtomicBoolean(false);
-    //     L'AtomicBoolean qui gère la mise en pause de la Thread de background
+    // L'AtomicBoolean qui gère la mise en pause de la Thread de background
     AtomicBoolean isPausing = new AtomicBoolean(false);
     private int tempsParJoueur =20; // temps pour chaque tour des joueurs
 
@@ -189,83 +189,86 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     @Override
     public boolean onDoubleTapEvent(MotionEvent e) {return false;}
 
-//    public void timerFin(){
-//        Log.e("TEST","Fin du timer");
-//        mj.setPionRotation(null);
-//       // mj.tourSuivant();
-//        plateauInterface.convertionMatriceAffichage();
-//        //appel onResume pour relancer le thread avec le timer
-//    }
-//
-//
-//    //Méthode appelée quand l'activité s'arrête
-//    public void onStop() {
-//        Log.e("TEST","Je detruit le chrono");
-//        super.onStop();
-//        //Mise-à-jour du booléen pour détruire la Thread de background
-//        isRunning.set(false);
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        // Mise-à-jour du booléen pour mettre en pause la Thread de background
-//        isPausing.set(true);
-//    }
-//
-//    @Override
-//    public void onResume(){
-//        super.onResume();
-//        // Mise-à-jour du booléen pour relancer la Thread de background
-//        isPausing.set(false);
-//    }
-//    public void onStart() {//démarage du thread
-//        Log.e("TEST","Le chrono demarre");
-//        super.onStart();
-//       Compteur = new Thread( new Runnable() {
-//            Message myMessage;
-//            Bundle messageBundle = new Bundle();
-//            public void run() {
-//                try {
-//                    int s = tempsParJoueur;
-//                    while (s > 0 && isRunning.get()) {
-//                        while (isPausing.get() && (isRunning.get())) {
-//                            // Faire une pause pour soulagé le CPU (dépend du traitement)
-//                            Thread.sleep(2000);
-//                        }
-//                        s--;
-//                        Thread.sleep(1000);
-//                        myMessage = handler.obtainMessage(); // otenir un message vierge
-//                        //Ajouter des données à transmettre au Handler via le Bundle
-//                        messageBundle.putInt(PROGRESS, s);
-//                        //Ajouter le Bundle au message
-//                        myMessage.setData(messageBundle);
-//                        //Envoyer le message
-//                        handler.sendMessage(myMessage);
-//                    }
-//                }
-//                catch(Throwable t) {
-//                }
-//            }
-//        });
-//        isRunning.set(true);
-//        isPausing.set(false);
-//        Compteur.start();
-//    }
-//    //Permet de faire foctionner le timer en meme temps que le reste de l'application
-//    Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            // Incrémenter la ProgressBar, on est bien dans la Thread de l'IHM
-//            int nbS=msg.getData().getInt(PROGRESS);
-//            Log.e("TEST","temps restant = "+nbS+"s");
-//            CountDownTexte.setText(nbS+"s");
-//            // On peut faire toute action qui met à jour l'IHM
-//            if ( nbS == 0)
-//            {
-//                timerFin();
-//            }
-//
-//        }
-//    };
+   public void timerFin(){
+        Log.e("TEST","Fin du timer");
+        mj.setPionRotation(null);
+       mj.tourSuivant();
+       plateauInterface.convertionMatriceAffichage();
+       //appel onResume pour relancer le thread avec le timer
+    }
+
+    //Méthode appelée quand l'activité s'arrête
+    public void onStop() {
+        Log.e("TEST","Je detruit le chrono");
+        super.onStop();
+        //Mise-à-jour du booléen pour détruire la Thread de background
+        isRunning.set(false);
+        Compteur.interrupt();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Mise-à-jour du booléen pour mettre en pause la Thread de background
+        isPausing.set(true);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        // Mise-à-jour du booléen pour relancer la Thread de background
+        isPausing.set(false);
+    }
+    public void onStart() {//démarage du thread
+        Log.e("TEST","Le chrono demarre");
+        super.onStart();
+       Compteur = new Thread( new Runnable() {
+            Message myMessage;
+            Bundle messageBundle = new Bundle();
+            public void run() {
+               try {
+               //   while (isRunning.equals(true)) {
+                   int s = tempsParJoueur;
+                    while (s > 0 && isRunning.get()) {
+                        Log.e("TEST","Avant is running = "+isRunning);
+                       while (isPausing.get() && (isRunning.get())) {
+                           Log.e("TEST","is running = "+isRunning);
+                            // Faire une pause pour soulagé le CPU (dépend du traitement)
+                            Thread.sleep(1000);
+                        }
+                        Thread.sleep(1000);
+                        myMessage = handler.obtainMessage(); // otenir un message vierge
+                        //Ajouter des données à transmettre au Handler via le Bundle
+                        messageBundle.putInt(PROGRESS, s);
+                        //Ajouter le Bundle au message
+                        myMessage.setData(messageBundle);
+                        //Envoyer le message
+                        handler.sendMessage(myMessage);
+                        s--;
+    }
+
+                }
+                catch(Throwable t) {
+                }
+            }
+        });
+       isRunning.set(true);
+       isPausing.set(false);
+        Compteur.start();
+    }
+    //Permet de faire foctionner le timer en meme temps que le reste de l'application
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // Incrémenter la ProgressBar, on est bien dans la Thread de l'IHM
+            int nbS=msg.getData().getInt(PROGRESS);
+          // Log.e("TEST","temps restant = "+nbS+"s");
+            CountDownTexte.setText(nbS+"s");
+            // On peut faire toute action qui met à jour l'IHM
+            if ( nbS == 0)
+            {
+               timerFin();
+            }
+        }
+    };
 }
