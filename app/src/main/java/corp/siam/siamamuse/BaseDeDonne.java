@@ -143,7 +143,7 @@ public class BaseDeDonne extends SQLiteOpenHelper {
         int nbligne, nbColonne;
         Plateau unPlateau = null;
         String reqSQLCase = "SELECT ID_CAS,COOR_X_CAS,COOR_Y_CAS,TYPE_CAS FROM CASEE WHERE ID_PLA_CAS=" + idplateau + "";
-        String reqSQLPlateau = "SELECT NB_LIGNE,NB_COLONNE FROM CASEE WHERE ID_PLA=" + idplateau + "";
+        String reqSQLPlateau = "SELECT NB_LIGNE,NB_COLONNE FROM PLATEAU WHERE ID_PLA=" + idplateau + "";
 
         Cursor cursorCase = this.getReadableDatabase().rawQuery(reqSQLCase, null);
         Cursor cursorPlateau = this.getReadableDatabase().rawQuery(reqSQLPlateau, null);
@@ -154,7 +154,7 @@ public class BaseDeDonne extends SQLiteOpenHelper {
 
         cursorCase.moveToFirst();
         while (!cursorCase.isAfterLast()) {
-            unPlateau = new Plateau((nbligne + 2) * (nbColonne + 2));
+            unPlateau = new Plateau(nbligne , nbColonne);
             switch (cursorCase.getString(4)) {
                 case "Out":
                     unPlateau.ajoutCaseOut(cursorCase.getInt(2), cursorCase.getInt(3));
