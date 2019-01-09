@@ -2,6 +2,8 @@ package corp.siam.siamamuse;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -13,7 +15,9 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import org.xml.sax.SAXException;
@@ -93,6 +97,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         mj = new MoteurJeu(5,this);
         plateauInterface= new PlateauInterface(this,mj);
         plateauInterface.convertionMatriceAffichage();
+        affichageDesCases();
     }
 
     public PionInterface getPionSelectionner() {
@@ -101,6 +106,19 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
 
     public void setPionSelectionner(PionInterface pionSelectionner){
         this.pionSelectionner=pionSelectionner;
+    }
+
+    public void affichageDesCases(){
+        for(int i=0;i<5;i++)
+            for (int j = 0; j < 5; j++) {
+                ImageView imageCase = new ImageView(this);
+                imageCase.setBackgroundResource(R.drawable.png_deuxcase);
+                ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int) (plateauInterface.calc.getTailleCase()), (int) (plateauInterface.calc.getTailleCase()));
+                imageCase.setLayoutParams(paramsPion);
+                imageCase.setX(plateauInterface.calc.calculeBtnAjoutX(i));
+                imageCase.setY(plateauInterface.calc.calculeBtnAjoutY(j));
+                this.fondPartie.addView(imageCase);
+            }
     }
 
     @Override
