@@ -42,7 +42,6 @@ public class Pion extends Jeton {
 
 	@Override
 	public int veriforientation(Orientation testRegard) {
-		//Log.e("TEST","")
 		if(regard.oppose()==testRegard) {
 			return -1;
 		}else if(regard==testRegard) {
@@ -53,9 +52,7 @@ public class Pion extends Jeton {
 	}
 
 	@Override
-	public Integer getImagePion() {
-		return image;
-	}
+	public Integer getImagePion() {	return image;}
 
 	public String getNom() {
 		return nom;

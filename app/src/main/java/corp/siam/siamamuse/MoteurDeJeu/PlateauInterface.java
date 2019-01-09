@@ -50,10 +50,7 @@ public class PlateauInterface {
             faireRotation = mj.tourSuivant();
             //relancer le chrono
             if(!faireRotation) {
-               // Log.e("TEST","PI : Relancement du le chrono");
                 mj.relancementChrono();
-            }else{
-               // Log.e("TEST","Je relance pas le chrono");
             }
         }
         Jeton[][] plateau = mj.getLePlateau().getPlateau();

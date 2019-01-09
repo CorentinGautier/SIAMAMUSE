@@ -190,16 +190,14 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     public boolean onDoubleTapEvent(MotionEvent e) {return false;}
 
    public void timerFin(){
-        Log.e("TEST","Fin du timer");
         mj.setPionRotation(null);
-       mj.tourSuivant();
-       plateauInterface.convertionMatriceAffichage();
+        mj.tourSuivant();
+        plateauInterface.convertionMatriceAffichage();
        //appel onResume pour relancer le thread avec le timer
     }
 
     //Méthode appelée quand l'activité s'arrête
     public void onStop() {
-        Log.e("TEST","Je detruit le chrono");
         super.onStop();
         //Mise-à-jour du booléen pour détruire la Thread de background
         isRunning.set(false);
@@ -220,19 +218,15 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         isPausing.set(false);
     }
     public void onStart() {//démarage du thread
-        Log.e("TEST","Le chrono demarre");
         super.onStart();
        Compteur = new Thread( new Runnable() {
             Message myMessage;
             Bundle messageBundle = new Bundle();
             public void run() {
                try {
-               //   while (isRunning.equals(true)) {
                    int s = tempsParJoueur;
                     while (s > 0 && isRunning.get()) {
-                        Log.e("TEST","Avant is running = "+isRunning);
                        while (isPausing.get() && (isRunning.get())) {
-                           Log.e("TEST","is running = "+isRunning);
                             // Faire une pause pour soulagé le CPU (dépend du traitement)
                             Thread.sleep(1000);
                         }
@@ -245,8 +239,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
                         //Envoyer le message
                         handler.sendMessage(myMessage);
                         s--;
-    }
-
+                    }
                 }
                 catch(Throwable t) {
                 }
@@ -261,7 +254,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         @Override
         public void handleMessage(Message msg) {
             // Incrémenter la ProgressBar, on est bien dans la Thread de l'IHM
-            int nbS=msg.getData().getInt(PROGRESS);
+            int nbS=msg.getData().getInt(PROGRESS)-1;
           // Log.e("TEST","temps restant = "+nbS+"s");
             CountDownTexte.setText(nbS+"s");
             // On peut faire toute action qui met à jour l'IHM

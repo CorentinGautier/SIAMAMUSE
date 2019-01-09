@@ -110,74 +110,6 @@ public class Plateau {
 
 
 	
-	//pour ajouter un pion on doit le mettre au coordoner que le joueur voie
-	
-	//on est oblig� de mettre le pion sur un ext�rieur du plateau car sinon il y auras une erreur
-	public void ajouterPionCoin(Jeton unJeton, int x, int y,Orientation orientation) {
-		if(x<taillePlateau || y<taillePlateau) {
-			if((x==0)&&(y==0)) {
-				if(orientation == Orientation.NORD) {
-					plateau[x+1][y]=unJeton;
-					deplacement(unJeton, orientation);
-				}else if(orientation == Orientation.EST){
-					plateau[x][y+1]=unJeton;
-					deplacement(unJeton, orientation);
-				}else {
-					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
-				}
-			}else if((x==0)&&(y==taillePlateau-1)) {
-				if(orientation == Orientation.SUD) {
-					plateau[x+1][y+2]=unJeton;
-					deplacement(unJeton, orientation);
-				}else if(orientation == Orientation.EST){
-					plateau[x][y+1]=unJeton;
-					deplacement(unJeton, orientation);
-				}else {
-					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
-				}
-			}else if((x==taillePlateau-1)&&(y==0)) {
-				if(orientation == Orientation.NORD) {
-					plateau[x+1][y]=unJeton;
-					deplacement(unJeton, orientation);
-				}else if(orientation == Orientation.OUEST){
-					plateau[x+2][y+1]=unJeton;
-					deplacement(unJeton, orientation);
-				}else {
-					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
-				}
-			}else if((x==taillePlateau-1)&&(y==taillePlateau-1)) {
-				if(orientation == Orientation.SUD) {
-					plateau[x+1][y+2]=unJeton;
-					deplacement(unJeton, orientation);
-				}else if(orientation == Orientation.OUEST){
-					plateau[x+2][y+1]=unJeton;
-					deplacement(unJeton, orientation);
-				}else {
-					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
-				}
-			}else {
-				System.err.println("Erreur ajout pion dans un coin ");
-			}
-//			if(x==0) {
-//				
-//			}else if(x==taillePlateau-1) {
-//				plateau[x+2][y+1]=unJeton;
-//				deplacement(unJeton, orientation);
-//			}else if(y==0) {
-//				plateau[x+1][y]=unJeton;
-//				deplacement(unJeton, orientation);
-//			}else if(y==taillePlateau-1) {
-//				plateau[x+1][y+2]=unJeton;
-//				deplacement(unJeton, orientation);
-//			}else {
-//				System.err.println("Vous devez placer votre pion sur le rebord du plateau");
-//			}
-			
-		}else {
-			System.err.println("Vous devez placer votre pion dans le plateau");
-		}
-	}
-	
 	public boolean ajouterPion(Pion unPion, int x, int y) {
 	    boolean res;
 		if(x<taillePlateau || y<taillePlateau) {
@@ -207,55 +139,6 @@ public class Plateau {
 			System.err.println("Vous devez placer votre pion dans le plateau");
 		}
 		return res;
-	}
-	
-	public boolean verifCoin( int x, int y) {
-		if((x==0)||(x==taillePlateau-1)){
-			if((y==0)||(y==taillePlateau-1)) {
-				if(plateau[x+1][y+1]!=null) {
-					return true;					
-				}
-			}
-		}
-		return false;
-	}
-	
-
-	public void afficherPlateauVisionDev() {
-		Log.e("TEST","\n\n le plateau :");
-		for (int i = 0; i < taillePlateau + 2; i++) {
-			for (int j = 0; j < taillePlateau + 2; j++) {
-				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
-					Log.e("TEST",(plateau[i][j] + " � la position " + i + " " + j));
-				}
-			}
-		}
-	}
-
-	public void afficherPlateauVisionJoueur() {
-		Log.e("TEST",("\n\n le plateau :"));
-		for (int i = 1; i < taillePlateau + 1; i++) {
-			for (int j = 1; j < taillePlateau + 1; j++) {
-				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
-					Log.e("TEST",(plateau[i][j] + " � la position " + (i-1) + " " + (j-1)));
-				}
-			}
-		}
-	}
-
-	public void afficherPlateauVide() {
-		System.out.println("\n\nVoici le plateau :");
-		for (int i = 0; i < taillePlateau + 2; i++) {
-			for (int j = 0; j < taillePlateau + 2; j++) {
-				if (plateau[i][j] == null) {
-					System.out.println(plateau[i][j] + " � la position " + i + " " + j);
-				}else if ((plateau[i][j] instanceof Out)) {
-					System.out.println(plateau[i][j] + " � la position " + i + " " + j);
-				}else if ((plateau[i][j] instanceof Rocher)) {
-					System.out.println(plateau[i][j] + " � la position " + i + " " + j);
-				}
-			}
-		}
 	}
 	
 	//Fonction qui sert pour le d�placement d'un pion en r�cup�rant le pion sur le plateau si il existe
@@ -292,7 +175,7 @@ public class Plateau {
 		int[] coordonne = recherchePosition(unPion);
 		int x = coordonne[0], y = coordonne[1];
 		// Variable qui vas servir a v�rifier si le d�placment est possible
-		int contreAttaque = 1;
+		int contreAttaque = 0;
 		// Si le pion a deplacer des pion la cariable passe a true
 		int aPousser = 0;
 
@@ -380,7 +263,7 @@ public class Plateau {
 		int[] coordonne = recherchePosition(unJeton);
 		int x = coordonne[0], y = coordonne[1];
 		// Variable qui vas servir a v�rifier si le d�placment est possible
-		int contreAttaque = 1;
+		int contreAttaque = 0;
 		// Si le pion a deplacer des pion la cariable passe a true
 		int aPousser = 0;
 
@@ -514,18 +397,15 @@ public class Plateau {
 		if (contre >= 0) {
 			return true;
 		} else {
-			System.out.println("D�placement impossible car contre = " + contre);
 			return false;
 		}
 	}
 
 	public void sortiePlateau(Jeton unJeton) {
 		if (unJeton instanceof Rocher) {
-			System.out.println("Vous avez gg");
 			finJeu = true;
 		} else {
 			pionARecupere=(Pion)unJeton;
-			System.out.println("vous recupere un pion dans votre inventaire"+unJeton);
 		}
 	}
 	
@@ -554,47 +434,4 @@ public class Plateau {
 		}
 		return coordonne;
 	}
-
-	// Chargement des plateaux depuis un fichier XML
-		// filename : nom du fichier
-        // context : le context de l'activity
-		public void load(Context context) throws ParserConfigurationException, SAXException, IOException {
-
-			try {
-                DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
-
-                InputStream in = context.getAssets().open("plateau.xml");
-                org.w3c.dom.Document doc2 = docBuilder.parse(in);
-                DOMBuilder domBuilder = new DOMBuilder();
-                Document doc = domBuilder.build(doc2);
-				List<Element> attribElments = doc.getRootElement().getChildren("Case");
-
-				this.taillePlateau = Integer.parseInt(doc.getRootElement().getAttributeValue("taille")) ;
-				plateau = new Jeton[taillePlateau +2][taillePlateau+2];
-
-				for (Element uneCase : attribElments) {
-					int x = Integer.parseInt(uneCase.getChildText("X"));
-					int y = Integer.parseInt(uneCase.getChildText("Y"));
-					if (uneCase.getAttributeValue("type").equals("Out")) {
-						plateau [x][y] = new Out();
-					}else if (uneCase.getAttributeValue("type").equals("In")){
-						plateau [x][y] = null;
-					}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
-						int id = 1 ;
-						Rocher unRocher = new Rocher("cailloux "+id);
-						ajouterRocher(unRocher, x ,y);
-						id++;
-
-					}
-				}
-
-			} catch (ParserConfigurationException | IOException | SAXException e) {
-				e.printStackTrace();
-			}
-		}
-
-
-	
-	
 }
