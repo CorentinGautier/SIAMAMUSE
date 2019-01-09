@@ -60,7 +60,7 @@ public class PionInterface {
 
         }else if(etat==2){
             creationFleche(PlateauInterface.calc.calculeBtnAjoutX(x),PlateauInterface.calc.calculeBtnAjoutY(y));
-            context.setPionSelectionner(this);
+         //   context.setPionSelectionner(this);
         }
         setRegard();
         context.runOnUiThread(new Runnable() {

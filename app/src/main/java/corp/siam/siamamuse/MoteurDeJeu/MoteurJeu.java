@@ -100,9 +100,9 @@ public class MoteurJeu {
 	}
 
 	public void relancementChrono(){
-	//	Log.e("TEST","Le chrono est relancé");
-//		context.onStop();
-//		context.onStart();
+		Log.e("TEST","Le chrono est relancé");
+		context.onStop();
+		context.onStart();
 	}
 	public Joueur getTour() {
 		if (!tour) {
