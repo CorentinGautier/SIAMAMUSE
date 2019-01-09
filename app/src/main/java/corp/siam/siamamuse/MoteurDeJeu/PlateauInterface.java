@@ -43,13 +43,13 @@ public class PlateauInterface {
     }
 
      public void convertionMatriceAffichage(){
-        boolean res = false;
+        boolean faireRotation = false;
         if(first){
             first=false;
         }else{
-            res = mj.tourSuivant();
+            faireRotation = mj.tourSuivant();
             //relancer le chrono
-            if(!res) {
+            if(!faireRotation) {
                // Log.e("TEST","PI : Relancement du le chrono");
                 mj.relancementChrono();
             }else{
@@ -59,13 +59,13 @@ public class PlateauInterface {
         Jeton[][] plateau = mj.getLePlateau().getPlateau();
         supprimerBtnAjout();
         suppressionJetons();
-        affichagePion(mj.getJoueur1());
-        affichagePion(mj.getJoueur2());
+        affichagePion(mj.getJoueur1(),faireRotation);
+        affichagePion(mj.getJoueur2(),faireRotation);
         for(int i=1;i<mj.getLePlateau().taillePlateau+1;i++){
             for(int j=1;j<mj.getLePlateau().taillePlateau+1;j++){
                 if(plateau[i][j]instanceof Pion){
                     Pion pion= (Pion) plateau[i][j];
-                    if(res){
+                    if(faireRotation){
                         if(plateau[i][j].equals(mj.getPionRotation())){
                             lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),2));
                         }else{
@@ -108,11 +108,11 @@ public class PlateauInterface {
     }
 
     //Affiche les pions qu'un joueur a en main
-    public void affichagePion(Joueur pJoueur){
+    public void affichagePion(Joueur pJoueur,boolean bloquer){
         ArrayList<Pion> lesPionsJoueur = pJoueur.getLesPionsEnMain();
         int i=1;
         for (Pion unPion: lesPionsJoueur){
-            lesPionsMain.add( new PionMain(unPion,context,i,pJoueur.getNom(),this,pJoueur,mj.getTour()));
+            lesPionsMain.add( new PionMain(unPion,context,i,pJoueur.getNom(),this,pJoueur,mj.getTour(),bloquer));
             i++;
         }
     }
@@ -141,8 +141,12 @@ public class PlateauInterface {
         }
     }
 
-    public void suppresionBtnAjout(PionInterface pionNoSuppBtn){
-        supprimerBtnAjout();
+    public void suppresionBtnDeplacement(PionInterface pionNoSuppBtn){
+        for(PionInterface unPion:lesPions){
+            if(!unPion.equals(pionNoSuppBtn)){
+                unPion.supprimerBtn();
+            }
+        }
     }
 
 }

@@ -20,7 +20,7 @@ public class PionMain {
     private Joueur unJoueur;
     private boolean btnAjoutAffiche;
 
-    public PionMain(Pion unPion, final Activity_Partie context, int numero, String nom, PlateauInterface interPlateau,Joueur unJoueur,Joueur tourJoueur){
+    public PionMain(Pion unPion, final Activity_Partie context, int numero, String nom, PlateauInterface interPlateau,Joueur unJoueur,Joueur tourJoueur,boolean bloquer){
         this.unPion = unPion;
         this.context = context;
         this.interPlateau=interPlateau;
@@ -37,12 +37,14 @@ public class PionMain {
             }
         });
         if(unJoueur==tourJoueur) {
-            imagePion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ajouterPlateau();
-                }
-            });
+            if(!bloquer) {
+                imagePion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ajouterPlateau();
+                    }
+                });
+            }
         }
         btnAjoutAffiche=false;
     }
@@ -64,12 +66,12 @@ public class PionMain {
     }
 
     public void ajouterPlateau(){
+        interPlateau.supprimerBtnAjout();
+        interPlateau.suppresionBtnDeplacement(null);
         if(btnAjoutAffiche){
             btnAjoutAffiche=false;
-            interPlateau.supprimerBtnAjout();
         }else{
             btnAjoutAffiche=true;
-            interPlateau.supprimerBtnAjout();
             interPlateau.afficherBtnAjout(unPion,unJoueur);
         }
     }

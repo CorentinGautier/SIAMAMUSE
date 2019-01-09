@@ -60,7 +60,7 @@ public class PionInterface {
 
         }else if(etat==2){
             creationFleche(PlateauInterface.calc.calculeBtnAjoutX(x),PlateauInterface.calc.calculeBtnAjoutY(y));
-         //   context.setPionSelectionner(this);
+            context.setPionSelectionner(this);
         }
         setRegard();
         context.runOnUiThread(new Runnable() {
@@ -91,6 +91,7 @@ public class PionInterface {
     public void afficherBtnAjout(){
         //change le pionSelectionner dans le main pour gerer les swips
         context.setPionSelectionner(this);
+        plateauInterface.suppresionBtnDeplacement(this);
         if(flecheAficher){
             flecheAficher=false;
             supprimerBtn();

@@ -1,6 +1,7 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
 import android.media.ImageReader;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -41,6 +42,7 @@ public class Pion extends Jeton {
 
 	@Override
 	public int veriforientation(Orientation testRegard) {
+		//Log.e("TEST","")
 		if(regard.oppose()==testRegard) {
 			return -1;
 		}else if(regard==testRegard) {
