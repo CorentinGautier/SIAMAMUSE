@@ -23,7 +23,7 @@ public class Rocher extends Jeton {
 
 	@Override
 	public int veriforientation(Orientation regard) {
-		return -1;
+		return -10;
 	}
 
 	@Override

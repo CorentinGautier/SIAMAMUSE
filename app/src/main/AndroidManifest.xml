@@ -9,19 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Option" />
-        <activity android:name=".Activity_OptionJeu" />
-        <activity android:name=".Activity_Partie" />
-        <activity android:name=".Activity_PageDeVictoire" />
-        <activity android:name=".Tutoriel.Activity_Tutoriel" />
-        <activity android:name=".Plateau.Activity_CreationPlateau"></activity>
+        <activity android:name=".Activity_Option"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".Activity_OptionJeu"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity_Partie"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".Activity_PageDeVictoire"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Tutoriel.Activity_Tutoriel"
+            android:screenOrientation="portrait"  />
+        <activity android:name=".Plateau.Activity_CreationPlateau"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

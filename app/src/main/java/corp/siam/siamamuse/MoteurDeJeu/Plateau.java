@@ -175,7 +175,7 @@ public class Plateau {
 		int[] coordonne = recherchePosition(unPion);
 		int x = coordonne[0], y = coordonne[1];
 		// Variable qui vas servir a v�rifier si le d�placment est possible
-		int contreAttaque = 0;
+		int contreAttaque = 15;
 		// Si le pion a deplacer des pion la cariable passe a true
 		int aPousser = 0;
 
@@ -263,7 +263,7 @@ public class Plateau {
 		int[] coordonne = recherchePosition(unJeton);
 		int x = coordonne[0], y = coordonne[1];
 		// Variable qui vas servir a v�rifier si le d�placment est possible
-		int contreAttaque = 0;
+		int contreAttaque = 15;
 		// Si le pion a deplacer des pion la cariable passe a true
 		int aPousser = 0;
 
@@ -394,7 +394,7 @@ public class Plateau {
 	}
 
 	public boolean deplacementPossible(int contre) {
-		if (contre >= 0) {
+		if (contre > 0) {
 			return true;
 		} else {
 			return false;

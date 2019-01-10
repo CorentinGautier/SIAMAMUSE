@@ -43,9 +43,9 @@ public class Pion extends Jeton {
 	@Override
 	public int veriforientation(Orientation testRegard) {
 		if(regard.oppose()==testRegard) {
-			return -1;
+			return -15;
 		}else if(regard==testRegard) {
-			return 1;
+			return 15;
 		}else {
 			return 0;
 		}
