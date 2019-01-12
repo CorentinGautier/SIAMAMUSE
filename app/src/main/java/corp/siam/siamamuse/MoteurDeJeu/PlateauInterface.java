@@ -69,7 +69,11 @@ public class PlateauInterface {
                             lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),0));
                         }
                     }else {
-                        lesPions.add(new PionInterface(pion, i - 1, j - 1, context, mj, this, mj.getTour(),1));
+                        if(pion.getNom()==mj.getTour().getNom()){
+                            lesPions.add(new PionInterface(pion, i - 1, j - 1, context, mj, this, mj.getTour(),1));
+                        }else{
+                            lesPions.add(new PionInterface(pion, i - 1, j - 1, context, mj, this, mj.getTour(),0));
+                        }
                     }
                 }else if(plateau[i][j]instanceof Rocher){
                     Rocher rocher = (Rocher) plateau[i][j];

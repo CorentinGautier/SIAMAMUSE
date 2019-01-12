@@ -61,6 +61,8 @@ public class PionInterface {
         }else if(etat==2){
             creationFleche(PlateauInterface.calc.calculeBtnAjoutX(x),PlateauInterface.calc.calculeBtnAjoutY(y));
             context.setPionSelectionner(this);
+        }else if(etat==0){
+            imagePion.setBackgroundResource(unPion.getImageGris());
         }
         setRegard();
         context.runOnUiThread(new Runnable() {

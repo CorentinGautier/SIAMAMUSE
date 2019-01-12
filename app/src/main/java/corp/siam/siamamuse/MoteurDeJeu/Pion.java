@@ -11,6 +11,7 @@ public class Pion extends Jeton {
 	String nom;
 	Orientation regard;
 	Integer image;
+	Integer imageGris;
 	//a supprimer
 	String typePion;
 
@@ -24,9 +25,11 @@ public class Pion extends Jeton {
 		switch(nom){
 			case "elephant":
 				image = R.drawable.elephant;
+				imageGris = R.drawable.elephantgris;
 				break;
 			case "rhinoceros":
 				image = R.drawable.rhinoceros;
+				imageGris = R.drawable.rhinocerosgris;
 				break;
 			default:
 				image = R.drawable.elephant;
@@ -54,6 +57,8 @@ public class Pion extends Jeton {
 	@Override
 	public Integer getImagePion() {	return image;}
 
+	public Integer getImageGris() {return imageGris;}
+
 	public String getNom() {
 		return nom;
 	}
@@ -65,4 +70,5 @@ public class Pion extends Jeton {
 	public Orientation getRegard() {
 		return regard;
 	}
+
 }

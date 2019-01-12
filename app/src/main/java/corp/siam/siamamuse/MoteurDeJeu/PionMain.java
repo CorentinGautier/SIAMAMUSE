@@ -36,15 +36,16 @@ public class PionMain {
                 context.fondPartie.addView(imagePion);
             }
         });
-        if(unJoueur==tourJoueur) {
-            if(!bloquer) {
+        if(unJoueur==tourJoueur && !bloquer) {
                 imagePion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ajouterPlateau();
                     }
                 });
-            }
+        }else{
+            imagePion.setBackgroundResource(unPion.getImageGris());
+
         }
         btnAjoutAffiche=false;
     }
