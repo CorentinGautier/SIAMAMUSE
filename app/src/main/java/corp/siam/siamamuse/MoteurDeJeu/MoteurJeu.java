@@ -49,7 +49,6 @@ public class MoteurJeu {
 		if(pionRotation==null) {
 			//verifie si un rocher est sortie de la map
 			if (!lePlateau.isFinJeu()) {
-
 				if (!tour) {
 					unTourInter(joueur2);
 					tour = true;
@@ -59,7 +58,11 @@ public class MoteurJeu {
 				}
 			} else {
 				//La partie est finie
-				gagner();
+				if (!tour) {
+					gagner(joueur1);
+				} else {
+					gagner(joueur2);
+				}
 			}
 			return false;
 		}else{
@@ -116,10 +119,10 @@ public class MoteurJeu {
 		}
 	}
 
-	public void gagner() {
+	public void gagner(Joueur joueur) {
 		fin = true;
 		Toast.makeText(context.getApplicationContext(),"FIN DE PARTIE",Toast.LENGTH_LONG).show();
-		context.pageVictoire();
+		context.pageVictoire(joueur);
 	}
 
 	public Plateau getLePlateau() {

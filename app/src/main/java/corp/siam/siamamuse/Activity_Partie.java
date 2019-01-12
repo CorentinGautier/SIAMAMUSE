@@ -27,6 +27,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import corp.siam.siamamuse.MoteurDeJeu.Joueur;
 import corp.siam.siamamuse.MoteurDeJeu.MoteurJeu;
 import corp.siam.siamamuse.MoteurDeJeu.PionInterface;
 import corp.siam.siamamuse.MoteurDeJeu.Plateau;
@@ -83,10 +84,10 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         this.finish();
     }
 
-    public void pageVictoire(){
+    public void pageVictoire(Joueur joueur){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("Winner", "rhinoceros");
+        editor.putString("Winner", joueur.getNom());
         editor.apply();
         Intent intent = new Intent(this, Activity_PageDeVictoire.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent);
