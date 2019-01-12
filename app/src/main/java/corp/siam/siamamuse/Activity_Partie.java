@@ -1,17 +1,16 @@
 package corp.siam.siamamuse;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.media.Image;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,10 +29,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import corp.siam.siamamuse.MoteurDeJeu.Joueur;
 import corp.siam.siamamuse.MoteurDeJeu.MoteurJeu;
 import corp.siam.siamamuse.MoteurDeJeu.PionInterface;
-import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
 
-public class Activity_Partie extends AppCompatActivity  implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener{
+public class Activity_Partie extends AppCompatActivity  implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
 
     public int largeurEcrant,hauteurEcrant;
     public RelativeLayout fondPartie;
@@ -72,6 +70,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         pionSelectionner=null;
     }
 
+
     public void calculTailleEcrant(){
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -79,9 +78,22 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         hauteurEcrant = metrics.heightPixels;
     }
     public void FinDeLaPartie(View view) { //quitter l'activity actuel.
-        Intent intent = new Intent(this, MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
-        startActivity(intent);
-        this.finish();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Etes vous sur de vouloir abandonner le jeux ?")
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class); // l'activité où on est en ce moment et la prochaine activity
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Nom", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        AlertDialog  alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     public void pageVictoire(Joueur joueur){
