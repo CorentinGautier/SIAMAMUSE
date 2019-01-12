@@ -49,6 +49,7 @@ public class MoteurJeu {
 		if(pionRotation==null) {
 			//verifie si un rocher est sortie de la map
 			if (!lePlateau.isFinJeu()) {
+				//passe au joueurSuivant
 				if (!tour) {
 					unTourInter(joueur2);
 					tour = true;
@@ -105,16 +106,28 @@ public class MoteurJeu {
 
 	public void deplacerPionInterf(Pion pion,Orientation orient){
 		boolean res = lePlateau.deplacement(pion,orient);
+		//Permet de verifier si on a pousser un pion si c'est le cas on ne fait pas de rotation
 		if(!res){
 			pionRotation=pion;
 		}else{
 			pionRotation=null;
 		}
-		if (lePlateau.recuperePionDehorsPlateau() != null) {
-			if (joueur1.getNom() == lePlateau.recuperePionDehorsPlateau().getNom()) {
-				joueur1.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
-			} else if (joueur2.getNom() == lePlateau.recuperePionDehorsPlateau().getNom()) {
-				joueur2.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
+		Pion pionRecupere  = lePlateau.recuperePionDehorsPlateau();
+		if (pionRecupere != null) {
+			if (joueur1.getNom() == pionRecupere.getNom()) {
+				joueur1.recuperPionMain(pionRecupere);
+			} else if (joueur2.getNom() == pionRecupere.getNom()) {
+				joueur2.recuperPionMain(pionRecupere);
+			}
+			//Permet de gérer le cas on on choisit nous meme de quitter le plateau
+			if (!tour) {
+				if(joueur1.getNom()==pionRecupere.getNom()){
+					pionRotation=null;
+				}
+			} else {
+				if(joueur2.getNom()==pionRecupere.getNom()){
+					pionRotation=null;
+				}
 			}
 		}
 	}
