@@ -95,7 +95,6 @@ public class PlateauInterface {
             unPion.supprimerBtn();
             unPion.disparitionFleche();
             context.fondPartie.removeView(unPion.getImagePion());
-            //unPion.disparitionFleche();
         }
         for(RocherInterface unRocher : lesRochers){
             context.fondPartie.removeView(unRocher.getImageRocher());
@@ -149,6 +148,4 @@ public class PlateauInterface {
             }
         }
     }
-
 }
-

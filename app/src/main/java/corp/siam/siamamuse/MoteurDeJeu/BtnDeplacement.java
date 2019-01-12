@@ -30,7 +30,7 @@ public class BtnDeplacement extends Btn {
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                context.fondPartie.addView(btnVerre);
+                context.fondPartie.addView(btnImage);
             }
         });
     }

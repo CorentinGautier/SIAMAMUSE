@@ -47,7 +47,6 @@ public class MoteurJeu {
 		//verifie si le joeur peut faire une rotation
 		context.setPionSelectionner(null);
 		if(pionRotation==null) {
-			Log.e("TEST","Je passe au joueur suivant");
 			//verifie si un rocher est sortie de la map
 			if (!lePlateau.isFinJeu()) {
 				//passe au joueurSuivant
@@ -68,7 +67,6 @@ public class MoteurJeu {
 			}
 			return false;
 		}else{
-			Log.e("TEST","Je ne passe pas au joueur suivant");
 			return true;
 		}
 	}
@@ -104,6 +102,7 @@ public class MoteurJeu {
 				joueur2.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
 			}
 		}
+		lePlateau.afficherPlateauVisionDev();
     }
 
 	public void deplacerPionInterf(Pion pion,Orientation orient){

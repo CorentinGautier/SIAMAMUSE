@@ -9,7 +9,7 @@ import corp.siam.siamamuse.R;
 
 public abstract class Btn  {
 
-    protected ImageButton btnVerre;
+    protected ImageButton btnImage;
     protected Activity_Partie context;
     protected MoteurJeu mj;
     protected Pion unPion;
@@ -22,36 +22,33 @@ public abstract class Btn  {
         this.xPla=xPla;
         this.yPla=yPla;
         this.plateauInterface=plateauInterface;
-        btnVerre = new ImageButton(context);
+        btnImage = new ImageButton(context);
         setBoutton(deplacementPossible);
-
     }
 
     public void setBoutton(boolean deplacementPossible){
-        btnVerre = new ImageButton(context);
+        btnImage = new ImageButton(context);
         ViewGroup.LayoutParams paramsPion = new ViewGroup.LayoutParams((int)(PlateauInterface.calc.getTailleCase()),(int)(PlateauInterface.calc.getTailleCase()));
-        btnVerre.setLayoutParams(paramsPion);
-        btnVerre.setX(PlateauInterface.calc.calculeBtnAjoutX(xPla));
-        btnVerre.setY(PlateauInterface.calc.calculeBtnAjoutY(yPla));
+        btnImage.setLayoutParams(paramsPion);
+        btnImage.setX(PlateauInterface.calc.calculeBtnAjoutX(xPla));
+        btnImage.setY(PlateauInterface.calc.calculeBtnAjoutY(yPla));
 
         if(deplacementPossible){
-            btnVerre.setBackgroundResource(R.drawable.carrevert);
-            btnVerre.setOnClickListener(new View.OnClickListener() {
+            btnImage.setBackgroundResource(R.drawable.carrevert);
+            btnImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     actionbtn();
                 }
             });
         }else{
-            btnVerre.setBackgroundResource(R.drawable.carrerouge);
+            btnImage.setBackgroundResource(R.drawable.carrerouge);
         }
     }
-
-
 
     public abstract void actionbtn();
 
     public void effacer(){
-        context.fondPartie.removeView(btnVerre);
+        context.fondPartie.removeView(btnImage);
     }
 }

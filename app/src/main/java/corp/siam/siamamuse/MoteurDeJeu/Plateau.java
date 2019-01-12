@@ -104,6 +104,17 @@ public class Plateau {
 		}
 	}
 
+    public void afficherPlateauVisionDev() {
+        Log.e("TEST","\n\n le plateau :");
+        for (int i = 0; i < taillePlateau + 2; i++) {
+            for (int j = 0; j < taillePlateau + 2; j++) {
+                if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
+                    Log.e("TEST",(plateau[i][j] + " � la position " + i + " " + j));
+                }
+            }
+        }
+    }
+
 	public void ajouterRocher(Rocher unRocher,int x,int y) {
 		plateau[x][y] = unRocher;
 	}
@@ -133,13 +144,45 @@ public class Plateau {
 			    res=false;
 				System.err.println("Vous devez placer votre pion sur le rebord du plateau");
 			}
-			
+
 		}else {
 		    res=false;
 			System.err.println("Vous devez placer votre pion dans le plateau");
 		}
 		return res;
 	}
+
+    public boolean testAjouterPion(Pion unPion, int x, int y) {
+        boolean res;
+        if(x<taillePlateau || y<taillePlateau) {
+            if(x==0) {
+                plateau[x][y+1]=unPion;
+				unPion.setRegard(Orientation.EST);
+                res=testDeplacement(unPion, Orientation.EST);
+				plateau[x][y+1]=null;
+            }else if(x==taillePlateau-1) {
+                plateau[x+2][y+1]=unPion;
+				unPion.setRegard(Orientation.OUEST);
+                res=testDeplacement(unPion, Orientation.OUEST);
+				plateau[x+2][y+1]=null;
+            }else if(y==0) {
+                plateau[x+1][y]=unPion;
+				unPion.setRegard(Orientation.NORD);
+                res=testDeplacement(unPion, Orientation.NORD);
+				plateau[x+1][y]=null;
+            }else if(y==taillePlateau-1) {
+                plateau[x+1][y+2]=unPion;
+				unPion.setRegard(Orientation.SUD);
+                res=testDeplacement(unPion, Orientation.SUD);
+				plateau[x+1][y+2]=null;
+            }else {
+                res=false;
+            }
+        }else {
+            res=false;
+        }
+        return res;
+    }
 	
 	//Fonction qui sert pour le d�placement d'un pion en r�cup�rant le pion sur le plateau si il existe
 	public Pion recuperePion(int x,int y) {
@@ -167,7 +210,7 @@ public class Plateau {
 		remplissageOut();
 	}
 
-	// res[0] int sert fonction pousser, res[1]=deplacemnt est possible, res[2] boolean qui dit si on vas devoir pousser
+	// return si le deplacement est possible ou non
 
 	public boolean testDeplacement(Pion unPion, Orientation directionDeplacement){
 		pionARecupere = null;
