@@ -210,7 +210,6 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
 
    public void timerFin(){
         mj.setPionRotation(null);
-        mj.tourSuivant();
         plateauInterface.convertionMatriceAffichage();
        //appel onResume pour relancer le thread avec le timer
     }
