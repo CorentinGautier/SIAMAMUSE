@@ -59,6 +59,7 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
         hauteurEcrant = metrics.heightPixels;
     }
 
+
     public void dispositionInterface(){
         //CoordX
         affichageVictoire.setX((int)(largeurEcrant*0.1));
