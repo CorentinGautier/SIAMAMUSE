@@ -59,7 +59,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
 
     public void dispositionInterface(){
         //CoordX
-        textTitre.setX((int)(largeurEcrant*0.3));
+        textTitre.setX((int)(largeurEcrant*0.1));
         btnRetour.setX((int)(largeurEcrant*0.05));
         btnPlay.setX((int)(largeurEcrant*0.75));
         textTimer.setX((int)(largeurEcrant*0.15));
@@ -70,7 +70,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
         btnRetour.setY((int)(hauteurEcrant*0.88));
         btnPlay.setY((int)(hauteurEcrant*0.88));
         textNbrManche.setY((int)(hauteurEcrant*0.30));
-        textTimer.setY((int)(hauteurEcrant*0.45));
+        textTimer.setY((int)(hauteurEcrant*0.47));
 
         //Redimensionnement
         ViewGroup.LayoutParams paramsButtonPlay = btnPlay.getLayoutParams();
@@ -85,7 +85,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
         ViewGroup.LayoutParams paramsTextTimer = textTimer.getLayoutParams();
         paramsTextTimer.width = (int)(largeurEcrant*0.70);
         ViewGroup.LayoutParams paramsTextTitre = textTitre.getLayoutParams();
-        paramsTextTitre.width = (int)(largeurEcrant*0.4);
+        paramsTextTitre.width = (int)(largeurEcrant*0.8);
         paramsTextTitre.height = (int)(hauteurEcrant*0.30);
 
         textNbrManche.setText("Nombre de manche gagnant : "+nbMancheGagnante);
@@ -97,12 +97,12 @@ public class Activity_OptionJeu extends AppCompatActivity {
     public void btnNbManche(){
         for(int i=1;i<5;i++){
             Button btnNbManche = new Button(this);
-            btnNbManche.setY((int)(hauteurEcrant*0.34));
-            btnNbManche.setX((int)(largeurEcrant*0.15+(i-1)*largeurEcrant*0.1));
+            btnNbManche.setY((int)(hauteurEcrant*0.36));
+            btnNbManche.setX((int)(largeurEcrant*0.15+(i-1)*largeurEcrant*0.12));
             btnNbManche.setText(i+"");
             btnNbManche.setTextColor(Color.WHITE);
             btnNbManche.setBackgroundResource(R.drawable.coutonbouton);
-            ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(largeurEcrant*0.07),(int)(largeurEcrant*0.07));
+            ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(largeurEcrant*0.1),(int)(largeurEcrant*0.1));
             btnNbManche.setLayoutParams(paramsBtn);
             final int finalI = i;
             btnNbManche.setOnClickListener(new View.OnClickListener() {
@@ -126,9 +126,9 @@ public class Activity_OptionJeu extends AppCompatActivity {
         for(int i=0;i<4;i++){
             if(i==0){
                 btntimeroff.setBackgroundResource(R.drawable.btntimeroff);
-                btntimeroff.setY((int)(hauteurEcrant*0.5));
-                btntimeroff.setX((int)(largeurEcrant*0.15+(i)*largeurEcrant*0.15));
-                ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(largeurEcrant*0.12),(int)(largeurEcrant*0.07));
+                btntimeroff.setY((int)(hauteurEcrant*0.53));
+                btntimeroff.setX((int)(largeurEcrant*0.15+(i)*largeurEcrant*0.17));
+                ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(largeurEcrant*0.15),(int)(largeurEcrant*0.1));
                 btntimeroff.setLayoutParams(paramsBtn);
                 btntimeroff.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -139,12 +139,13 @@ public class Activity_OptionJeu extends AppCompatActivity {
                 this.fond.addView(btntimeroff);
             }else {
                 Button btnTimer = new Button(this);
-                btnTimer.setY((int) (hauteurEcrant * 0.5));
-                btnTimer.setX((int) (largeurEcrant * 0.15 + (i) * largeurEcrant * 0.15));
+                btnTimer.setY((int) (hauteurEcrant * 0.53));
+                btnTimer.setX((int) (largeurEcrant * 0.15 + (i) * largeurEcrant * 0.17));
                 btnTimer.setText(i * 10 + "s");
+                btnTimer.setTextSize(20);
                 btnTimer.setTextColor(Color.WHITE);
                 btnTimer.setBackgroundResource(R.drawable.coutonbouton);
-                ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int) (largeurEcrant * 0.12), (int) (largeurEcrant * 0.07));
+                ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int) (largeurEcrant * 0.15), (int) (largeurEcrant * 0.1));
                 btnTimer.setLayoutParams(paramsBtn);
                 final int finalI = i * 10;
                 btnTimer.setOnClickListener(new View.OnClickListener() {
