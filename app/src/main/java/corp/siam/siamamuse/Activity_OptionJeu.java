@@ -142,7 +142,6 @@ public class Activity_OptionJeu extends AppCompatActivity {
                 btnTimer.setY((int) (hauteurEcrant * 0.53));
                 btnTimer.setX((int) (largeurEcrant * 0.15 + (i) * largeurEcrant * 0.17));
                 btnTimer.setText(i * 10 + "s");
-                btnTimer.setTextSize(20);
                 btnTimer.setTextColor(Color.WHITE);
                 btnTimer.setBackgroundResource(R.drawable.coutonbouton);
                 ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int) (largeurEcrant * 0.15), (int) (largeurEcrant * 0.1));

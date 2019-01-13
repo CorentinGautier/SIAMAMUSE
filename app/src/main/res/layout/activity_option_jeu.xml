@@ -47,14 +47,14 @@
         android:layout_height="40dp"
         android:text="Nombre de manche gagnant :"
         android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
     <TextView
         android:id="@+id/textTimer"
         android:layout_width="247dp"
         android:layout_height="40dp"
         android:text="Temps timer:"
         android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
 
 
