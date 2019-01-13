@@ -40,8 +40,6 @@ public class SlideAdapterTuto extends PagerAdapter {
             "Choix des déplacements possibles",
             "Indication au long de la partie",
             "Timer",
-
-
     };
 
     // liste de descriptions
@@ -64,7 +62,6 @@ public class SlideAdapterTuto extends PagerAdapter {
             Color.rgb(255, 215, 51),
             Color.rgb(4, 42, 167),
             Color.rgb(150, 4, 200),
-
     };
 
 
@@ -86,13 +83,10 @@ public class SlideAdapterTuto extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) { //affiche le tuto avec des slides
         inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.slide, container, false);
-
-
         LinearLayout layoutslide = (LinearLayout) view.findViewById(R.id.slidelinearlayout);
         ImageView imgslide = (ImageView) view.findViewById(R.id.slideimg);
         TextView txttitle = (TextView) view.findViewById(R.id.txttitle);
         TextView description = (TextView) view.findViewById(R.id.txtdescription);
-
         layoutslide.setBackgroundColor(lst_backgroundcolor[position]);
         imgslide.setImageResource(lst_images[position]);
         txttitle.setText(lst_title[position]);
