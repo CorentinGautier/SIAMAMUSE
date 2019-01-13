@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgndconvertcmage"
+    tools:context=".Credit">
+
+
+    <Button
+        android:id="@+id/buttonRetour"
+        android:layout_width="104dp"
+        android:layout_height="54dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="RetourMenu"
+        android:text="Retour"
+        android:textColor="@android:color/white"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/titreCredit"
+        android:layout_width="260dp"
+        android:layout_height="116dp"
+        android:fontFamily="casual"
+        android:text="Crédits"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        tools:text="Credit" />
+
+    <ImageView
+        android:id="@+id/imageLogoIUT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logoiut"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textMembre"
+        android:layout_width="247dp"
+        android:layout_height="40dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textProfesseur"
+        android:layout_width="247dp"
+        android:layout_height="40dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+</android.support.constraint.ConstraintLayout>
