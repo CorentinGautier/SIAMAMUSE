@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
+import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
 
 public class Activity_OptionJeu extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class Activity_OptionJeu extends AppCompatActivity {
     private TextView textTimer;
     private Button btnRetour;
     private Button btnPlay;
+    private Button btnRegle;
+    private Button btnTutoriel;
     private ConstraintLayout fond;
     private int nbMancheGagnante,tempsTimer;
 
@@ -43,6 +47,8 @@ public class Activity_OptionJeu extends AppCompatActivity {
         textTimer = (TextView) findViewById(R.id.textTimer);
         btnRetour = (Button) findViewById(R.id.buttonRetourOption);
         btnPlay = (Button) findViewById(R.id.buttonPlay);
+        btnRegle = (Button) findViewById(R.id.buttonRegle);
+        btnTutoriel = (Button) findViewById(R.id.buttonTuto);
         fond = (ConstraintLayout) findViewById(R.id.constraintOptionPartie);
         nbMancheGagnante=1;
         tempsTimer=20;
@@ -64,6 +70,8 @@ public class Activity_OptionJeu extends AppCompatActivity {
         btnPlay.setX((int)(largeurEcrant*0.75));
         textTimer.setX((int)(largeurEcrant*0.07));
         textNbrManche.setX((int)(largeurEcrant*0.07));
+        btnTutoriel.setX((int)(largeurEcrant*0.07));
+        btnRegle.setX((int)(largeurEcrant*0.39));
 
         //CoordY
         textTitre.setY((int)(hauteurEcrant*0.1));
@@ -71,6 +79,8 @@ public class Activity_OptionJeu extends AppCompatActivity {
         btnPlay.setY((int)(hauteurEcrant*0.88));
         textNbrManche.setY((int)(hauteurEcrant*0.30));
         textTimer.setY((int)(hauteurEcrant*0.47));
+        btnTutoriel.setY((int)(hauteurEcrant*0.68));
+        btnRegle.setY((int)(hauteurEcrant*0.68));
 
         //Redimensionnement
         ViewGroup.LayoutParams paramsButtonPlay = btnPlay.getLayoutParams();
@@ -79,6 +89,12 @@ public class Activity_OptionJeu extends AppCompatActivity {
         ViewGroup.LayoutParams paramsButtonRetour = btnRetour.getLayoutParams();
         paramsButtonRetour.width = (int)(largeurEcrant*0.2);
         paramsButtonRetour.height = (int)(hauteurEcrant*0.07);
+        ViewGroup.LayoutParams paramsButtonRegle = btnRegle.getLayoutParams();
+        paramsButtonRegle.width = (int)(largeurEcrant*0.25);
+        paramsButtonRegle.height = (int)(hauteurEcrant*0.07);
+        ViewGroup.LayoutParams paramsButtonTuto = btnTutoriel.getLayoutParams();
+        paramsButtonTuto.width = (int)(largeurEcrant*0.25);
+        paramsButtonTuto.height = (int)(hauteurEcrant*0.07);
 
         ViewGroup.LayoutParams paramsTextNbManche = textNbrManche.getLayoutParams();
         paramsTextNbManche.width = (int)(largeurEcrant);
@@ -167,6 +183,18 @@ public class Activity_OptionJeu extends AppCompatActivity {
         }
         this.fond.removeView(textTimer);
         this.fond.addView(textTimer);
+    }
+
+    public void allerAuTuto(View v){
+        Intent intent = new Intent(this, Activity_Tutoriel.class); // l'activité où on est vers la prochaine
+        startActivity(intent);
+        this.finish();
+    }
+    public void allerAuRegle(View v){
+        String url = "https://drive.google.com/open?id=1YCtlhaxEdgUYlvHKFrAvq70c7j-LzL5j";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     public void resetNbVictoire(){

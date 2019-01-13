@@ -9,75 +9,51 @@
     tools:context=".Activity_PageDeVictoire">
 
     <Button
-        android:id="@+id/buttonOption"
+        android:id="@+id/buttonMenuFin"
         android:layout_width="120dp"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/coutonbouton"
         android:onClick="QuitterPageDeVictoire"
-        android:text="Quitter"
+        android:text="Menu"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonRevanche"
         android:layout_width="120dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/coutonbouton"
         android:onClick="Revanche"
         android:text="Revanche"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/affichageVictoire"
         android:layout_width="244dp"
         android:layout_height="129dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/annonceVictoireElephant"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        android:textSize="36sp"/>
 
     <TextView
         android:id="@+id/nbVictoireElep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="344dp"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:text="@string/nbVictoireElephant"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/nbVictoireElephant"/>
 
     <TextView
         android:id="@+id/nbVictoireRhino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="44dp"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:text="@string/nbVictoireRhinoceros"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nbVictoireElep" />
+        android:text="@string/nbVictoireRhinoceros" />
 
 </android.support.constraint.ConstraintLayout>

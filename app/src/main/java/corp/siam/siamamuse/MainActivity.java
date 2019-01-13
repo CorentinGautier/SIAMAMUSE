@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         this.finish() ;
     }
 
-    public void ActivityOption(View v){
-        Intent intent = new Intent(this, Activity_Option.class); // l'activité où on est en ce moment et la prochaine activity
-        startActivity(intent);
-        this.finish();
-    }
 
     public void ActivityOptionJeu(View viewview){
         Intent intent2 = new Intent(this, Activity_OptionJeu.class); // l'activité où on est en ce moment et la prochaine activity

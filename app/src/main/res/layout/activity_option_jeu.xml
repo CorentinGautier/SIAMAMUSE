@@ -41,6 +41,25 @@
         android:textColor="@android:color/white"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/buttonTuto"
+        android:layout_width="104dp"
+        android:layout_height="54dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="allerAuTuto"
+        android:text="Tutoriel"
+        android:textColor="@android:color/white"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/buttonRegle"
+        android:layout_width="104dp"
+        android:layout_height="54dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="allerAuRegle"
+        android:text="Régle"
+        android:textColor="@android:color/white"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/textNbManche"
         android:layout_width="247dp"

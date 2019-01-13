@@ -26,10 +26,6 @@
         android:textSize="14sp"
         tools:ignore="MissingConstraints"
         tools:text="Jouer" />
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="352dp"-->
-        <!--android:layout_marginEnd="8dp"-->
 
     <Button
         android:id="@+id/buttonEditplateau"
@@ -41,10 +37,6 @@
         android:textColor="@android:color/white"
         android:textSize="14sp"
         tools:ignore="MissingConstraints" />
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="32dp"-->
-
 
     <Button
         android:id="@+id/buttonQuitter"
@@ -55,23 +47,5 @@
         android:text="Quitter le jeu"
         android:textColor="@android:color/white"
         tools:ignore="MissingConstraints" />
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-
-    <Button
-        android:id="@+id/buttonOption"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="28dp"
-        android:background="@drawable/traioption"
-        android:onClick="ActivityOption"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="33dp" />
-
 
 </android.support.constraint.ConstraintLayout>
