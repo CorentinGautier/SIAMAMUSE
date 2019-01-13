@@ -23,11 +23,11 @@ public class SlideAdapterTuto extends PagerAdapter {
     // liste d'images
     public int[] lst_images = {
             R.drawable.ajout,
-            R.drawable.ajout,
-            R.drawable.ajout,
-         //   R.drawable.,
-            R.drawable.ajout,
-          //s  R.drawable.timer,
+            R.drawable.deplacement,
+            R.drawable.rotation,
+            R.drawable.deplaceemntous,
+            R.drawable.caserouge,
+           R.drawable.timer,
 
 
 
