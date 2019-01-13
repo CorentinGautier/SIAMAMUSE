@@ -32,29 +32,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="308dp"
         android:textColor="@android:color/white"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/DeplacementPossible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRetour"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />;
-
-    <CheckBox
-        android:id="@+id/DeplacementPossible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="216dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Afficher les déplacements possibles: "
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonRetour"
@@ -102,9 +86,22 @@
         android:text="TUTORIEL"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonRetour"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRegle"
         app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonRegle"
+        android:layout_width="116dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/coutonbouton"
+        android:onClick="allerAuRegle"
+        android:text="REGLES"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRetour"
         tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

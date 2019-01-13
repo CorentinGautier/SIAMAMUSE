@@ -4,7 +4,7 @@
 
 -> Cette partie concerne le developement android du jeu avec l'ajout du moteur de jeu réalisé via Eclipse 
 
--> Projet réalisé entièrement sur Android Studio par l'ensemble du groupe sauf Corentin milcent au 3/01/2019 
+-> Projet réalisé entièrement sur Android Studio par l'ensemble du groupe 
 
 -> Notre projet est une adaptaion mobile du jeu Siam.
 
