@@ -22,6 +22,7 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // liste d'images
     public int[] lst_images = {
+            R.drawable.swipe,
             R.drawable.ajout,
             R.drawable.deplacement,
             R.drawable.rotation,
@@ -35,6 +36,7 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // liste de titre
     public String[] lst_title = {
+            "Bienvenue sur le tutoriel",
             "Ajout d'un pion",
             "Case verte",
             "Positionnement d'un pion",
@@ -47,17 +49,18 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // liste de descriptions
     public String[] lst_description = {
+            "Swiper vers le droite ou la gauche pour voir le tutoriel",
             "Pour pouvoir ajouter un pion, on doit tout d’abord cliquer sur le pion que l’on veut placer dans la liste de pion sur l’écran.",
             "Ensuite alors apparaît sur le plateau des cases vertes où l'on vous indique dans quel endroit placer votre pion",
             "Vous devez maiantenant choisir l’orientation de votre pion pour finaliser l’action",
-            "Après que chacun des joueurs aient ajoutés un pion dans le plateau on obtient ce plateau par exemple. Lorsque l’on veut déplacer un pion du plateau, deux choix s’offre à nous soit on passe directement au changement de la rotation et donc on ne déplace pas le pion ; soit on déplace le pion et choisit sa nouvelle orientation.",
-            "Vous ne pouvz pas déplacer votre pion sur les zones rouges",
+            "Vous pouvez faire un double tap ou alors choisir le direction en cliquant sur les flèches rouges lorsque vous avez soit cliquer sur le bouton rotation ou alors fait le deplacement du pion choisit",
+            "Après que chacun des joueurs aient ajoutés un pion dans le plateau on obtient ce plateau par exemple. Lorsque l’on veut déplacer un pion du plateau",
             "Lorsque le timer est à zéro on passe son tour au joueur suivant. Il peut être désactivé dans les options de début de partie comme dit plus haut.",
-
     };
 
     // list des couleurs en background
     public int[] lst_backgroundcolor = {
+            Color.rgb(28, 100, 30),
             Color.rgb(55, 55, 55),
             Color.rgb(239, 85, 85),
             Color.rgb(110, 49, 89),
