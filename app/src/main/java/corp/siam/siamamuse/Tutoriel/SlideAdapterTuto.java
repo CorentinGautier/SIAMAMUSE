@@ -27,7 +27,7 @@ public class SlideAdapterTuto extends PagerAdapter {
             R.drawable.rotation,
             R.drawable.deplaceemntous,
             R.drawable.caserouge,
-           R.drawable.timer,
+            R.drawable.timer,
 
 
 
@@ -38,7 +38,6 @@ public class SlideAdapterTuto extends PagerAdapter {
             "Ajout d'un pion",
             "Case verte",
             "Positionnement d'un pion",
-            "Les flèche rouge d'orientation",
             "Choix des déplacements possibles",
             "Zones rouges",
             "Timer",
