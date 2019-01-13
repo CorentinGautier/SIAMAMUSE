@@ -51,10 +51,8 @@ public class MoteurJeu {
 			if (!lePlateau.isFinJeu()) {
 				//passe au joueurSuivant
 				if (!tour) {
-					unTourInter(joueur2);
 					tour = true;
 				} else {
-					unTourInter(joueur1);
 					tour = false;
 				}
 			} else {
@@ -85,9 +83,6 @@ public class MoteurJeu {
 		}
 	}
 
-	public void unTourInter(Joueur joueur){
-		Toast.makeText(context.getApplicationContext(),"tour de "+joueur.getNom(),Toast.LENGTH_LONG).show();
-	}
 
 //factoriser la fonction avec celle des deplacement
     public void ajouterPionPlateauInter(Joueur unJoueur,Pion unPion, int x,int y) {
