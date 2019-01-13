@@ -15,66 +15,51 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/ActivityJeu"
-        android:layout_width="154dp"
-        android:layout_height="71dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="352dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/buttonJouer"
+        android:layout_width="154px"
+        android:layout_height="71px"
         android:background="@drawable/coutonbouton"
         android:onClick="ActivityOptionJeu"
         android:text="JOUER"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorAccent"
         android:textSize="14sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:text="Jouer" />
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="352dp"-->
+        <!--android:layout_marginEnd="8dp"-->
 
     <Button
         android:id="@+id/buttonEditplateau"
-        android:layout_width="156dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="156px"
+        android:layout_height="75px"
         android:background="@drawable/coutonbouton"
         android:onClick="allerEditPlateau"
         android:text="Editer un plateau"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/ActivityJeu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginBottom="32dp"-->
 
 
     <Button
         android:id="@+id/buttonQuitter"
-        android:layout_width="154dp"
-        android:layout_height="71dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="154px"
+        android:layout_height="71px"
         android:background="@drawable/coutonbouton"
         android:onClick="QuitterLeJeu"
         android:text="Quitter le jeu"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ActivityJeu"
-        app:layout_constraintVertical_bias="0.21"
         tools:ignore="MissingConstraints" />
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
 
     <Button
         android:id="@+id/buttonOption"
