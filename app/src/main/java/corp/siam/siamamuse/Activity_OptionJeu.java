@@ -62,8 +62,8 @@ public class Activity_OptionJeu extends AppCompatActivity {
         textTitre.setX((int)(largeurEcrant*0.1));
         btnRetour.setX((int)(largeurEcrant*0.05));
         btnPlay.setX((int)(largeurEcrant*0.75));
-        textTimer.setX((int)(largeurEcrant*0.7));
-        textNbrManche.setX((int)(largeurEcrant*0.7));
+        textTimer.setX((int)(largeurEcrant*0.07));
+        textNbrManche.setX((int)(largeurEcrant*0.07));
 
         //CoordY
         textTitre.setY((int)(hauteurEcrant*0.1));
