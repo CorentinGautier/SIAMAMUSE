@@ -2,12 +2,15 @@ package corp.siam.siamamuse;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
 import java.util.ArrayList;
+
 import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
 
 public class Activity_Option extends AppCompatActivity {
@@ -42,6 +45,12 @@ public class Activity_Option extends AppCompatActivity {
         startActivity(intent);
         this.finish();
          }
+    public void allerAuRegle(View v){
+        String url = "https://drive.google.com/open?id=1YCtlhaxEdgUYlvHKFrAvq70c7j-LzL5j";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
     public void RetourMenu(View view) { //quitter l'activity actuel.
         Intent intent = new Intent(this, MainActivity.class); // l'activité où on est vers la prochaine
         startActivity(intent);
