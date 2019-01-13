@@ -28,6 +28,19 @@
         tools:text="Jouer" />
 
     <Button
+        android:id="@+id/buttonCredit"
+        android:layout_width="154px"
+        android:layout_height="71px"
+        android:background="@drawable/coutonbouton"
+        android:onClick="ActivityCredit"
+        android:text="CREDITS"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        tools:ignore="MissingConstraints"
+        tools:text="Credit" />
+
+    <Button
         android:id="@+id/buttonEditplateau"
         android:layout_width="156px"
         android:layout_height="75px"

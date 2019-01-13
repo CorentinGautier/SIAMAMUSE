@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
     private Button btnQuitter;
     private Button btnEditerPlateau;
     private Button btnTutoriel;
+    private Button btnCredit;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         btnEditerPlateau = (Button) findViewById(R.id.buttonEditplateau);
         btnJouer = (Button) findViewById(R.id.buttonJouer);
         btnQuitter = (Button) findViewById(R.id.buttonQuitter);
+        btnCredit = (Button) findViewById(R.id.buttonCredit);
+
         calculTailleEcrant();
         dispositionInterface();
     }
@@ -36,10 +39,12 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         btnJouer.setX((int)(largeurEcrant*0.35));
         btnEditerPlateau.setX((int)(largeurEcrant*0.35));
         btnQuitter.setX((int)(largeurEcrant*0.35));
+        btnCredit.setX((int)(largeurEcrant*0.70));
         //CoordY
         btnJouer.setY((int)(hauteurEcrant*0.40));
         btnEditerPlateau.setY((int)(hauteurEcrant*0.55));
         btnQuitter.setY((int)(hauteurEcrant*0.70));
+        btnCredit.setY((int)(hauteurEcrant*0.85));
 
         //Redimmensionnement
         ViewGroup.LayoutParams paramsButtonJouer = btnJouer.getLayoutParams();
@@ -51,6 +56,9 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         ViewGroup.LayoutParams paramsButtonEditer = btnEditerPlateau.getLayoutParams();
         paramsButtonEditer.width = (int)(largeurEcrant*0.3);
         paramsButtonEditer.height = (int)(hauteurEcrant*0.1);
+        ViewGroup.LayoutParams paramsButtonCredit = btnCredit.getLayoutParams();
+        paramsButtonCredit.width = (int)(largeurEcrant*0.3);
+        paramsButtonCredit.height = (int)(hauteurEcrant*0.1);
     }
 
     public void calculTailleEcrant(){
@@ -66,10 +74,15 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         this.finish() ;
     }
 
-
     public void ActivityOptionJeu(View viewview){
         Intent intent2 = new Intent(this, Activity_OptionJeu.class); // l'activité où on est en ce moment et la prochaine activity
         startActivity(intent2);
+        this.finish();
+    }
+
+    public void ActivityCredit(View viewview){
+        Intent intent3 = new Intent(this, Credit.class); // l'activité où on est en ce moment et la prochaine activity
+        startActivity(intent3);
         this.finish();
     }
 

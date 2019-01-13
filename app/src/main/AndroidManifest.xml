@@ -25,6 +25,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Tutoriel.Activity_Tutoriel"
             android:screenOrientation="portrait"  />
+        <activity android:name=".Credit"
+            android:screenOrientation="portrait"  />
         <activity android:name=".Plateau.Activity_CreationPlateau"
             android:screenOrientation="portrait" ></activity>
     </application>
