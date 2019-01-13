@@ -102,6 +102,8 @@ public class Plateau {
 			caseAjout[taillePlateau-1][i+1]=1;
 			caseAjout[i][taillePlateau-1]=1;
 		}
+		caseAjout[2][0]=0;
+        caseAjout[2][4]=0;
 	}
 
     public void afficherPlateauVisionDev() {

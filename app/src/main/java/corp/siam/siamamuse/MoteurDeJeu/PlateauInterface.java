@@ -1,12 +1,5 @@
 package corp.siam.siamamuse.MoteurDeJeu;
 
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -15,7 +8,6 @@ import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 
 import corp.siam.siamamuse.Activity_Partie;
-import corp.siam.siamamuse.Plateau.Activity_CreationPlateau;
 
 public class PlateauInterface {
 
@@ -31,7 +23,8 @@ public class PlateauInterface {
     public ArrayList<PionMain> lesPionsMain = new ArrayList<>();
 
     //boolean est egale true si la partie commence
-    private boolean first;
+    private boolean bloqueTourSuivant;
+    private boolean rotationDeplacement;
 
 
     public PlateauInterface(Activity_Partie context,MoteurJeu moteurJeu) throws IOException, SAXException, ParserConfigurationException {
@@ -39,13 +32,13 @@ public class PlateauInterface {
         this.context=context;
         mj = moteurJeu;
         creationbtnAjout();
-        first=true;
+        bloqueTourSuivant =true;
     }
 
      public void convertionMatriceAffichage(){
         boolean faireRotation = false;
-        if(first){
-            first=false;
+        if(bloqueTourSuivant){
+            bloqueTourSuivant =false;
         }else{
             faireRotation = mj.tourSuivant();
             //relancer le chrono
@@ -64,7 +57,11 @@ public class PlateauInterface {
                     Pion pion= (Pion) plateau[i][j];
                     if(faireRotation){
                         if(plateau[i][j].equals(mj.getPionRotation())){
-                            lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),2));
+                            if(rotationDeplacement) {
+                                lesPions.add(new PionInterface(pion, i - 1, j - 1, context, mj, this, mj.getTour(), 2));
+                            }else{
+                                lesPions.add(new PionInterface(pion, i - 1, j - 1, context, mj, this, mj.getTour(), 3));
+                            }
                         }else{
                             lesPions.add(new PionInterface(pion,i-1,j-1,context,mj,this,mj.getTour(),0));
                         }
@@ -147,5 +144,13 @@ public class PlateauInterface {
                 unPion.supprimerBtn();
             }
         }
+    }
+
+    public void setBloqueTourSuivant(boolean bloqueTourSuivant) {
+        this.bloqueTourSuivant = bloqueTourSuivant;
+    }
+
+    public void setRotationDeplacement(boolean rotationDeplacement) {
+        this.rotationDeplacement = rotationDeplacement;
     }
 }

@@ -87,7 +87,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
                         finish();
                     }
                 })
-                .setNegativeButton("Nom", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Non", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
@@ -109,8 +109,8 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     public void creationPlateau() throws IOException, SAXException, ParserConfigurationException {
         mj = new MoteurJeu(5,this);
         plateauInterface= new PlateauInterface(this,mj);
-        plateauInterface.convertionMatriceAffichage();
         affichageDesCases();
+        plateauInterface.convertionMatriceAffichage();
     }
 
     public PionInterface getPionSelectionner() {
@@ -198,8 +198,12 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     //passer à la rotation
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        if(pionSelectionner!=null){
-            pionSelectionner.passerALaRotation();
+        if(mj.getPionRotation()==null) {
+            if (pionSelectionner != null) {
+                pionSelectionner.passerALaRotation();
+            }
+        }else{
+            pionSelectionner.passerAuDeplacement();
         }
         return false;
     }

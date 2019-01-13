@@ -26,7 +26,7 @@ public class MoteurJeu {
 		joueur2 = new Joueur("rhinoceros");
 		fin = false;
 		// ajouter al�atoire
-		tour = true;
+		tour = false;
 		pionRotation=null;
 	}
 

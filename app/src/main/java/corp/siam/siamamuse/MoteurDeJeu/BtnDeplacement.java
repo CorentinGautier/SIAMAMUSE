@@ -38,6 +38,7 @@ public class BtnDeplacement extends Btn {
     @Override
     public void actionbtn() {
         if(deplacementPossible) {
+            plateauInterface.setRotationDeplacement(true);
             this.mj.deplacerPionInterf(this.unPion, orient);
             plateauInterface.suppressionJetons();
             plateauInterface.convertionMatriceAffichage();

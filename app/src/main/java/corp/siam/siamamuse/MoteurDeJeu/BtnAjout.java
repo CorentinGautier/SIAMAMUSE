@@ -22,6 +22,7 @@ public class BtnAjout extends Btn {
     public void actionbtn(){
         Log.e("TEST","Je m'ajoute ");
         mj.ajouterPionPlateauInter(unJoueur,unPion,xPla,yPla);
+        plateauInterface.setRotationDeplacement(true);
         plateauInterface.convertionMatriceAffichage();
         //ajouter un message quand le deplacement est impossible
     }
