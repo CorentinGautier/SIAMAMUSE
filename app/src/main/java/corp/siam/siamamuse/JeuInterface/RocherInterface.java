@@ -1,11 +1,10 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+package corp.siam.siamamuse.JeuInterface;
 
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.MoteurDeJeu.Rocher;
 
 public class RocherInterface {
     private Activity_Partie context;

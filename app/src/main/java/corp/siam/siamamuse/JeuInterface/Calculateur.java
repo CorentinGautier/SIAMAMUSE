@@ -1,4 +1,4 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+package corp.siam.siamamuse.JeuInterface;
 
 public class Calculateur {
 

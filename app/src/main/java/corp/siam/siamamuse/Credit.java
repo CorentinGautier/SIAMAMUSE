@@ -36,7 +36,7 @@ public class Credit extends AppCompatActivity {
 
     public void dispositionInterface(){
         //coordX
-        txtTitreActivity.setX((int)(largeurEcrant*0.15));
+        txtTitreActivity.setX((int)(largeurEcrant*0.1));
         imgLogoIUT.setX((int)(largeurEcrant*0.08));
         txtMembreGroupe.setX((int)(largeurEcrant*0.1));
         btnRetour.setX((int)(largeurEcrant*0.05));

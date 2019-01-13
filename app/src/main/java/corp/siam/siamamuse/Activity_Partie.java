@@ -29,9 +29,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javax.xml.parsers.ParserConfigurationException;
 
 import corp.siam.siamamuse.MoteurDeJeu.Joueur;
-import corp.siam.siamamuse.MoteurDeJeu.MoteurJeu;
-import corp.siam.siamamuse.MoteurDeJeu.PionInterface;
-import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
+import corp.siam.siamamuse.JeuInterface.MoteurJeu;
+import corp.siam.siamamuse.JeuInterface.PionInterface;
+import corp.siam.siamamuse.JeuInterface.PlateauInterface;
 
 public class Activity_Partie extends AppCompatActivity  implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
 

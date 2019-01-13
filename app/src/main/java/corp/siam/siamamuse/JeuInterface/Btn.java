@@ -1,10 +1,11 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+package corp.siam.siamamuse.JeuInterface;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.MoteurDeJeu.Pion;
 import corp.siam.siamamuse.R;
 
 public abstract class Btn  {

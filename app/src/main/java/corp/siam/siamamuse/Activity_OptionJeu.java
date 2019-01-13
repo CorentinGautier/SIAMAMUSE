@@ -1,6 +1,5 @@
 package corp.siam.siamamuse;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -10,19 +9,12 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import corp.siam.siamamuse.MoteurDeJeu.PlateauInterface;
 import corp.siam.siamamuse.Tutoriel.Activity_Tutoriel;
 
 public class Activity_OptionJeu extends AppCompatActivity {

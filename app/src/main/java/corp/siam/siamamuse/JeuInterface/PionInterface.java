@@ -1,9 +1,6 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+package corp.siam.siamamuse.JeuInterface;
 
 import android.graphics.Color;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,6 +9,9 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.MoteurDeJeu.Joueur;
+import corp.siam.siamamuse.MoteurDeJeu.Orientation;
+import corp.siam.siamamuse.MoteurDeJeu.Pion;
 import corp.siam.siamamuse.R;
 
 import static corp.siam.siamamuse.MoteurDeJeu.Orientation.EST;
@@ -34,7 +34,7 @@ public class PionInterface {
     private int etat;
 //tourJoueur permet de verifier le joueur a qui c'est le tour
     //etat :0 désactivé, 1 activé deplacement , 2 activé rotation, 3 activé rotation avec possibilité de retour
-    public PionInterface(Pion unPion, int x, int y, final Activity_Partie context,MoteurJeu mj,PlateauInterface plateauInterface,Joueur tourJoueur,int etat){
+    public PionInterface(Pion unPion, int x, int y, final Activity_Partie context, MoteurJeu mj, PlateauInterface plateauInterface, Joueur tourJoueur, int etat){
         this.context=context;
         this.unPion=unPion;
         flecheAficher=false;

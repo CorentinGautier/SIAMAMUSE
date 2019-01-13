@@ -479,4 +479,8 @@ public class Plateau {
 		}
 		return coordonne;
 	}
+
+	public int getTaillePlateau() {
+		return taillePlateau;
+	}
 }

@@ -1,9 +1,9 @@
-package corp.siam.siamamuse.MoteurDeJeu;
-
-import android.util.Log;
-import android.widget.ImageButton;
+package corp.siam.siamamuse.JeuInterface;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.MoteurDeJeu.Joueur;
+import corp.siam.siamamuse.MoteurDeJeu.Orientation;
+import corp.siam.siamamuse.MoteurDeJeu.Pion;
 
 public class BtnDeplacement extends Btn {
    // private ImageButton btnVerre;

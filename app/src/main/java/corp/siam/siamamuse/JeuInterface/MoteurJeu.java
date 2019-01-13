@@ -1,12 +1,14 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+package corp.siam.siamamuse.JeuInterface;
 
-import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.MoteurDeJeu.Joueur;
+import corp.siam.siamamuse.MoteurDeJeu.Orientation;
+import corp.siam.siamamuse.MoteurDeJeu.Pion;
+import corp.siam.siamamuse.MoteurDeJeu.Plateau;
 
 public class MoteurJeu {
 

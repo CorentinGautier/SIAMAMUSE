@@ -1,4 +1,4 @@
-package corp.siam.siamamuse.MoteurDeJeu;
+package corp.siam.siamamuse.JeuInterface;
 
 import org.xml.sax.SAXException;
 
@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 
 import corp.siam.siamamuse.Activity_Partie;
+import corp.siam.siamamuse.MoteurDeJeu.Jeton;
+import corp.siam.siamamuse.MoteurDeJeu.Joueur;
+import corp.siam.siamamuse.MoteurDeJeu.Pion;
+import corp.siam.siamamuse.MoteurDeJeu.Rocher;
 
 public class PlateauInterface {
 
@@ -51,8 +55,8 @@ public class PlateauInterface {
         suppressionJetons();
         affichagePion(mj.getJoueur1(),faireRotation);
         affichagePion(mj.getJoueur2(),faireRotation);
-        for(int i=1;i<mj.getLePlateau().taillePlateau+1;i++){
-            for(int j=1;j<mj.getLePlateau().taillePlateau+1;j++){
+        for(int i=1;i<mj.getLePlateau().getTaillePlateau()+1;i++){
+            for(int j=1;j<mj.getLePlateau().getTaillePlateau()+1;j++){
                 if(plateau[i][j]instanceof Pion){
                     Pion pion= (Pion) plateau[i][j];
                     if(faireRotation){
@@ -105,7 +109,7 @@ public class PlateauInterface {
     }
 
     //Affiche les pions qu'un joueur a en main
-    public void affichagePion(Joueur pJoueur,boolean bloquer){
+    public void affichagePion(Joueur pJoueur, boolean bloquer){
         ArrayList<Pion> lesPionsJoueur = pJoueur.getLesPionsEnMain();
         int i=1;
         for (Pion unPion: lesPionsJoueur){
@@ -117,8 +121,8 @@ public class PlateauInterface {
     //les btnajouts sont les carre vert qui permet de choisir ou ont veut placer notre pion sur le plateau
     public void creationbtnAjout(){
         Integer[][] btnAjout = mj.getLePlateau().getCaseajout();
-        for(int i=0;i<mj.getLePlateau().taillePlateau;i++){
-            for(int j=0;j<mj.getLePlateau().taillePlateau;j++){
+        for(int i=0;i<mj.getLePlateau().getTaillePlateau();i++){
+            for(int j=0;j<mj.getLePlateau().getTaillePlateau();j++){
                 if(btnAjout[i][j]==1) {
                     lesBtnAjout.add(new BtnAjout(i, j, context, mj,this));
                 }
