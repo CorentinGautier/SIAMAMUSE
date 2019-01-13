@@ -81,7 +81,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
         paramsButtonRetour.height = (int)(hauteurEcrant*0.07);
 
         ViewGroup.LayoutParams paramsTextNbManche = textNbrManche.getLayoutParams();
-        paramsTextNbManche.width = (int)(largeurEcrant*0.70);
+        paramsTextNbManche.width = (int)(largeurEcrant);
         ViewGroup.LayoutParams paramsTextTimer = textTimer.getLayoutParams();
         paramsTextTimer.width = (int)(largeurEcrant*0.70);
         ViewGroup.LayoutParams paramsTextTitre = textTitre.getLayoutParams();
