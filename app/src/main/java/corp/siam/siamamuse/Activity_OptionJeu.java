@@ -62,8 +62,8 @@ public class Activity_OptionJeu extends AppCompatActivity {
         textTitre.setX((int)(largeurEcrant*0.1));
         btnRetour.setX((int)(largeurEcrant*0.05));
         btnPlay.setX((int)(largeurEcrant*0.75));
-        textTimer.setX((int)(largeurEcrant*0.15));
-        textNbrManche.setX((int)(largeurEcrant*0.15));
+        textTimer.setX((int)(largeurEcrant*0.7));
+        textNbrManche.setX((int)(largeurEcrant*0.7));
 
         //CoordY
         textTitre.setY((int)(hauteurEcrant*0.1));
@@ -98,7 +98,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
         for(int i=1;i<5;i++){
             Button btnNbManche = new Button(this);
             btnNbManche.setY((int)(hauteurEcrant*0.36));
-            btnNbManche.setX((int)(largeurEcrant*0.15+(i-1)*largeurEcrant*0.12));
+            btnNbManche.setX((int)(largeurEcrant*0.07+(i-1)*largeurEcrant*0.12));
             btnNbManche.setText(i+"");
             btnNbManche.setTextColor(Color.WHITE);
             btnNbManche.setBackgroundResource(R.drawable.coutonbouton);
@@ -127,7 +127,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
             if(i==0){
                 btntimeroff.setBackgroundResource(R.drawable.btntimeroff);
                 btntimeroff.setY((int)(hauteurEcrant*0.53));
-                btntimeroff.setX((int)(largeurEcrant*0.15+(i)*largeurEcrant*0.17));
+                btntimeroff.setX((int)(largeurEcrant*0.07+(i)*largeurEcrant*0.17));
                 ViewGroup.LayoutParams paramsBtn = new ViewGroup.LayoutParams((int)(largeurEcrant*0.15),(int)(largeurEcrant*0.1));
                 btntimeroff.setLayoutParams(paramsBtn);
                 btntimeroff.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +140,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
             }else {
                 Button btnTimer = new Button(this);
                 btnTimer.setY((int) (hauteurEcrant * 0.53));
-                btnTimer.setX((int) (largeurEcrant * 0.15 + (i) * largeurEcrant * 0.17));
+                btnTimer.setX((int) (largeurEcrant * 0.07 + (i) * largeurEcrant * 0.17));
                 btnTimer.setText(i * 10 + "s");
                 btnTimer.setTextColor(Color.WHITE);
                 btnTimer.setBackgroundResource(R.drawable.coutonbouton);
