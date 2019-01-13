@@ -56,11 +56,12 @@ public class PionMain {
         imagePion.setX(x);
         //verifier l'orthographe
         int y;
+        int ecart = (int)((PlateauInterface.calc.getPosHautGauchY()-PlateauInterface.calc.getTailleCase())/2);
         if(nom=="elephant"){
-            y = (int) (PlateauInterface.calc.getHauteurEcrant()*0.05);
+            y = ecart;
             imagePion.setRotation(180);
         }else{
-            y = (int) ((PlateauInterface.calc.getHauteurEcrant()*0.95)-PlateauInterface.calc.getTailleCase());
+            y = PlateauInterface.calc.getHauteurEcrant() -ecart-PlateauInterface.calc.getTailleCase();
         }
         imagePion.setY(y);
 

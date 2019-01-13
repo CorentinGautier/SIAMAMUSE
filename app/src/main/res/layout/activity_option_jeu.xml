@@ -6,130 +6,56 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgndconvertcmage"
     android:orientation="vertical"
+    android:id="@+id/constraintOptionPartie"
     tools:context=".Activity_OptionJeu">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/titreOption"
         android:layout_width="260dp"
         android:layout_height="116dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="5dp"
         android:fontFamily="casual"
         android:text="Option de la partie"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Option de la partie" />
 
     <Button
-        android:id="@+id/buttonRetour"
+        android:id="@+id/buttonRetourOption"
         android:layout_width="104dp"
         android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/coutonbouton"
         android:onClick="RetourMenu"
         android:text="Retour"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonOption"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/password_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
 
     <Button
-        android:id="@+id/buttonOption"
+        android:id="@+id/buttonPlay"
         android:layout_width="178dp"
         android:layout_height="50dp"
-        android:layout_marginStart="212dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/coutonbouton"
         android:onClick="LancerLeJeu"
-        android:text="Lancer le jeu"
+        android:text="Play"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/email_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:gravity="center" />
-
-    <TextView
-        android:id="@+id/NbManche"
+        android:id="@+id/textNbManche"
         android:layout_width="247dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="69dp"
-        android:text="Nombre de manche :"
+        android:text="Nombre de manche gagnant :"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerNbManche"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="68dp"
-        android:spinnerMode="dialog"
-        android:textColor="@android:color/white"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/NbManche" />;
-
-    <CheckBox
-        android:id="@+id/chronometre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Chronomètre"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/NbManche"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.911"
-        tools:ignore="MissingConstraints" />
-
+        android:textSize="24sp" />
     <TextView
-        android:id="@+id/textVieChoixDuPlateau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:text="Choix du plateau"
-        android:textAlignment="center"
+        android:id="@+id/textTimer"
+        android:layout_width="247dp"
+        android:layout_height="40dp"
+        android:text="Temps timer:"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        android:textSize="24sp" />
+
+
 
 </android.support.constraint.ConstraintLayout>

@@ -72,8 +72,10 @@ public class MoteurJeu {
 	}
 
 	public void relancementChrono(){
-		context.onStop();
-		context.onStart();
+		if(context.tempsParJoueur!=0) {
+			context.onStop();
+			context.onStart();
+		}
 	}
 	public Joueur getTour() {
 		if (!tour) {
@@ -102,7 +104,6 @@ public class MoteurJeu {
 				joueur2.recuperPionMain(lePlateau.recuperePionDehorsPlateau());
 			}
 		}
-		lePlateau.afficherPlateauVisionDev();
     }
 
 	public void deplacerPionInterf(Pion pion,Orientation orient){

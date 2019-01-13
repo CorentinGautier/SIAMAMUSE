@@ -3,6 +3,7 @@ package corp.siam.siamamuse;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +12,7 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,7 +44,7 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     AtomicBoolean isRunning = new AtomicBoolean(false);
     // L'AtomicBoolean qui gère la mise en pause de la Thread de background
     AtomicBoolean isPausing = new AtomicBoolean(false);
-    private int tempsParJoueur =20; // temps pour chaque tour des joueurs
+    public int tempsParJoueur ; // temps pour chaque tour des joueurs
 
     private MoteurJeu mj;
     private PlateauInterface plateauInterface;
@@ -68,6 +70,12 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
         gestureDetector = new GestureDetectorCompat(this,this);
         gestureDetector.setOnDoubleTapListener(this);
         pionSelectionner=null;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        tempsParJoueur = preferences.getInt("tempsTimer", 0);
+        if(tempsParJoueur==0){
+            CountDownTexte.setBackgroundColor(Color.TRANSPARENT);
+            Log.e("TEST","je suis transparent");
+        }
     }
 
 
@@ -225,9 +233,10 @@ public class Activity_Partie extends AppCompatActivity  implements GestureDetect
     public boolean onDoubleTapEvent(MotionEvent e) {return false;}
 
    public void timerFin(){
-        mj.setPionRotation(null);
-        plateauInterface.convertionMatriceAffichage();
-       //appel onResume pour relancer le thread avec le timer
+        if(tempsParJoueur!=0) {
+            mj.setPionRotation(null);
+            plateauInterface.convertionMatriceAffichage();
+        }
     }
 
     //Méthode appelée quand l'activité s'arrête
