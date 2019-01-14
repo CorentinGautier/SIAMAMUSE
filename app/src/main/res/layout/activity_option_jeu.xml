@@ -37,7 +37,7 @@
         android:layout_height="50dp"
         android:background="@drawable/coutonbouton"
         android:onClick="LancerLeJeu"
-        android:text="Play"
+        android:text="Jouer"
         android:textColor="@android:color/white"
         tools:ignore="MissingConstraints" />
 
@@ -56,7 +56,7 @@
         android:layout_height="54dp"
         android:background="@drawable/coutonbouton"
         android:onClick="allerAuRegle"
-        android:text="Régle"
+        android:text="Règles"
         android:textColor="@android:color/white"
         tools:ignore="MissingConstraints" />
 

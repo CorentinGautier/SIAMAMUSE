@@ -104,8 +104,8 @@ public class Activity_PageDeVictoire extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         int nbVictoireGagnant = preferences.getInt("nbWinTotal", 0);
 
-        nbVictoireElephant.setText("Victoire des Elephants : " + nbVictoireE);
-        nbVictoireRhinoceros.setText("Victoire des Rhinoceros : " + nbVictoireR);
+        nbVictoireElephant.setText("Victoire des Eléphants : " + nbVictoireE);
+        nbVictoireRhinoceros.setText("Victoire des Rhinocéros : " + nbVictoireR);
         sauvegarderNbWin();
         if(nbVictoireE==nbVictoireGagnant){
             gagnantFinal();
