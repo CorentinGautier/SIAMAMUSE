@@ -96,7 +96,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
         paramsTextTitre.width = (int)(largeurEcrant*0.8);
         paramsTextTitre.height = (int)(hauteurEcrant*0.30);
 
-        textNbrManche.setText("Nombre de manche gagnant : "+nbMancheGagnante);
+        textNbrManche.setText("Nombre de manches gagnantes : "+nbMancheGagnante);
         textTimer.setText("Temps du timer : "+tempsTimer);
         btnNbManche();
         btnTempsTimer();
@@ -125,7 +125,7 @@ public class Activity_OptionJeu extends AppCompatActivity {
 
     public void actionNbManche(int i){
         nbMancheGagnante=i;
-        textNbrManche.setText("Nombre de manche gagnant : "+nbMancheGagnante);
+        textNbrManche.setText("Nombre de manches gagnantes : "+nbMancheGagnante);
         this.fond.removeView(textNbrManche);
         this.fond.addView(textNbrManche);
     }

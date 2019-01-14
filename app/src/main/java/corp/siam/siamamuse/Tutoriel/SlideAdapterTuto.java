@@ -45,12 +45,12 @@ public class SlideAdapterTuto extends PagerAdapter {
     // liste de descriptions
     public String[] lst_description = {
             "Swiper vers la droite ou la gauche pour voir le tutoriel",
-            "Pour pouvoir ajouter un pion, on doit tout d’abord cliquer sur le pion dans la liste de votre côter de l'écran que l’on souhaite placer sur l’écran.",
-            "Lors de la selection d'un pion, des cases vertes apparaissent et nous propose des cases où l'on peut endroit placer notre pion",
-            "Les flèches rouges indique l’orientation de votre pion pour finaliser l’action",
-            "Vous pouvez faire un double tap ou alors choisir le direction en cliquant sur les flèches rouges lorsque vous avez cliquer sur le bouton rotation ou choisit sur les cases vertes la position du pion choisit",
-            "Après que chacun des joueurs aient ajoutés des pion sur le plateau, on obtient ce plateau par exemple. Lorsque l’on veut déplacer un pion du plateau, il est indiqué vos choix possibles de jeu",
-            "Lorsque le timer est à zéro on passe son tour au joueur suivant. Il peut être désactivé ou modifié dans les options de début de partie",
+            "Pour pouvoir ajouter un pion, on doit tout d’abord cliquer sur un pion de la liste situé de notre côté, puis on le place sur une des case verte du plateau.",
+            "Lors de la sélection d'un pion, des cases vertes apparaissent et nous proposent des cases où l'on peut placer notre pion",
+            "Les flèches rouges indiquent l’orientation de votre pion. Il faut en choisir une pour finaliser l’action",
+            "Vous pouvez faire un double tap ou choisir le direction en cliquant sur les flèches rouges. Lorsque vous avez cliqué sur le bouton rotation ou choisit sur les cases vertes la position du pion choisit",
+            "Après que chacun des joueurs ai ajouté des pions sur le plateau, on peut par exemeple obtenir ce plateau. Lorsque l’on veut déplacer un pion du plateau,les choix possibles de jeu sont indiqués",
+            "Lorsque le timer est à zéro, on passe son tour au joueur suivant. Le timer peut être désactivé ou modifié dans les options de début de partie",
     };
 
     // list des couleurs en background
