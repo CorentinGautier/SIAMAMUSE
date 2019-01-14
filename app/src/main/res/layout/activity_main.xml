@@ -45,11 +45,11 @@
         android:layout_width="156px"
         android:layout_height="75px"
         android:background="@drawable/coutonbouton"
-        android:onClick="allerEditPlateau"
         android:text="Editer un plateau"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         tools:ignore="MissingConstraints" />
+        <!--android:onClick="allerEditPlateau"-->
 
     <Button
         android:id="@+id/buttonQuitter"
@@ -60,5 +60,11 @@
         android:text="Quitter le jeu"
         android:textColor="@android:color/white"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageCadenas"
+        android:layout_width="78dp"
+        android:layout_height="77dp"
+        app:srcCompat="@drawable/cadenas" />
 
 </android.support.constraint.ConstraintLayout>

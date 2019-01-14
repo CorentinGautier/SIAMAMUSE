@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import corp.siam.siamamuse.Plateau.Activity_CreationPlateau;
 
@@ -18,8 +19,8 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
     private Button btnJouer;
     private Button btnQuitter;
     private Button btnEditerPlateau;
-    private Button btnTutoriel;
     private Button btnCredit;
+    private ImageView imageCadenas;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         btnJouer = (Button) findViewById(R.id.buttonJouer);
         btnQuitter = (Button) findViewById(R.id.buttonQuitter);
         btnCredit = (Button) findViewById(R.id.buttonCredit);
-
+        imageCadenas = (ImageView) findViewById(R.id.imageCadenas);
         calculTailleEcrant();
         dispositionInterface();
     }
@@ -40,12 +41,13 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         btnEditerPlateau.setX((int)(largeurEcrant*0.35));
         btnQuitter.setX((int)(largeurEcrant*0.35));
         btnCredit.setX((int)(largeurEcrant*0.70));
+        imageCadenas.setX((int)(largeurEcrant*0.45));
         //CoordY
         btnJouer.setY((int)(hauteurEcrant*0.40));
         btnEditerPlateau.setY((int)(hauteurEcrant*0.55));
         btnQuitter.setY((int)(hauteurEcrant*0.70));
         btnCredit.setY((int)(hauteurEcrant*0.85));
-
+        imageCadenas.setY((int)(hauteurEcrant*0.56));
         //Redimmensionnement
         ViewGroup.LayoutParams paramsButtonJouer = btnJouer.getLayoutParams();
         paramsButtonJouer.width = (int)(largeurEcrant*0.3);
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         ViewGroup.LayoutParams paramsButtonCredit = btnCredit.getLayoutParams();
         paramsButtonCredit.width = (int)(largeurEcrant*0.3);
         paramsButtonCredit.height = (int)(hauteurEcrant*0.1);
+        ViewGroup.LayoutParams paramsImageCadenas = imageCadenas.getLayoutParams();
+        paramsImageCadenas.width = (int)(largeurEcrant*0.1);
+        paramsImageCadenas.height = (int)(hauteurEcrant*0.08);
     }
 
     public void calculTailleEcrant(){
@@ -68,11 +73,11 @@ public class MainActivity extends AppCompatActivity { //page d'acceuil
         hauteurEcrant = metrics.heightPixels;
     }
 
-    public void allerEditPlateau(View v){
-        Intent intent = new Intent(this, Activity_CreationPlateau.class); // l'activité où on est vers la prochaine
-        startActivity(intent);
-        this.finish() ;
-    }
+//    public void allerEditPlateau(View v){
+//        Intent intent = new Intent(this, Activity_CreationPlateau.class); // l'activité où on est vers la prochaine
+//        startActivity(intent);
+//        this.finish() ;
+//    }
 
     public void ActivityOptionJeu(View viewview){
         Intent intent2 = new Intent(this, Activity_OptionJeu.class); // l'activité où on est en ce moment et la prochaine activity

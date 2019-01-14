@@ -55,8 +55,8 @@ public class SlideAdapterTuto extends PagerAdapter {
 
     // list des couleurs en background
     public int[] lst_backgroundcolor = {
-            Color.rgb(74, 255, 51),
-            Color.rgb(51, 255, 251),
+            Color.rgb(74, 25, 51),
+            Color.rgb(51, 25, 251),
             Color.rgb(239, 85, 85),
             Color.rgb(110, 49, 89),
             Color.rgb(255, 215, 51),
