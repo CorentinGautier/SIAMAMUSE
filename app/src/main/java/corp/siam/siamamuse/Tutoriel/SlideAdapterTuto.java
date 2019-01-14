@@ -49,8 +49,8 @@ public class SlideAdapterTuto extends PagerAdapter {
             "Lors de la sélection d'un pion, des cases vertes apparaissent et nous proposent des cases où l'on peut placer notre pion",
             "Les flèches rouges indiquent l’orientation de votre pion. Il faut en choisir une pour finaliser l’action",
             "Vous pouvez faire un double tap ou choisir le direction en cliquant sur les flèches rouges. Lorsque vous avez cliqué sur le bouton rotation ou choisit sur les cases vertes la position du pion choisit",
-            "Après que chacun des joueurs ai ajouté des pions sur le plateau, on peut par exemeple obtenir ce plateau. Lorsque l’on veut déplacer un pion du plateau,les choix possibles de jeu sont indiqués",
-            "Lorsque le timer est à zéro, on passe son tour au joueur suivant. Le timer peut être désactivé ou modifié dans les options de début de partie",
+            "Après que chacun des joueurs ai ajouté des pions sur le plateau, on peut par exemple obtenir ce plateau. Lorsque l’on veut déplacer un pion du plateau, les choix possibles de jeu sont indiqués",
+            "Lorsque le timer est à zéro, ça passe au joueur suivant. Le timer peut être désactivé ou modifié dans les options de début de partie",
     };
 
     // list des couleurs en background

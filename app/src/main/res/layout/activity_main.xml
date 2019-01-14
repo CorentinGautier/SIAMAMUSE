@@ -57,7 +57,7 @@
         android:layout_height="71px"
         android:background="@drawable/coutonbouton"
         android:onClick="QuitterLeJeu"
-        android:text="Quitter le jeu"
+        android:text="Quitter"
         android:textColor="@android:color/white"
         tools:ignore="MissingConstraints" />
 
