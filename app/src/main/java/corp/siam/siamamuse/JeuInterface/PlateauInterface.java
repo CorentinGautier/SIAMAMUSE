@@ -35,11 +35,11 @@ public class PlateauInterface {
         calc = new Calculateur(context.largeurEcrant,context.hauteurEcrant,moteurJeu);
         this.context=context;
         mj = moteurJeu;
-        creationbtnAjout();
         bloqueTourSuivant =true;
     }
 
      public void convertionMatriceAffichage(){
+        creationbtnAjout();
         boolean faireRotation = false;
         if(bloqueTourSuivant){
             bloqueTourSuivant =false;
@@ -120,6 +120,8 @@ public class PlateauInterface {
 
     //les btnajouts sont les carre vert qui permet de choisir ou ont veut placer notre pion sur le plateau
     public void creationbtnAjout(){
+        supprimerBtnAjout();
+        lesBtnAjout.removeAll(lesBtnAjout);
         Integer[][] btnAjout = mj.getLePlateau().getCaseajout();
         for(int i=0;i<mj.getLePlateau().getTaillePlateau();i++){
             for(int j=0;j<mj.getLePlateau().getTaillePlateau();j++){

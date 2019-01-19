@@ -19,17 +19,19 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class Plateau {
 
-	Jeton[][] plateau;
-	int taillePlateau;
-	int largeurPlateau,hauteurPlateau;
+	private Jeton[][] plateau;
+	private int taillePlateau;
+	private int largeurPlateau,hauteurPlateau;
 
-	Pion pionARecupere;
-	boolean finJeu;
-	Integer[][] caseAjout;
+	private Pion pionARecupere;
+	private boolean finJeu;
+	private Integer[][] caseAjout;
+	private int nbTour;
 
 	public Plateau(int taillePlateau) {
 		super();
 		finJeu = false;
+		nbTour=0;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
 		this.largeurPlateau = taillePlateau;
 		this.hauteurPlateau =taillePlateau;
@@ -482,5 +484,13 @@ public class Plateau {
 
 	public int getTaillePlateau() {
 		return taillePlateau;
+	}
+
+	public void increTour() {
+		nbTour++;
+		if(nbTour>=2){
+			caseAjout[2][0]=1;
+			caseAjout[2][4]=1;
+		}
 	}
 }

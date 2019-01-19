@@ -57,6 +57,7 @@ public class MoteurJeu {
 				} else {
 					tour = false;
 				}
+				lePlateau.increTour();
 			} else {
 				//La partie est finie
 				if (!tour) {
